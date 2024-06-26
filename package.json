@@ -1,0 +1,39 @@
+{
+  "name": "proyectogrupal_fullstack_ofertastrabajo",
+  "version": "1.0.0",
+  "description": "Trabajo grupal sobre una aplicacion web de ofertas de empleo tecnológicas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rruanom/proyectoGrupal_fullStack_ofertasTrabajo.git"
+  },
+  "author": "Miguel Pardal, Antonio Gonzalez y Roberto Ruano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rruanom/proyectoGrupal_fullStack_ofertasTrabajo/issues"
+  },
+  "homepage": "https://github.com/rruanom/proyectoGrupal_fullStack_ofertasTrabajo#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.3",
+    "mongoose-sequence": "^6.0.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.12.0",
+    "pug": "^3.0.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.3"
+  }
+}
