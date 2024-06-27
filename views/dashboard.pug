@@ -1,0 +1,25 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="../public/CSS/styleLogin.css")
+  body
+    header
+      #divHamburguesa
+        button#botonHamburguesa
+    main
+      #tarjetaSubirOferta
+        h2 Subir ofertas
+        form#formSubirOferta(action="#" method="POST")
+          #divTituloOferta
+            input#inputTituloOferta(type="text" name="inputTituloOferta" placeholder="Introduce el título...")
+          #divEmpresaOferta
+            input#inputEmpresa(type="text" name="inputEmpresa" placeholder="Introduce el nombre de la empresa...")
+          #divDetallesOferta
+            input#inputDetalles(type="text" name="inputDetalles" placeholder="Introduce los detalles...")
+          #divSalarioOferta
+            input#inputSalario(type="text" name="inputSalario" placeholder="Introduce el salario...")
+          #submitOferta
+            input(type="submit" value="Login")
