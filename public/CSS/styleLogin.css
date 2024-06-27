@@ -1,0 +1,123 @@
+/* Selectores Universales */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Selectores de Etiqueta */
+body {
+    background-color: white;
+}
+
+main {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    min-height: 100vh;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-image: linear-gradient(yellow, purple);
+}
+
+h2{
+    font-size: 30px;
+    display: grid;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+/* Selectores Anidados */
+
+#divHamburguesa button {
+    width: 70px;
+    height: 70px;
+    border-radius: 20%;
+    background-image: url('/public/IMGs/burger.png');
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#tarjetaLogin input{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#tarjetaLogin button{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+#divRecuperarPass button{
+    border: 0;
+    background-color: white;
+    color: rgb(0, 72, 173);
+}
+/* Selectores por ID */
+
+#divHamburguesa {
+    position: fixed;
+    left: 80%;
+    bottom: 83.7%;
+}
+
+#tarjetaLogin{
+    border: 2px solid grey;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 110px;
+    margin-bottom: 15%;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: flexbox;
+}
+
+#divEmail, #divPass, #divSubmitLogin{
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+#formSignup{
+    display: grid;
+
+}
+#nameSignup, #emailSignup, #passSignup, #passSignupRepeat, #botonRegistro {
+    margin-bottom: 20px;
+}
+#divPass{
+    margin-bottom: 30px;
+}
+
+#divRecuperarPass{
+    margin-top: 20px;
+    display: grid;
+}
+
+/* Selectores por Clases */
+
+/* Media queries */
+
+/* Dispositivos grandes (pantallas de escritorio grandes) */
+@media (min-width: 1200px) {
+
+    #divHamburguesa {
+        left: 92%;
+        bottom: 83.7%;
+    }
+
+    h2{
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
+}
+
+/* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
+@media (max-width: 375px) {}
