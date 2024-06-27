@@ -1,8 +1,36 @@
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Ofertas de Empleo FullStack
-    body 
-        main 
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="../public/CSS/style.css")
+
+  body
+    header
+      #titulo
+        h1 RoMiAn
+        h4 Ofertas de empleo FullStack
+      #divBuscador
+        input(type="text" id="inputBuscador" name="inputBuscador" placeholder="Buscar ofertas...")
+      #divHamburguesa
+        button(id="botonHamburguesa")
+
+    main
+      #filtros
+        h2 Filtros
+      #ejemploTarjeta
+        h2 Oferta 1
+        h4 Nombre empresa
+        h4 Localización
+        h4 Salario
+        #botonesEjemplo
+          button JS
+          button HTML
+          button CSS
+
+    footer
+      p Footer
+
+    script(src="script.js")
+
