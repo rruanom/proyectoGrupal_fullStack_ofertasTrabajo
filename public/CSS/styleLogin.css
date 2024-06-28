@@ -16,7 +16,10 @@ main {
     min-height: 100vh;
     padding-right: 40px;
     padding-left: 40px;
-    background-image: linear-gradient(yellow, purple);
+    background-image: url('../IMGs/bannerWeb.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h2{
@@ -39,17 +42,24 @@ h2{
     background-repeat: no-repeat;
 }
 
-#tarjetaLogin input, #tarjetaSubirOferta input{
+#tarjetaLogin input{
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: center;
 }
+#tarjetaSubirOferta input{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: left;
+    padding-left: 20px;
+}
 #divDetallesOferta input{
     width: 250px;
     height: 300px;
     border-radius: 20px;
-    text-align: center;
+    text-align: left;
 }
 #tarjetaLogin button{
     width: 250px;
@@ -61,6 +71,9 @@ h2{
     border: 0;
     background-color: white;
     color: rgb(0, 72, 173);
+}
+#submitOferta input{
+    text-align: center;
 }
 /* Selectores por ID */
 
@@ -74,6 +87,7 @@ h2{
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
+    opacity: 97%;
     margin-top: 110px;
     margin-bottom: 15%;
     margin-left: 20px;
@@ -97,9 +111,15 @@ h2{
     display: flexbox;
 }
 
-#divEmail, #divPass, #divSubmitLogin, #divTituloOferta, #divEmpresaOferta, #divDetallesOferta, #divSalarioOferta, #submitOferta{
+#divEmail, #divPass, #divSubmitLogin, #divTituloOferta, #divEmpresaOferta, #divDetallesOferta, #divSalarioOferta{
     margin-bottom: 20px;
     font-size: 20px;
+}
+#submitOferta{
+    margin-bottom: 20px;
+    font-size: 20px;
+    justify-content: center;
+    text-align: center;
 }
 
 #formSignup, #formSubirOferta{
@@ -137,13 +157,24 @@ h2{
         width: 100%;
         height: 30px;
         border-radius: 20px;
+        text-align: left;
+    }
+    #submitOferta{
+        margin-bottom: 20px;
+        font-size: 20px;
+        justify-content: center;
+        text-align: center;
+        width: 50%;
+        margin-left: 250px;
+    }
+    #submitOferta input{
         text-align: center;
     }
     #divDetallesOferta input{
         width: 100%;
         height: 300px;
         border-radius: 20px;
-        text-align: center;
+        text-align: right;
     }
     h2{
         margin-top: 40px;

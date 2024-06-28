@@ -5,13 +5,16 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
     link(rel="stylesheet" href="../public/CSS/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+
   body
     header
       #titulo
-        h1 RoMiAn
-        h4 Favoritos
+        img#logoEmpresa(src="../public/IMGs/logoRomian.png" alt="Logo de la empresa")
+        h4#tituloFavs Favoritos
       #divHamburguesa
         button#botonHamburguesa
+
     main
       #filtros
         h2 Filtros
@@ -24,6 +27,8 @@ html(lang="en")
           button JS
           button HTML
           button CSS
+
     footer
       p Footer
+
     script(src="script.js")

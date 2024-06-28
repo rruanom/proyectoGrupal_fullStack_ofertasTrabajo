@@ -1,20 +1,21 @@
 doctype html
-html(lang="es")
+html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
     link(rel="stylesheet" href="../public/CSS/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
 
   body
     header
       #titulo
-        h1 RoMiAn
-        h4 Ofertas de empleo FullStack
+        img#logoEmpresa(src="../public/IMGs/logoRomian.png" alt="Logo de la empresa")
       #divBuscador
-        input(type="text" id="inputBuscador" name="inputBuscador" placeholder="Buscar ofertas...")
+        h2 ¿Estás buscando ofertas de trabajo?
+        input#inputBuscador(type="text" name="inputBuscador" placeholder="Buscar ofertas...")
       #divHamburguesa
-        button(id="botonHamburguesa")
+        button#botonHamburguesa
 
     main
       #filtros
