@@ -24,7 +24,10 @@ footer {
 header {
     justify-content: center;
     padding: 25px;
-    background-image: linear-gradient(purple, rgb(93, 123, 255));
+    background-image: url('../IMGs/bannerWeb.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 main {
@@ -43,6 +46,12 @@ footer h3 {
     display: none;
 }
 
+header img{
+    width: 40%;
+    background-color: white;
+    border-radius: 50px;
+    padding-top: 0;
+}
 #titulo h4 {
     display: ruby;
     justify-content: center;
@@ -125,15 +134,15 @@ footer h3 {
         width: 60%;
         border: 2px solid black;
         background-color: white;
+        opacity: 80%;
         justify-content: space-around;
         border-radius: 20px;
         margin-left: 17%;
     }
-
+ 
     #titulo {
         font-size: 50px;
         margin-top: 13%;
-        margin-bottom: 7%;
     }
     #titulo h4 {
         display: ruby;
@@ -145,7 +154,20 @@ footer h3 {
         display: block;
         margin-bottom: 30px;
     }
-
+    header{
+        padding: 100px;
+        padding-top: 200px ;
+    }
+    header img{
+        width: 20%;
+        background-color: white;
+        border-radius: 50px;
+        padding-top: 0;
+        margin-bottom: 120px;
+        position: absolute;
+        top: 5%;
+        left: 5%;
+    }
     #inputBuscador {
         width: 100%;
         height: 40px;
