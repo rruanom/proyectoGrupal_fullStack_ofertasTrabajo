@@ -6,7 +6,7 @@ CREATE TABLE users (
   username varchar(45) NOT NULL UNIQUE, 
   email varchar(100) NOT NULL UNIQUE,
   password varchar(45) NOT NULL,
-  isadmin boolean NOT NULL DEFAULT FALSE
+  isadmin boolean NOT NULL DEFAULT FALSE,
   image varchar(255)
 );
 
@@ -21,12 +21,12 @@ CREATE TABLE favoritos (
 );
 
 --Insertar ususarios
-INSERT INTO users (name, lastname, username, email, password, image)
+INSERT INTO users (name, lastname, username, email, password, isadmin, image)
 VALUES 
-('Antonio', 'González', 'nitolez', 'email@antonio.com', '123456', 'imagenantonio.jpg'),
-('Roberto', 'Ruano', 'robertor', 'email@roberto.com', '123456', 'imagenroberto.jpg'),
-('Miguel', 'Pardal', 'mipaes', 'email@miguel.com', '123456', 'imagenmiguel.jpg'),
-('Jonás', 'V', 'jony', 'email@jonas.com', '123456', 'imagenjonas.jpg')
+('Antonio', 'González', 'nitolez', 'email@antonio.com', '123456', false, 'imagenantonio.jpg'),
+('Roberto', 'Ruano', 'robertor', 'email@roberto.com', '123456', false, 'imagenroberto.jpg'),
+('Miguel', 'Pardal', 'mipaes', 'email@miguel.com', '123456', false, 'imagenmiguel.jpg'),
+('Jonás', 'V', 'jony', 'email@jonas.com', '123456', false, 'imagenjonas.jpg')
 
 --Insertar datos en favoritos
 INSERT INTO favoritos (titulo, url, id_user, description)
