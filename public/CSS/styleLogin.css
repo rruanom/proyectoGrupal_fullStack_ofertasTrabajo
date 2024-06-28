@@ -42,7 +42,7 @@ h2{
     background-repeat: no-repeat;
 }
 
-#tarjetaLogin input{
+#tarjetaLogin input, #tarjetaPerfil input{
     width: 250px;
     height: 30px;
     border-radius: 20px;
@@ -61,7 +61,7 @@ h2{
     border-radius: 20px;
     text-align: left;
 }
-#tarjetaLogin button{
+#tarjetaLogin button, #tarjetaPerfil button{
     width: 250px;
     height: 30px;
     border-radius: 20px;
@@ -97,6 +97,19 @@ h2{
     padding-right: 50px;
     display: flexbox;
 }
+#tarjetaPerfil{
+    border: 2px solid grey;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 97%;
+    margin-top: 290px;
+    margin-bottom: 15%;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
 #tarjetaSubirOferta{
     border: 2px solid grey;
     border-radius: 20px;
@@ -111,7 +124,7 @@ h2{
     display: flexbox;
 }
 
-#divEmail, #divPass, #divSubmitLogin, #divTituloOferta, #divEmpresaOferta, #divDetallesOferta, #divSalarioOferta{
+#divEmail, #divPass, #divPerfilEmail, #divPerfilNombre, #fotoPerfil, #divSubmitLogin, #divTituloOferta, #divEmpresaOferta, #divDetallesOferta, #divSalarioOferta{
     margin-bottom: 20px;
     font-size: 20px;
 }

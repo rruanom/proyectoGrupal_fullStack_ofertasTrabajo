@@ -9,7 +9,21 @@
 body {
     background-color: white;
 }
-
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 footer {
     align-items: center;
     background-color: white;
@@ -65,7 +79,9 @@ header img{
     margin-top: 20px;
     color: rgb(131, 59, 131);
 }
-
+table button{
+    width: 90px;
+}
 #divHamburguesa button {
     width: 70px;
     height: 70px;
@@ -97,7 +113,9 @@ header img{
     left: 80%;
     bottom: 83.7%;
 }
-
+#tituloUsuarios{
+    margin-top: 60px;
+}
 
 
 /* EJEMPLO DE TARJETA*/
@@ -105,6 +123,11 @@ header img{
     border: 2px solid grey;
     border-radius: 20px;
     padding: 15px;
+}
+#ejemploUsuarios{
+    padding: 15px;
+    margin-top: 60px;
+
 }
 
 #filtros {
