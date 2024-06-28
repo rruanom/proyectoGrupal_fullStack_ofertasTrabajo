@@ -14,20 +14,24 @@ const extractProductData = async (url,browser) => {
         // Utilizamos el método newPage.$eval(selector, function) y almacenamos en productData:
 /********** A RELLENAR todos los page.$eval(selector, function)  *********/
         //fuente del anuncio
-        productData['fuente'] = "infojobs.net";
+        productData['fuente'] = "ideed.com";
         //url del anuncio
         productData['url'] = url;
         //Titulo
-        productData['title'] = await page.$eval("#prefijoPuesto", titulo=>titulo.innerText)
+        productData['title'] = await page.$eval("h1.jobsearch-JobInfoHeader-title > span", titulo=>titulo.innerText)
         //Nombre de la empresa
-        productData['empresa'] = await page.$eval(".link", link=>link.innerText)
+        productData['empresa'] = await page.$eval("span > a", link=>link.innerText)
         //logo
-        productData['logo'] = await page.$eval(".border-rounded-l", img=>img.src)
+        productData['logo'] = "sin logo"
         //salario
-        productData['salario'] = await page.$eval("ul > li:nth-child(4) > span", salario=>salario.innerText)
-        //localizacion
-        productData['localizacion'] = await page.$eval("#prefijoProvincia", localizacion=>localizacion.innerText)
-
+        if(await page.locator('div.js-match-insights-provider-h05mm8.e37uo190 > div:nth-child(1) > div > div > ul > li > div > div > div:nth-child(1)'!== null)){
+            productData['salario'] = await page.$eval("div.js-match-insights-provider-h05mm8.e37uo190 > div:nth-child(1) > div > div > ul > li > div > div > div:nth-child(1)", salario=>salario.innerText)
+        } else {
+            productData['salario'] = "salario no especificado"
+        }
+        //localizacion        
+            productData['localizacion'] = await page.$eval("#jobLocationText > div > span", localizacion=>localizacion.innerText)
+        
         return productData // Devuelve los datos de un producto
     }
     catch(err){
@@ -51,25 +55,28 @@ const scrap = async (url) => {
         await page.goto(url);
         console.log(`Navegando a ${url}...`);
 
-        // Esperamos a que el botón de consentimiento esté disponible y luego hacemos clic en él
-        await page.waitForSelector('#didomi-notice-agree-button');
-        await page.locator('#didomi-notice-agree-button').click();
-
         // Buscamos la barra del buscador y agregamos el valor "fullStack"
-        await page.waitForSelector('#palabra');
-        await page.locator('#palabra').fill('fullStack');
+        await page.waitForSelector('#text-input-what');
+        await page.locator('#text-input-what').fill('fullStack');
 
         // Hacemos clic en "buscar"
-        await page.waitForSelector('#searchOffers');
-        await page.locator('#searchOffers').click();
+        await page.waitForSelector('button.yosegi-InlineWhatWhere-primaryButton');
+        await page.locator('button.yosegi-InlineWhatWhere-primaryButton').click();
 
         // Esperamos a que los resultados de la búsqueda estén disponibles
-        await page.waitForSelector('.ij-OfferCardContent-description-title > a');
+        await page.waitForSelector('h2.jobTitle > a');
 
-        const tmpurls = await page.$$eval(".ij-OfferCardContent-description-title > a", data => data.map(a=>a.href))
+        //Especificamos un ancho de pantalla que nos deje trabajar, ya que mas ancho no reacciona igual.
+        await page.setViewport({
+            width: 1080,
+            height: 1920
+          });
+
+        //cogemos cada url de las ofertas  
+        const tmpurls = await page.$$eval("h2.jobTitle > a", data => data.map(a=>a.href))
         
         //Quitamos los duplicados
-        const urls = await tmpurls.filter((link,index) =>{ return tmpurls.indexOf(link) === index})
+        const urls = tmpurls.filter((link,index) =>{ return tmpurls.indexOf(link) === index})
 
         console.log("url capuradas",urls)
         // Me quedo con los 20 primeros productos, porque sino es muy largo
@@ -98,4 +105,4 @@ const scrap = async (url) => {
 };
 
 // Llamamos a la función scrap con la URL deseada
-scrap('https://www.infojobs.net');  // Reemplaza con la URL real que quieres scrapear
+scrap('https://es.indeed.com/');  // Reemplaza con la URL real que quieres scrapear
