@@ -16,7 +16,7 @@ const queries = {
     INSERT INTO public.favoritos(titulo, url, id_user, description)
     VALUES 
     ($1, $2, (SELECT id_user FROM users WHERE email=$3), $4);`,
-    updateFavoritor: `
+    updateFavorito: `
     UPDATE public.favoritos
     SET titulo=$1, description=$2, url=$3
     WHERE titulo=$4;`,
