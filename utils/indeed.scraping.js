@@ -21,8 +21,7 @@ const extractProductData = async (url,browser) => {
         productData['title'] = await page.$eval("h1.jobsearch-JobInfoHeader-title > span", titulo=>titulo.innerText)
         //Nombre de la empresa
         productData['empresa'] = await page.$eval("span > a", link=>link.innerText)
-        //logo
-        productData['logo'] = "sin logo"
+        
         //salario
         if(await page.locator('div.js-match-insights-provider-h05mm8.e37uo190 > div:nth-child(1) > div > div > ul > li > div > div > div:nth-child(1)'!== null)){
             productData['salario'] = await page.$eval("div.js-match-insights-provider-h05mm8.e37uo190 > div:nth-child(1) > div > div > ul > li > div > div > div:nth-child(1)", salario=>salario.innerText)
@@ -30,7 +29,10 @@ const extractProductData = async (url,browser) => {
             productData['salario'] = "salario no especificado"
         }
         //localizacion        
-            productData['localizacion'] = await page.$eval("#jobLocationText > div > span", localizacion=>localizacion.innerText)
+        productData['localizacion'] = await page.$eval("#jobLocationText > div > span", localizacion=>localizacion.innerText)
+         //logo
+        await page.locator('span > a').click();
+        productData['logo'] = await page.$eval("img", image=>image.src) 
         
         return productData // Devuelve los datos de un producto
     }
