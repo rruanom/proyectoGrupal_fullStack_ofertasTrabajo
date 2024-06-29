@@ -11,22 +11,31 @@ html(lang="en")
     header
       #titulo
         img#logoEmpresa(src="../public/IMGs/logoRomian.png" alt="Logo de la empresa")
-        h4#tituloFavs Favoritos
+        h4#tituloFavs Usuarios
       #divHamburguesa
         button#botonHamburguesa
 
     main
-      #filtros
-        h2 Filtros
-      #ejemploTarjeta
-        h2 Oferta 1
-        h4 Nombre empresa
-        h4 Localización
-        h4 Salario
-        #botonesEjemplo
-          button JS
-          button HTML
-          button CSS
+      #tituloUsuarios
+        h3 Lista de usuarios registrados
+      #ejemploUsuarios
+        table
+          thead
+            tr
+              th Usuario
+              th Email
+              th Borrar_Usuario
+          tbody
+            tr
+              td Juan Pérez
+              td juan.perez@example.com
+              td 
+                button Borrar
+            tr
+              td María García
+              td maria.garcia@example.com
+              td 
+                button Borrar
 
     footer
       p Footer
