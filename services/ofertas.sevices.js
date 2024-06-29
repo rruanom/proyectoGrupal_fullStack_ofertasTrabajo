@@ -1,0 +1,1 @@
+const Oferta = require('../models/ofertas.model');
