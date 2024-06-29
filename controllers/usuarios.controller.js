@@ -1,3 +1,4 @@
+const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
 // const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 
@@ -28,7 +29,7 @@ const createUser = async (req, res) => {
     }
     const newUser = req.body;
         try {
-            const response = await author.createAuthor(newUser);
+            const response = await user.createUser(newUser);
             res.status(201).json({
                 "items_created": response,
                 data: newUser
@@ -38,7 +39,44 @@ const createUser = async (req, res) => {
         }
 };
 
+const updateUser = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const modifiedUser = req.body; 
+        try {
+            const response = await author.updateUser(modifiedUser);
+            res.status(201).json({
+                "items_updated": response,
+                data: modifiedUser
+            });
+        } catch (error) {
+            res.status(500).json({ error: "Error en la BBDD" });
+        }
+};
+
+const deleteUser = async (req, res) => {
+    let userSearch;
+    if (req.params.email) {
+        userSearch = await user.getUserByEmail(req.params.email);
+        if (userSearch.length > 0) {
+            await favorito.deleteFavoritos(req.params.email);
+            await user.deleteUser(req.params.email);
+            res.status(200).json({ message: `Se ha borrado el usuario con email: ${req.params.email}` })
+        } else {
+            res.status(404).json("No se ha encontrado el usuario")
+        }
+    }
+    else {
+        res.status(404).json("No se ha encontrado el usuario")
+    }
+};
+
+
 module.exports = {
     getUsers,
-    createUser
+    createUser,
+    updateUser,
+    deleteUser
 }

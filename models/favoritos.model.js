@@ -75,7 +75,22 @@ const deleteFavoritos = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteFavorito, [email]);
+        const data = await client.query(queries.deleteFavoritos, [email]);
+        result = data.fields;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    } finally {
+        client.release();
+    }
+    return result;
+};
+
+const deleteFavorito = async (titulo) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(queries.deleteFavorito, [titulo]);
         result = data.fields;
     } catch (error) {
         console.log(error);
@@ -89,5 +104,6 @@ const deleteFavoritos = async (email) => {
 module.exports = {
     getFavoritosByEmail,
     createFavorito,
-    deleteFavoritos
+    deleteFavoritos,
+    deleteFavorito
 };

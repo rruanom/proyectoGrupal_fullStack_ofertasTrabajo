@@ -20,8 +20,11 @@ const queries = {
     UPDATE public.favoritos
     SET titulo=$1, description=$2, url=$3
     WHERE titulo=$4;`,
+    deleteFavoritos:`
+    DELETE FROM favoritos WHERE user_id=(SELECT id_user FROM users WHERE email=$1);`,
     deleteFavorito:`
-    DELETE FROM favoritos WHERE user_id=(SELECT id_user FROM users WHERE email=$1);`
+    DELETE FROM favoritos
+    WHERE titulo=S1`
 }
 
 module.exports = queries;
