@@ -13,6 +13,9 @@ const morgan = require("./middlewares/morgan");
 app.use(morgan(':method :url :status - :response-time ms :body'));
 
 // Rutas
+const rutasUsuarios = require('./routes/usuarios.routes');
+const rutasFavortios = require('./routes/favoritos.routes');
+
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +25,13 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(express.static('public')); // Habilito la carpeta public para archivos estáticos
+
+//Rutas API
+app.use('/api/usuarios', rutasUsuarios);
+app.use('/api/favoritos', rutasFavortios);
+//Rutas Web
+
+//Rutas Views
 
 //http://localhost:3000/api-docs/
 //  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Habilitando ruta para docs swagger
