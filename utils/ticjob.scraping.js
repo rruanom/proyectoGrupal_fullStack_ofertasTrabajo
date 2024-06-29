@@ -11,45 +11,32 @@ const extractProductData = async (url,browser) => {
         // Accedemos al link de cada producto que nos llega por parámetros
         await page.goto(url)
 
+        //Le damos a la página un ancho
+        await page.setViewport({
+            width: 1080,
+            height: 1920
+          });
+
         // Utilizamos el método newPage.$eval(selector, function) y almacenamos en productData:
 /********** A RELLENAR todos los page.$eval(selector, function)  *********/
         //fuente del anuncio
-        productData['fuente'] = "ideed.com";
+        productData['fuente'] = "ticjob.es";
         //url del anuncio
         productData['url'] = url;
         //Titulo
-        productData['title'] = await page.$eval("h1.jobsearch-JobInfoHeader-title > span", titulo=>titulo.innerText)
+        productData['title'] = await page.$eval("#job-title", titulo=>titulo.innerText)
         //Nombre de la empresa
-        productData['empresa'] = await page.$eval("span > a", link=>link.innerText)
-        
+        productData['empresa'] = await page.$eval("img.job-offer-logo-image", link=>link.title)
+        //logo
+        productData['logo'] = await page.$eval("img.job-offer-logo-image", img=>img.src)
+        //localizacion
+        productData['localizacion'] = await page.$eval("#job-location0", localizacion=>localizacion.innerText)
         //salario
-        const salario = await page.evaluate(() => {
-            const query = document.querySelector('#salaryInfoAndJobType')
-            if (query){
-                const response = document.querySelector('#salaryInfoAndJobType > span').innerText
-                return response
-            } else{
-            return "salario no especificado";
-            }
-          });
-            productData['salario'] = salario;
-        //localizacion        
-        productData['localizacion'] = await page.$eval("#jobLocationText > div > span", localizacion=>localizacion.innerText)
-         //logo
-        /* await page.locator('span > a').click();
-        await page.waitForSelector('header img');
-
-        const logo = await page.evaluate(() => {
-            const query = document.querySelector('header img')
-            if (query){
-                const response = query.src
-                return response
-            } else{
-            return "sin logo";
-            }
-          });
-            productData ['logo'] = logo*/  
-        
+        if(await page.$eval("#summarySalary > span", salario=>salario.innerText) != '0'){
+            productData['salario'] = await page.$eval("#summarySalary > span", salario=>salario.innerText)
+        } else {
+            productData['salario'] = "salario no especificado"
+        }
         return productData // Devuelve los datos de un producto
     }
     catch(err){
@@ -73,40 +60,21 @@ const scrap = async (url) => {
         await page.goto(url);
         console.log(`Navegando a ${url}...`);
 
-        //aceptamos las cookies
-        await page.waitForSelector('#onetrust-accept-btn-handler');
-        await page.locator('#onetrust-accept-btn-handler').click();
-
         // Buscamos la barra del buscador y agregamos el valor "fullStack"
-        await page.waitForSelector('#text-input-what');
-        await page.locator('#text-input-what').fill('fullStack');
+        await page.waitForSelector('#keywords-input');
+        await page.locator('#keywords-input').fill('fullStack');
 
         // Hacemos clic en "buscar"
-        await page.waitForSelector('button.yosegi-InlineWhatWhere-primaryButton');
-        await page.locator('button.yosegi-InlineWhatWhere-primaryButton').click();
-
-        // Buscamos la barra del buscador y agregamos el valor "fullStack"
-        await page.waitForSelector('#text-input-what');
-        await page.locator('#text-input-what').fill('fullStack');
-
-        // Hacemos clic en "buscar"
-        await page.waitForSelector('button.yosegi-InlineWhatWhere-primaryButton');
-        await page.locator('button.yosegi-InlineWhatWhere-primaryButton').click();
+        await page.waitForSelector('#main-search-button');
+        await page.locator('#main-search-button').click();
 
         // Esperamos a que los resultados de la búsqueda estén disponibles
-        await page.waitForSelector('h2.jobTitle > a');
+        await page.waitForSelector('.job-card-header > a');
 
-        //Especificamos un ancho de pantalla que nos deje trabajar, ya que mas ancho no reacciona igual.
-        await page.setViewport({
-            width: 1080,
-            height: 1920
-          });
-
-        //cogemos cada url de las ofertas  
-        const tmpurls = await page.$$eval("h2.jobTitle > a", data => data.map(a=>a.href))
+        const tmpurls = await page.$$eval(".job-card-header > a", data => data.map(a=>a.href))
         
         //Quitamos los duplicados
-        const urls = tmpurls.filter((link,index) =>{ return tmpurls.indexOf(link) === index})
+        const urls = await tmpurls.filter((link,index) =>{ return tmpurls.indexOf(link) === index})
 
         console.log("url capuradas",urls)
         // Me quedo con los 20 primeros productos, porque sino es muy largo
@@ -135,4 +103,4 @@ const scrap = async (url) => {
 };
 
 // Llamamos a la función scrap con la URL deseada
-scrap('https://es.indeed.com/');  // Reemplaza con la URL real que quieres scrapear
+scrap('https://ticjob.es/');  // Reemplaza con la URL real que quieres scrapear
