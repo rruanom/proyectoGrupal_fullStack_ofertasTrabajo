@@ -3,13 +3,13 @@ const express = require("express");
 // const swaggerDocument = require('./swagger.json');// Descomentar para usar swagger docs de rutas
 const app = express(); // Inicializar servidor
 const port = 3000;
-// const path = require('path'); // Descomentar para usar jsdoc
+const path = require('path'); // Descomentar para usar jsdoc
 
 //Importar middlewares
 const error404 = require("./middlewares/error404");
 const morgan = require("./middlewares/morgan");
 
-// Logger
+// Logger de Morgan
 app.use(morgan(':method :url :status - :response-time ms :body'));
 
 // Importar Rutas API
@@ -38,7 +38,7 @@ app.use('/', rutasWeb);
 //http://localhost:3000/api-docs/
 //  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Habilitando ruta para docs swagger
 //  //http://localhost:3000/api-jsdoc/
-//  app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
+ app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
 
 //Invocar middleware
 app.use(error404); //Middleware para manejo de 404

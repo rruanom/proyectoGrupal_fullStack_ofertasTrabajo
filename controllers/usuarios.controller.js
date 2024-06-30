@@ -1,15 +1,14 @@
 const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
-// const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
+const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 
 const getUsers = async (req, res) => {
-    // let users;
     try {
         if (req.query.email || req.query.email == '') {
-            // const errors = validationResult(req);
-            // if (!errors.isEmpty()) {
-            //     return res.status(400).json({ errors: errors.array() });
-            // }
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
             const users = await user.getUserByEmail(req.query.email);
             return res.status(200).json(users);
         }
@@ -23,10 +22,10 @@ const getUsers = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     const newUser = req.body;
     try {
         const response = await user.createUser(newUser);
@@ -40,10 +39,10 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     const modifiedUser = req.body;
     try {
         const response = await user.updateUser(modifiedUser);

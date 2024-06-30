@@ -1,12 +1,12 @@
 const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
-// const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
+const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 
 const getFavoritosByEmail = async (req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     let favoritos;
     let userSearch;
     try {
@@ -25,10 +25,10 @@ const getFavoritosByEmail = async (req, res) => {
 };
 
 const createFavorito = async (req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     const newFav = req.body;
     try {
         const response = await favorito.createFavorito(newFav);
@@ -42,10 +42,10 @@ const createFavorito = async (req, res) => {
 };
 
 const deleteFavorito = async (req, res) => {
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({ errors: errors.array() });
-    // }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     let favoritoToDelete;
     try {
         favoritoToDelete = await favorito.deleteFavorito(req.query.titulo);
