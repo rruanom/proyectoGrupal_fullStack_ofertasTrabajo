@@ -1,12 +1,12 @@
 const express = require('express');
 const favoritosController = require("../controllers/favoritos.controller");
 const router = express.Router();
-// const { validateGetAuthorsByEmail, validateCreateAuthor, validateUpdateAuthor, validateDeleteAuthor } = require("../validators/authors.validator");
+const { validateGetFavoritosByEmail, validateCreateFavorito, validateDeleteFavorito } = require("../validators/favoritos.validator");
 
 
-router.get('/', favoritosController.getFavoritosByEmail);
-router.post('/', favoritosController.createFavorito);
-router.delete('/', favoritosController.deleteFavorito);
+router.get('/', validateGetFavoritosByEmail, favoritosController.getFavoritosByEmail);
+router.post('/', validateCreateFavorito, favoritosController.createFavorito);
+router.delete('/', validateDeleteFavorito, favoritosController.deleteFavorito);
 
 
 module.exports = router;
