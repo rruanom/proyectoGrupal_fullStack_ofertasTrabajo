@@ -21,7 +21,7 @@ const queries = {
     username=$3,
     email=$4,
     password=$5,
-    imagen=$6,
+    image=$6,
     isadmin=$7
     WHERE email=$8`,
     deleteUser:`

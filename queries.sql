@@ -78,7 +78,7 @@ ON u.id_user=f.id_user
 ORDER BY f.id_user DESC
 
 --Buscar favoritos por email de usuario
-SELECT f.titulo, f.url, f.description
+SELECT u.name, f.titulo, f.url, f.description
 FROM favoritos AS f
 INNER JOIN users AS u
 ON u.id_user=f.id_user
