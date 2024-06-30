@@ -4,7 +4,9 @@
   "description": "Trabajo grupal sobre una aplicacion web de ofertas de empleo tecnológicas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
