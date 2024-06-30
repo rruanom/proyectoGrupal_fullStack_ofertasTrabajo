@@ -1,5 +1,5 @@
 const { response } = require('express');
-const ofertaService = require('../services/ofertas.services');
+const ofertaService = require('../services/ofertas.sevices');
 //const { validationResult } = require("express-validator");
 
 const getOfertas = async (req, res) => {
@@ -10,8 +10,8 @@ const getOfertas = async (req, res) => {
         if (!errors.isEmpty()) { 
             return res.status(400).json({ errors: errors.array() });
         }*/
-        providers = await providerService.listProviders();
-        res.status(200).json(providers); // [] con las authors encontradas
+        ofertas = await ofertaService.listaOfertas();
+        res.status(200).json(ofertas); // [] con las authors encontradas
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -63,7 +63,7 @@ const deleteOfertaController = async (req, res) => {
     let oferta;
     try {
         oferta = await ofertaService.deleteOferta(req.query.title);
-        res.status(200).json(providers); // [] con los providers encontradas
+        res.status(200).json(ofertaferta); // [] con los providers encontradas
     } catch (error) {
         res.status(500).json({ error: "Error en la BBDD" });
     }
