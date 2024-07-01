@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const Oferts = require('./normalization');
 
 // Creamos una función para extraer la información de cada producto
 const extractProductData = async (url,browser) => {
@@ -14,7 +15,7 @@ const extractProductData = async (url,browser) => {
         // Utilizamos el método newPage.$eval(selector, function) y almacenamos en productData:
 /********** A RELLENAR todos los page.$eval(selector, function)  *********/
         //fuente del anuncio
-        productData['fuente'] = "ideed.com";
+        productData['fuente'] = "indeed.com";
         //url del anuncio
         productData['url'] = url;
         //Titulo
@@ -118,16 +119,16 @@ const scrap = async (url) => {
             const product = await extractProductData(urls2[productLink],browser)
             scrapedData.push(product)
         }
-        
-        console.log(scrapedData, "Lo que devuelve mi función scraper", scrapedData.length) 
        
         // cerramos el browser con el método browser.close
         await browser.close()
-        // Devolvemos el array con los productos
-        return scrapedData;
 
-        // Cerramos el navegador
-        await browser.close();
+        // Llamamos a la funcion del modulo normalizar para estandarizar los datos
+        const normalicedOferts = Oferts.normalizeOferts(scrapedData);
+
+        //Llamamos a los datos  
+        console.log(normalicedOferts, "Lo que devuelve mi función scraper", normalicedOferts.length) 
+        return normalicedOferts
 
     } catch (error) {
         console.error("Error al realizar el scraping:", error);
