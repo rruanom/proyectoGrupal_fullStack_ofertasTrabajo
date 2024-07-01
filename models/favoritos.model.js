@@ -55,11 +55,11 @@ const getFavoritosByEmail = async (email) => {
  * @throws {Error} Error de consulta a la BBDD
  */
 const createFavorito = async (favorito) => {
-    const { titulo, url, email, description } = favorito;
+    const { email, id_oferta } = favorito;
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createFavorito, [titulo, url, email, description])
+        const data = await client.query(queries.createFavorito, [email, id_oferta])
         result = data.rowCount
     } catch (err) {
         console.log(err);
@@ -94,11 +94,11 @@ const deleteFavoritos = async (email) => {
     return result;
 };
 
-const deleteFavorito = async (titulo) => {
+const deleteFavorito = async (id_oferta) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteFavorito, [titulo]);
+        const data = await client.query(queries.deleteFavorito, [id_oferta]);
         result = data.fields;
     } catch (error) {
         console.log(error);
@@ -119,10 +119,8 @@ module.exports = {
 // getFavoritosByEmail("email@jonas.com").then(data=>console.log(data));
 
 // let newFav = {
-//     "titulo": "Favorito prueba model 77",
-//     "url": "urlfav79",
-//     "email": "email@melquiades.com",
-//     "description": "el fav de meles"
+//     "email": "email@tomas.com",
+//     "id_oferta": 89
 // };
 // createFavorito(newFav).then(data=>console.log(data));
 

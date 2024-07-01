@@ -48,7 +48,7 @@ const deleteFavorito = async (req, res) => {
     }
     let favoritoToDelete;
     try {
-        favoritoToDelete = await favorito.deleteFavorito(req.query.titulo);
+        favoritoToDelete = await favorito.deleteFavorito(req.query.id_oferta);
         res.status(200).json("Favorito borrado", favoritoToDelete);
     } catch (error) {
         res.status(500).json({ error: "Error en la BBDD" });
