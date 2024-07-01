@@ -4,13 +4,30 @@ html(lang="es")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
-    link(rel="stylesheet" href="../public/CSS/styleLogin.css")
+    link(rel="stylesheet" href="/CSS/styleLogin.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
 
   body
     header
       #divHamburguesa
-        button#botonHamburguesa
+        button#abrir.abrir-menu
+      #nav
+        ul
+          h3 Menú
+          li
+            a(href="./") Home
+          li
+            a(href="./login") Login
+          li
+            a(href="./registro") Registrar
+          li
+            a(href="./favoritos") Favoritos
+          li
+            a(href="./dashboard") Dashboard
+          li
+            a(href="./users") Usuarios
+          li
+            a(href="./perfil") Perfil
 
     main
       #tarjetaPerfil
@@ -26,3 +43,5 @@ html(lang="es")
             input(type="submit" value="Login")
         #divRecuperarPass
           button#botonRecuperarPass ¿Has olvidado tu contraseña?
+
+    script(src="script/script.js")

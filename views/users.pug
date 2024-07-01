@@ -1,19 +1,36 @@
 doctype html
-html(lang="en")
+html(lang="es")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
-    link(rel="stylesheet" href="../public/CSS/style.css")
+    link(rel="stylesheet" href="/CSS/style.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
 
   body
     header
       #titulo
-        img#logoEmpresa(src="../public/IMGs/logoRomian.png" alt="Logo de la empresa")
+        img#logoEmpresa(src="IMGs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Usuarios
       #divHamburguesa
-        button#botonHamburguesa
+        button#abrir.abrir-menu
+      #nav
+        ul
+          h3 Menú
+          li
+            a(href="./") Home
+          li
+            a(href="./login") Login
+          li
+            a(href="./registro") Registrar
+          li
+            a(href="./favoritos") Favoritos
+          li
+            a(href="./dashboard") Dashboard
+          li
+            a(href="./users") Usuarios
+          li
+            a(href="./perfil") Perfil
 
     main
       #tituloUsuarios
@@ -40,4 +57,4 @@ html(lang="en")
     footer
       p Footer
 
-    script(src="script.js")
+    script(src="script/script.js")

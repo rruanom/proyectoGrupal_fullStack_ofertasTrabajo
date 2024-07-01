@@ -86,10 +86,11 @@ table button{
     width: 70px;
     height: 70px;
     border-radius: 20%;
-    background-image: url('/public/IMGs/burger.png');
+    background-image: url('../IMGs/burger.png');
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: white;
 }
 
 /* Selectores por ID */
@@ -117,6 +118,10 @@ table button{
     margin-top: 60px;
 }
 
+.invisible{
+    opacity: 0;
+    display: none;
+}
 
 /* EJEMPLO DE TARJETA*/
 #ejemploTarjeta {
@@ -212,6 +217,8 @@ table button{
         left: 92%;
         bottom: 83.7%;
     }
+ 
+    
 }
 
 @media (max-width: 999px) {
@@ -230,3 +237,55 @@ table button{
 
 /* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
 @media (max-width: 375px) {}
+
+
+#abrir {
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+}
+#nav {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+
+}
+#nav.visible {
+    display: block;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 20px;
+}
+#nav.visible h3{
+padding: 20px;
+font-size: 30px;
+border-bottom  : 2px solid white !important;
+}
+#divHamburguesa.invisible {
+    display: none;
+}
+#nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#nav ul li {
+    padding: 15px;
+    border-bottom: 1px solid #555;
+}
+#nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+#nav ul li a:hover {
+    background-color: #555;
+}
