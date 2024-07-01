@@ -1,30 +1,25 @@
 const queries = {
     getFavoritosByEmail: `
-    SELECT u.name, f.titulo, f.url, f.description
+    SELECT u.name, u.email, f.id_oferta
     FROM favoritos AS f
     INNER JOIN users AS u
     ON u.id_user=f.id_user
-    WHERE u.email=$1
-    ORDER BY f.titulo;`,
+    WHERE u.email=$1;`,
     getAllFavoritos: `
-    SELECT u.name, f.titulo, f.url, f.id_user, f.description
+    SELECT u.name, f.id_oferta, f.id_user
     FROM favoritos AS f
     INNER JOIN users AS u
     ON u.id_user=f.id_user
     ORDER BY f.id_user DESC`,
     createFavorito: `
-    INSERT INTO public.favoritos(titulo, url, id_user, description)
+    INSERT INTO public.favoritos(id_user, id_oferta)
     VALUES 
-    ($1, $2, (SELECT id_user FROM users WHERE email=$3), $4);`,
-    updateFavorito: `
-    UPDATE public.favoritos
-    SET titulo=$1, description=$2, url=$3
-    WHERE titulo=$4;`,
+    ((SELECT id_user FROM users WHERE email=$1), $2);`,
     deleteFavoritos:`
     DELETE FROM favoritos WHERE id_user=(SELECT id_user FROM users WHERE email=$1);`,
     deleteFavorito:`
     DELETE FROM favoritos
-    WHERE titulo=$1`
+    WHERE id_oferta=$1`
 }
 
 module.exports = queries;

@@ -1,4 +1,7 @@
 const puppeteer = require('puppeteer');
+const Oferts = require('./normalization');
+
+let ticjobsDataBase;
 
 // Creamos una función para extraer la información de cada producto
 const extractProductData = async (url,browser) => {
@@ -37,6 +40,12 @@ const extractProductData = async (url,browser) => {
         } else {
             productData['salario'] = "salario no especificado"
         }
+        //logo
+        productData ['logo'] = '../public/imgs/logoEnConstruccion'
+
+
+        //guardamos el objeto en la base de datos 
+
         return productData // Devuelve los datos de un producto
     }
     catch(err){
@@ -86,16 +95,17 @@ const scrap = async (url) => {
             const product = await extractProductData(urls2[productLink],browser)
             scrapedData.push(product)
         }
-        
-        console.log(scrapedData, "Lo que devuelve mi función scraper", scrapedData.length) 
        
         // cerramos el browser con el método browser.close
         await browser.close()
-        // Devolvemos el array con los productos
-        return scrapedData;
 
-        // Cerramos el navegador
-        await browser.close();
+         // Llamamos a la funcion del modulo normalizar para estandarizar los datos
+         const normalicedOferts = Oferts.normalizeOferts(scrapedData)
+
+         //Llamamos a los datos  
+         console.log(normalicedOferts, "Lo que devuelve mi función scraper", normalicedOferts.length) 
+         
+         return normalicedOferts
 
     } catch (error) {
         console.error("Error al realizar el scraping:", error);
@@ -103,4 +113,8 @@ const scrap = async (url) => {
 };
 
 // Llamamos a la función scrap con la URL deseada
-scrap('https://ticjob.es/');  // Reemplaza con la URL real que quieres scrapear
+ticjobsDataBase= scrap('https://ticjob.es/');  // Reemplaza con la URL real que quieres scrapear
+
+module.exports = {
+    ticjobsDataBase
+}
