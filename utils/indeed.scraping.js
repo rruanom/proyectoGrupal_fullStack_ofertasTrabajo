@@ -1,6 +1,9 @@
 const puppeteer = require('puppeteer');
 const Oferts = require('./normalization');
 
+
+let indeedDataBase;
+
 // Creamos una función para extraer la información de cada producto
 const extractProductData = async (url,browser) => {
 
@@ -37,7 +40,8 @@ const extractProductData = async (url,browser) => {
         //localizacion        
         productData['localizacion'] = await page.$eval("#jobLocationText > div > span", localizacion=>localizacion.innerText)
          //logo
-        /* await page.locator('span > a').click();
+         productData ['logo'] = '../public/imgs/logoEnConstruccion'
+         /* await page.locator('span > a').click();
         await page.waitForSelector('header img');
 
         const logo = await page.evaluate(() => {
@@ -49,8 +53,9 @@ const extractProductData = async (url,browser) => {
             return "sin logo";
             }
           });
-            productData ['logo'] = logo*/  
-        
+            productData ['logo'] = logo  */
+
+        //busca el title del objeto y si no existe crea la oferta 
         return productData // Devuelve los datos de un producto
     }
     catch(err){
@@ -128,6 +133,7 @@ const scrap = async (url) => {
 
         //Llamamos a los datos  
         console.log(normalicedOferts, "Lo que devuelve mi función scraper", normalicedOferts.length) 
+
         return normalicedOferts
 
     } catch (error) {
@@ -136,4 +142,8 @@ const scrap = async (url) => {
 };
 
 // Llamamos a la función scrap con la URL deseada
-scrap('https://es.indeed.com/');  // Reemplaza con la URL real que quieres scrapear
+indeedDataBase = scrap('https://es.indeed.com/');  // Reemplaza con la URL real que quieres scrapear
+
+module.exports = {
+    indeedDataBase
+}

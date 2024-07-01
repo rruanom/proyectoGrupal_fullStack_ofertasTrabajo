@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
 const Oferts = require('./normalization');
 
+let ticjobsDataBase;
+
 // Creamos una función para extraer la información de cada producto
 const extractProductData = async (url,browser) => {
 
@@ -38,6 +40,12 @@ const extractProductData = async (url,browser) => {
         } else {
             productData['salario'] = "salario no especificado"
         }
+        //logo
+        productData ['logo'] = '../public/imgs/logoEnConstruccion'
+
+
+        //guardamos el objeto en la base de datos 
+
         return productData // Devuelve los datos de un producto
     }
     catch(err){
@@ -96,6 +104,7 @@ const scrap = async (url) => {
 
          //Llamamos a los datos  
          console.log(normalicedOferts, "Lo que devuelve mi función scraper", normalicedOferts.length) 
+         
          return normalicedOferts
 
     } catch (error) {
@@ -104,4 +113,8 @@ const scrap = async (url) => {
 };
 
 // Llamamos a la función scrap con la URL deseada
-scrap('https://ticjob.es/');  // Reemplaza con la URL real que quieres scrapear
+ticjobsDataBase= scrap('https://ticjob.es/');  // Reemplaza con la URL real que quieres scrapear
+
+module.exports = {
+    ticjobsDataBase
+}

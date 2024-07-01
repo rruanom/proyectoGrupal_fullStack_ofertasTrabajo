@@ -22,15 +22,10 @@ const normalizeOferts = (dates) => {
 
     dates.forEach(ofert => {
         const { salario, localizacion, fuente } = ofert;
-        console.log(salario)
-        console.log(localizacion)
-        console.log(fuente)
 
         // Normalizar salario
         if (salario !== 'salario no especificado' && fuente === "indeed.com") {
-            console.log('he entrado en modificar salario')
             const separacionSalario = salario.split(" ");
-            console.log(separacionSalario)
             ofert.salario = `${separacionSalario[1]} - ${separacionSalario[4]}`;
         }
 
