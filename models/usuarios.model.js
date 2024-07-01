@@ -9,7 +9,8 @@
 
 const { Pool } = require('pg');
 const pool = require('../config/db_pgsql')
-const queries = require('../queries/usuarios.queries') // Queries SQL
+const queries = require('../queries/usuarios.queries'); // Queries SQL
+const { deleteFavoritos } = require('../queries/favoritos.queries');
 
 /**
  * Descripción de la función: Esta función busca un usuario por su email.
@@ -109,11 +110,11 @@ const createUser = async (user) => {
  * @throws {Error} Error de consulta a la BBDD
  */
 const updateUser = async (user) => {
-    const { name, lastname, username, email, password, image, isadmin } = user;
+    const { name, lastname, username, email, password, image, isadmin, ref_email } = user;
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.updateUser,[name, lastname, username, email, password, image, isadmin]);
+        const data = await client.query(queries.updateUser,[name, lastname, username, email, password, image, isadmin, ref_email]);
         result = data.rowCount;
     } catch (err) {
         console.log(err);
@@ -155,3 +156,31 @@ module.exports = {
     updateUser,
     deleteUser
 }
+
+// getNonAdminUsers().then(data=>console.log(data));
+
+// getUserByEmail('email@tomas.com').then(data=>console.log(data));
+
+// let newUser = { 
+//     "name": "Melquíades",
+//     "lastname": "Estrada",
+//     "username": "meles64",
+//     "email": "email@melquiades.com",
+//     "password": "123456",
+//     "image": "imagen.melquiades.jpg",
+//     "isadmin": false
+// }
+// createUser(newUser).then(data=>console.log(data));
+
+// updateUser({ 
+//     "name": "Melquíades",
+//     "lastname": "Estrada",
+//     "username": "meles64",
+//     "email": "email@melquiades.com",
+//     "password": "123456",
+//     "image": "imagen.melquiades.jpg",
+//     "isadmin": false,
+//     "ref_email": "email@melquiades.com"
+// }).then(data => console.log(data));
+
+// deleteUser('email@miguel.com');

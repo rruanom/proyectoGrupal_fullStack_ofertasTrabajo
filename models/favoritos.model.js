@@ -5,6 +5,14 @@
  * @memberof SQLQueries
  */
 
+/**
+ * @fileOverview Este archivo contiene las funciones para manejar los favoritos en la base de datos.
+ * @authors 
+ * Antonio González
+ * Roberto Ruano
+ * Miguel Pardal
+ */
+
 const { Pool } = require('pg');
 const pool = require('../config/db_pgsql')
 const queries = require('../queries/favoritos.queries') // Queries SQ
@@ -47,11 +55,11 @@ const getFavoritosByEmail = async (email) => {
  * @throws {Error} Error de consulta a la BBDD
  */
 const createFavorito = async (favorito) => {
-    const { titulo, url, id_user, description } = favorito;
+    const { titulo, url, email, description } = favorito;
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createFavorito, [titulo, url, id_user, description])
+        const data = await client.query(queries.createFavorito, [titulo, url, email, description])
         result = data.rowCount
     } catch (err) {
         console.log(err);
@@ -75,7 +83,22 @@ const deleteFavoritos = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteFavorito, [email]);
+        const data = await client.query(queries.deleteFavoritos, [email]);
+        result = data.fields;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    } finally {
+        client.release();
+    }
+    return result;
+};
+
+const deleteFavorito = async (titulo) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(queries.deleteFavorito, [titulo]);
         result = data.fields;
     } catch (error) {
         console.log(error);
@@ -89,5 +112,20 @@ const deleteFavoritos = async (email) => {
 module.exports = {
     getFavoritosByEmail,
     createFavorito,
-    deleteFavoritos
+    deleteFavoritos,
+    deleteFavorito
 };
+
+// getFavoritosByEmail("email@jonas.com").then(data=>console.log(data));
+
+// let newFav = {
+//     "titulo": "Favorito prueba model 77",
+//     "url": "urlfav79",
+//     "email": "email@melquiades.com",
+//     "description": "el fav de meles"
+// };
+// createFavorito(newFav).then(data=>console.log(data));
+
+// deleteFavoritos("email@melquiades.com");
+
+// deleteFavorito("Example Title1");

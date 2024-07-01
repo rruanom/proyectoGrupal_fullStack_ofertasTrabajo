@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="../public/CSS/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+
+  body
+    header
+      #titulo
+        img#logoEmpresa(src="../public/IMGs/logoRomian.png" alt="Logo de la empresa")
+        h4#tituloFavs Usuarios
+      #divHamburguesa
+        button#botonHamburguesa
+
+    main
+      #tituloUsuarios
+        h3 Lista de usuarios registrados
+      #ejemploUsuarios
+        table
+          thead
+            tr
+              th Usuario
+              th Email
+              th Borrar_Usuario
+          tbody
+            tr
+              td Juan Pérez
+              td juan.perez@example.com
+              td 
+                button Borrar
+            tr
+              td María García
+              td maria.garcia@example.com
+              td 
+                button Borrar
+
+    footer
+      p Footer
+
+    script(src="script.js")
