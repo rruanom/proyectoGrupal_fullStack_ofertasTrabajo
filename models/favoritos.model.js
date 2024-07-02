@@ -70,36 +70,12 @@ const createFavorito = async (favorito) => {
     return result;
 };
 
-/**
- * Descripción de la función: Esta función elimina un favorito de la base de datos por el email del usuario.
- * @memberof SQLQueries 
- * @method deleteFavoritos 
- * @async
- * @param {String} email Email del usuario cuyos favoritos se eliminarán
- * @return {Array} Devuelve un array con los campos afectados
- * @throws {Error} Error de consulta a la BBDD
- */
-const deleteFavoritos = async (email) => {
+const deleteFavorito = async (id_oferta, email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteFavoritos, [email]);
-        result = data.fields;
-    } catch (error) {
-        console.log(error);
-        throw error;
-    } finally {
-        client.release();
-    }
-    return result;
-};
-
-const deleteFavorito = async (id_oferta) => {
-    let client, result;
-    try {
-        client = await pool.connect();
-        const data = await client.query(queries.deleteFavorito, [id_oferta]);
-        result = data.fields;
+        const data = await client.query(queries.deleteFavorito, [id_oferta, email]);
+        result = data.rowCount;
     } catch (error) {
         console.log(error);
         throw error;
@@ -112,18 +88,15 @@ const deleteFavorito = async (id_oferta) => {
 module.exports = {
     getFavoritosByEmail,
     createFavorito,
-    deleteFavoritos,
     deleteFavorito
 };
 
-// getFavoritosByEmail("email@jonas.com").then(data=>console.log(data));
+// getFavoritosByEmail("email@roberto.com").then(data=>console.log(data));
 
 // let newFav = {
-//     "email": "email@tomas.com",
+//     "email": "email@miguel.com",
 //     "id_oferta": 89
 // };
 // createFavorito(newFav).then(data=>console.log(data));
 
-// deleteFavoritos("email@melquiades.com");
-
-// deleteFavorito("Example Title1");
+// deleteFavorito(2, 'email@antonio.com');

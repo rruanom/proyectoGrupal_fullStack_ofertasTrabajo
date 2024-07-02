@@ -8,7 +8,7 @@ CREATE TABLE users (
   password varchar(255) NOT NULL,
   isadmin boolean NOT NULL DEFAULT FALSE,
   islogged boolean NOT NULL DEFAULT FALSE,
-  last_logged_date date,
+  last_logged_date TIMESTAMPTZ NOT NULL,
   image varchar(255)
 );
 
@@ -16,8 +16,9 @@ CREATE TABLE users (
 CREATE TABLE favoritos (
     id_favorito serial NOT NULL PRIMARY KEY,
     id_user int NOT NULL,
-    id_oferta int NOT NULL UNIQUE
-    FOREIGN KEY (id_user) REFERENCES users(id_user)
+    id_oferta varchar(100) NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
+    CONSTRAINT unique_favorite_user UNIQUE (id_oferta, id_user)
 );
 
 --Insertar ususarios
@@ -32,6 +33,8 @@ VALUES
 INSERT INTO favoritos (id_user, id_oferta)
 VALUES
 ((SELECT id_user FROM users WHERE email='email@jonas.com'), 1),
+((SELECT id_user FROM users WHERE email='email@jonas.com'), 2),
+((SELECT id_user FROM users WHERE email='email@jonas.com'), 5),
 ((SELECT id_user FROM users WHERE email='email@antonio.com'), 2),
 ((SELECT id_user FROM users WHERE email='email@roberto.com'), 3),
 ((SELECT id_user FROM users WHERE email='email@roberto.com'), 5),
@@ -90,7 +93,7 @@ ORDER BY f.id_oferta;
 
 --Borrar favortio
 DELETE FROM favoritos
-WHERE id_oferta=1;
+WHERE id_oferta=1 AND id_user=(SELECT id_user FROM users WHERE email='email@jonas.com');
 
 --Borrar usuario y favoritos asociados en cascada
 DELETE FROM favoritos WHERE user_id=(SELECT id_user FROM users WHERE email='email@tomas.com');
