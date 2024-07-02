@@ -32,29 +32,29 @@ const validateCreateUser = [
 
 const validateUpdateUser = [
     body("name")
-        .exists().withMessage("User name is required")
+        .optional()
         .isString().withMessage("Name should be a string"),
     body("lastname")
-        .exists().withMessage("User lastname is required")
+        .optional()
         .isString().withMessage("Lastname should be a string"),
     body("username")
-        .exists().withMessage("Username is required")
+        .optional()
         .isString().withMessage("Username should be a string"),
     body("email")
-        .exists().withMessage("User email is required")
+        .optional()
         .isEmail().withMessage("Valid email is required"),
     body("password")
-        .exists().withMessage("User password is required")
+        .optional()
         .isString().withMessage("Password should be a string"),
     body("image")
-        .exists().withMessage("User image is required")
+        .optional()
         .isString().withMessage("Image should be a string"),
     body("isadmin")
-        .exists().withMessage("User admin status is required")
+        .optional()
         .isBoolean().withMessage("Admin status should be a boolean"),
     body("ref_email")
         .exists().withMessage("Reference email is required")
-        .isEmail().withMessage("Valid reference email is required")
+  
 ];
 
 const validateDeleteUser = [
