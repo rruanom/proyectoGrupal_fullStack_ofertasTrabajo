@@ -1,4 +1,6 @@
 const Oferta = require('../models/ofertas.model');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 
 //listar ofertas GET
 const listaOfertas = async () => {
@@ -9,6 +11,20 @@ const listaOfertas = async () => {
         return oferta;
     } catch (error) {
         console.log('Error listing oferta:', error);
+    }
+};
+
+//listar ofertas por id
+const listaOfertasPorId = async (ids) => {
+    try {
+        const objectIds = ids.map(id => new mongoose.Types.ObjectId(id));
+
+        const oferta = await Oferta.find({ _id: { $in: objectIds } });
+
+        return oferta;
+    } catch (error) {
+        console.log('Error listing oferta:', error);
+        throw error;
     }
 };
 
@@ -91,5 +107,6 @@ module.exports = {
     createOferta,
     updateOferta,
     deleteOferta,
-    renderOfferts
+    renderOfferts,
+    listaOfertasPorId
 };

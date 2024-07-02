@@ -43,17 +43,12 @@ html(lang="es")
               th Email
               th Borrar_Usuario
           tbody
+          each user in Users
             tr
-              td Juan Pérez
-              td juan.perez@example.com
+              td #{user.username}
+              td #{user.email}
               td 
                 button Borrar
-            tr
-              td María García
-              td maria.garcia@example.com
-              td 
-                button Borrar
-
     footer
       p Footer
 

@@ -99,4 +99,4 @@ module.exports = {
 // };
 // createFavorito(newFav).then(data=>console.log(data));
 
-// deleteFavorito(2, 'email@antonio.com');
+// deleteFavorito(2, 'email@miguel.com');

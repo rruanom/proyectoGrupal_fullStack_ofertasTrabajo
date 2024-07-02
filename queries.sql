@@ -22,12 +22,12 @@ CREATE TABLE favoritos (
 );
 
 --Insertar ususarios
-INSERT INTO users (name, lastname, username, email, password, isadmin, image, islogged)
+INSERT INTO users (name, lastname, username, email, password, isadmin, image, islogged, last_logged_date)
 VALUES 
-('Antonio', 'González', 'nitolez', 'email@antonio.com', '123456', false, 'imagenantonio.jpg', false),
-('Roberto', 'Ruano', 'robertor', 'email@roberto.com', '123456', false, 'imagenroberto.jpg', false),
-('Miguel', 'Pardal', 'mipaes', 'email@miguel.com', '123456', false, 'imagenmiguel.jpg', false),
-('Jonás', 'V', 'jony', 'email@jonas.com', '123456', false, 'imagenjonas.jpg', false)
+('Antonio', 'González', 'nitolez', 'email@antonio.com', '123456', false, 'imagenantonio.jpg', false, '2024-07-01 20:57:30.212678+00'),
+('Roberto', 'Ruano', 'robertor', 'email@roberto.com', '123456', false, 'imagenroberto.jpg', false, '2024-07-01 20:57:30.212678+00'),
+('Miguel', 'Pardal', 'mipaes', 'email@miguel.com', '123456', false, 'imagenmiguel.jpg', false, '2024-07-01 20:57:30.212678+00'),
+('Jonás', 'V', 'jony', 'email@jonas.com', '123456', false, 'imagenjonas.jpg', false, '2024-07-01 20:57:30.212678+00')
 
 --Insertar datos en favoritos
 INSERT INTO favoritos (id_user, id_oferta)
