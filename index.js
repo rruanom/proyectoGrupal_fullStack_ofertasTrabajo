@@ -4,10 +4,12 @@ const express = require("express");
 const app = express(); // Inicializar servidor
 const port = 3000;
 const path = require('path'); // Descomentar para usar jsdoc
+const bodyParser = require('body-parser');
 
 //Importar middlewares
 const error404 = require("./middlewares/error404");
 const morgan = require("./middlewares/morgan");
+
 
 // Logger de Morgan
 app.use(morgan(':method :url :status - :response-time ms :body'));
@@ -44,6 +46,9 @@ app.use('/', rutasWeb);
 
 //Invocar middleware
 app.use(error404); //Middleware para manejo de 404
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 app.listen(port, () => { // Servidor está escuchando en este puerto variable port
     console.log(`Example app listening on http://localhost:${port}`);
