@@ -1,10 +1,25 @@
+//Lógica de menu hamburguesa
 const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
 const burger = document.querySelector("#divHamburguesa");
+const ulNav = document.querySelector("#ulNav");
+const usuario = true;
+const admin = true;
+
+//Lógica de pintar menu hamburguesa distinto segun rol de usuario
+
 
 abrir.addEventListener("click", () => {
+    ulNav.innerHTML = "";
     nav.classList.toggle("visible");
     burger.classList.toggle("invisible");
+    if (usuario === true && admin === true) {
+        printMenuAdmin();
+    } else if (usuario === true && admin === false) {
+        printMenuLoged();
+    } else if (usuario === false && admin === false) {
+        printMenuUnlogged();
+    }
 });
 
 document.addEventListener("click", (event) => {
@@ -14,35 +29,106 @@ document.addEventListener("click", (event) => {
     }
 });
 
-document.getElementById("formSubirOferta").addEventListener("submit", (event) => {
-    event.preventDefault();
 
-    const title = event.target.inputTituloOferta.value;
-    const empresa = event.target.inputEmpresa.value;
-    const salario = event.target.inputSalario.value;
-    const localizacion = event.target.inputLocalizacion.value;
-
-    console.warn(title, empresa, salario, localizacion);
-    const newOffer = JSON.stringify(
-        {
-            title,
-            empresa,
-            salario,
-            localizacion,
-            logo: './public/imgs/logoEnConstruccion.png',
-            url: 'https://localhost:3000/',
-            fuente: "administrador"
-        }
-    );
-    fetch('http://localhost:3000/api/ads', {
-        headers: {'Content-Type':'application/json'},
-        method: "POST",
-        body: newOffer
-    })
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("message").innerHTML = "Oferta guardada con titulo: " + data.title;
-        })
+const printMenuAdmin = () => {
+    const home = document.createElement("li");
+    const favorites = document.createElement('li');
+    const dashboard = document.createElement('li');
+    const users = document.createElement('li');
+    const logout = document.createElement('li');
+    const linkFavorites = document.createElement('a');
+    const linkDashboard = document.createElement('a');
+    const linkUsers = document.createElement('a');
+    const linkHome = document.createElement('a');
+    const linkLogout = document.createElement('a');
 
 
-})
+    linkFavorites.innerText = 'Favorites';
+    linkDashboard.innerText = 'Dashboard';
+    linkUsers.innerText = 'Users';
+    linkHome.innerText = 'Home';
+    linkLogout.innerText = 'Logout';
+
+
+    linkFavorites.setAttribute('href', './favoritos');
+    linkDashboard.setAttribute('href', './dashboard');
+    linkUsers.setAttribute('href', './users');
+    linkHome.setAttribute('href', './');
+    linkLogout.setAttribute('href', './');
+
+
+
+    favorites.append(linkFavorites);
+    dashboard.append(linkDashboard);
+    users.append(linkUsers);
+    home.append(linkHome);
+    logout.append(linkLogout);
+
+
+    ulNav.append(home);
+    ulNav.append(favorites);
+    ulNav.append(dashboard);
+    ulNav.append(users);
+    ulNav.append(logout);
+
+}
+
+const printMenuLoged = () => {
+    const home = document.createElement("li");
+    const favorites = document.createElement('li');
+    const profile = document.createElement('li');
+    const logout = document.createElement('li');
+    const linkFavorites = document.createElement('a');
+    const linkProfile = document.createElement('a');
+    const linkLogout = document.createElement('a');
+    const linkHome = document.createElement('a');
+
+
+    linkFavorites.innerText = 'Favorites';
+    linkProfile.innerText = 'Profile';
+    linkLogout.innerText = 'Logout';
+    linkHome.innerText = 'Home';
+
+    linkFavorites.setAttribute('href', './favoritos');
+    linkProfile.setAttribute('href', './perfil');
+    linkLogout.setAttribute('href', './');
+    linkHome.setAttribute('href', './');
+
+    favorites.append(linkFavorites);
+    profile.append(linkProfile);
+    logout.append(linkLogout);
+    home.append(linkHome);
+
+    ulNav.append(home);
+    ulNav.append(favorites);
+    ulNav.append(profile);
+    ulNav.append(logout);
+}
+
+
+const printMenuUnlogged = () => {
+    const home = document.createElement("li");
+    const login = document.createElement('li');
+    const register = document.createElement('li');
+    const linkLogin = document.createElement('a');
+    const linkRegister = document.createElement('a');
+    const linkHome = document.createElement('a');
+
+
+    linkLogin.innerText = 'Login';
+    linkRegister.innerText = 'Register';
+    linkHome.innerText = 'Home';
+
+    linkLogin.setAttribute('href', './login');
+    linkRegister.setAttribute('href', './register');
+    linkHome.setAttribute('href', './');
+
+
+    login.append(linkLogin);
+    register.append(linkRegister);
+    home.append(linkHome);
+
+    ulNav.append(home);
+    ulNav.append(login);
+    ulNav.append(register);
+}

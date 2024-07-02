@@ -92,7 +92,17 @@ table button{
     background-repeat: no-repeat;
     background-color: white;
 }
+#nav button{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 17px;
+}
 
+#nav button a {
+    list-style-type: none;
+}
 /* Selectores por ID */
 
 #divBuscador {
