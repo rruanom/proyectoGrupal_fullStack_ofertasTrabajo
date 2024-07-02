@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const ofertasController = require('../controllers/ofertas.controller');
-const { validateCreateOferta, validateDeleteOferta, validateUpdateOferta } = require("../validators/ofertas.validators");
+//const { validateCreateOferta, validateDeleteOferta, validateUpdateOferta } = require("../validators/ofertas.validators");
 
 //meter middleware de los validates
 router.get('/search', ofertasController.getOfertas);
-router.post('/ads', validateCreateOferta, ofertasController.createOfertaController);
-router.put('/ads', validateUpdateOferta, ofertasController.updateOfertaController);
-router.delete('/ads', validateDeleteOferta, ofertasController.deleteOfertaController);
+router.post('/ads', ofertasController.createOfertaController);
+router.put('/ads', ofertasController.updateOfertaController);
+router.delete('/ads', ofertasController.deleteOfertaController);
 module.exports = router;
 
 

@@ -41,7 +41,7 @@ const renderOfferts = async (keyword) => {
 //listar ofertas por empresa
 
 //crear nueva oferta
-const createOferta = async (title, empresa, salario, localizacion, logo, url) => {
+const createOferta = async (title, empresa, salario, localizacion, logo, url, fuente) => {
     try {
         const oferta = new Oferta({
             title,
@@ -50,7 +50,7 @@ const createOferta = async (title, empresa, salario, localizacion, logo, url) =>
             localizacion,
             logo,
             url,
-            fuente: "administrador"
+            fuente
         });
 
         const result = await oferta.save();
