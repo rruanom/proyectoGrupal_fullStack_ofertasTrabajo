@@ -16,22 +16,25 @@ CREATE TABLE users (
 CREATE TABLE favoritos (
     id_favorito serial NOT NULL PRIMARY KEY,
     id_user int NOT NULL,
-    id_oferta int NOT NULL UNIQUE
-    FOREIGN KEY (id_user) REFERENCES users(id_user)
+    id_oferta varchar(100) NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE,
+    CONSTRAINT unique_favorite_user UNIQUE (id_oferta, id_user)
 );
 
 --Insertar ususarios
-INSERT INTO users (name, lastname, username, email, password, isadmin, image, islogged)
+INSERT INTO users (name, lastname, username, email, password, isadmin, image, islogged, last_logged_date)
 VALUES 
-('Antonio', 'González', 'nitolez', 'email@antonio.com', '123456', false, 'imagenantonio.jpg', false),
-('Roberto', 'Ruano', 'robertor', 'email@roberto.com', '123456', false, 'imagenroberto.jpg', false),
-('Miguel', 'Pardal', 'mipaes', 'email@miguel.com', '123456', false, 'imagenmiguel.jpg', false),
-('Jonás', 'V', 'jony', 'email@jonas.com', '123456', false, 'imagenjonas.jpg', false)
+('Antonio', 'González', 'nitolez', 'email@antonio.com', '123456', false, 'imagenantonio.jpg', false, '2024-07-01 20:57:30.212678+00'),
+('Roberto', 'Ruano', 'robertor', 'email@roberto.com', '123456', false, 'imagenroberto.jpg', false, '2024-07-01 20:57:30.212678+00'),
+('Miguel', 'Pardal', 'mipaes', 'email@miguel.com', '123456', false, 'imagenmiguel.jpg', false, '2024-07-01 20:57:30.212678+00'),
+('Jonás', 'V', 'jony', 'email@jonas.com', '123456', false, 'imagenjonas.jpg', false, '2024-07-01 20:57:30.212678+00')
 
 --Insertar datos en favoritos
 INSERT INTO favoritos (id_user, id_oferta)
 VALUES
 ((SELECT id_user FROM users WHERE email='email@jonas.com'), 1),
+((SELECT id_user FROM users WHERE email='email@jonas.com'), 2),
+((SELECT id_user FROM users WHERE email='email@jonas.com'), 5),
 ((SELECT id_user FROM users WHERE email='email@antonio.com'), 2),
 ((SELECT id_user FROM users WHERE email='email@roberto.com'), 3),
 ((SELECT id_user FROM users WHERE email='email@roberto.com'), 5),
@@ -90,7 +93,7 @@ ORDER BY f.id_oferta;
 
 --Borrar favortio
 DELETE FROM favoritos
-WHERE id_oferta=1;
+WHERE id_oferta=1 AND id_user=(SELECT id_user FROM users WHERE email='email@jonas.com');
 
 --Borrar usuario y favoritos asociados en cascada
 DELETE FROM favoritos WHERE user_id=(SELECT id_user FROM users WHERE email='email@tomas.com');

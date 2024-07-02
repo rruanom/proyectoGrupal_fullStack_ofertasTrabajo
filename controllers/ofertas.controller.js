@@ -22,10 +22,11 @@ const createOfertaController = async (req, res) => {// Validate request
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     } */
-    const { title, empresa, salario, localizacion, logo, url } = req.body;
-    if (title && empresa && salario && localizacion && logo  && url) {
+    console.log(req.body);
+    const { title, empresa, salario, localizacion, url, logo, fuente } = req.body;
+    if (title && empresa && salario && localizacion && url && logo && fuente) {
         try {
-            const response = await ofertaService.createOferta(title, empresa, salario, localizacion, logo, url);
+            const response = await ofertaService.createOferta(title, empresa, salario, localizacion, url, logo, fuente);
             res.status(201).json({
                 "items_created": response,
                 data: req.body
@@ -34,7 +35,7 @@ const createOfertaController = async (req, res) => {// Validate request
             res.status(500).json({ mensaje: error.message });
         }
     } else {
-        res.status(400).json({ error: "Faltan campos de provider" });
+        res.status(400).json({ error: "Faltan campos de oferta" });
     }
 };
 
@@ -73,5 +74,5 @@ module.exports = {
     getOfertas,
     createOfertaController,
     updateOfertaController,
-    deleteOfertaController
+    deleteOfertaController,
 };

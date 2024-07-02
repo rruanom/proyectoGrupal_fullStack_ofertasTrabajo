@@ -75,7 +75,7 @@ let objetTry2 = {
     salario: '36.000 - 42.000'
 }
 
-console.log(normalizeOferts([objetTry]))
-console.log(normalizeOferts([objetTry2]))
+/* console.log(normalizeOferts([objetTry]))
+console.log(normalizeOferts([objetTry2])) */
 
 module.exports = { normalizeOferts }

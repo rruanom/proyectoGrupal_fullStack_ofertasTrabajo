@@ -15,11 +15,9 @@ const queries = {
     INSERT INTO public.favoritos(id_user, id_oferta)
     VALUES 
     ((SELECT id_user FROM users WHERE email=$1), $2);`,
-    deleteFavoritos:`
-    DELETE FROM favoritos WHERE id_user=(SELECT id_user FROM users WHERE email=$1);`,
     deleteFavorito:`
     DELETE FROM favoritos
-    WHERE id_oferta=$1`
+    WHERE id_oferta=$1 AND id_user=(SELECT id_user FROM users WHERE email=$2)`
 }
 
 module.exports = queries;
