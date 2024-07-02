@@ -23,15 +23,21 @@ html(lang="en")
     main
       #filtros
         h2 Filtros
-      #ejemploTarjeta
-        h2 Oferta 1
-        h4 Nombre empresa
-        h4 Localización
-        h4 Salario
-        #botonesEjemplo
-          button JS
-          button
-          button CSS
+      section
+        #ofertasUsuario
+          h1 Favoritos
+          if Favoritos && Favoritos.length > 0
+            each favorito in Favoritos
+              h2 #{favorito.title} 
+              h4 #{favorito.empresa}
+              h4 #{favorito.localizacion}
+              h4 #{favorito.salario}
+          else
+            p No favorites found.
+              #botonesEjemplo
+                button JS
+                button HTML
+                button CSS
 
     footer
       p Footer
