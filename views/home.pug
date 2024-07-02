@@ -14,7 +14,7 @@ html(lang="en")
         img#logoEmpresa(src="IMGs/logoRomian.png" alt="Logo de la empresa")
       #divBuscador
         h2 ¿Estás buscando ofertas de trabajo?
-        form(action="/", method="post") 
+        form(action="/api/search", method="post") 
           input(type="text" id="inputBuscador" name="inputBuscador" placeholder="Buscar ofertas...")
       #divHamburguesa
         button#abrir.abrir-menu

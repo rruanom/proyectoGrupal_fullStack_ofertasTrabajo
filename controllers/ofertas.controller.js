@@ -73,5 +73,5 @@ module.exports = {
     getOfertas,
     createOfertaController,
     updateOfertaController,
-    deleteOfertaController
+    deleteOfertaController,
 };

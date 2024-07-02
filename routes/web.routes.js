@@ -12,6 +12,7 @@ router.get("/favoritos", usuariosWebController.getFavoritos);
 router.get("/users", usuariosWebController.getUsers);
 //router.post('/registo', usuariosWebController.createUser);
 router.get("/", offerts.getAllOfferts);
+router.post('/', offerts.renderFilter);
 
 
 module.exports = router;
