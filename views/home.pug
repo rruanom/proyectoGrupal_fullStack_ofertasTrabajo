@@ -38,17 +38,18 @@ html(lang="en")
     main
       #filtros
         h2 Filtros
-    section
-        h1 #{msj}
-        each oferta in Ofertas
-          h2 #{oferta.title} 
-          h4 #{oferta.empresa}
-          h4 #{oferta.localizacion}
-          h4 #{oferta.salario}
-          #botonesEjemplo
-            button JS
-            button HTML
-            button CSS
+      section
+        #ofertasUsuario
+          h1 #{msj}
+          each oferta in Ofertas
+            h2 #{oferta.title} 
+            h4 #{oferta.empresa}
+            h4 #{oferta.localizacion}
+            h4 #{oferta.salario}
+            #botonesEjemplo
+              button JS
+              button HTML
+              button CSS
 
     footer
       p Footer
