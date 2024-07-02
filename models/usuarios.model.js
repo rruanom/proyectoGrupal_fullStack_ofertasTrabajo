@@ -149,6 +149,8 @@ const deleteUser = async (email) => {
     return result;
 };
 
+
+
 module.exports = {
     getUserByEmail,
     createUser,

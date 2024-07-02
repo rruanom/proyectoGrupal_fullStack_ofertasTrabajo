@@ -32,11 +32,11 @@ html(lang="es")
     main
       #tarjetaLogin
         h2 LOGIN
-        form#formLogin(action="#" method="POST")
-          #divEmail
-            input#emailLogin(type="email" name="emailLogin" placeholder="Introduce email...")
+        form#formLogin(action="/" method="POST")
+          #divUserName
+            input#username(type="text" name="username" placeholder="Introduce email...")
           #divPass
-            input#passLogin(type="password" name="passLogin" placeholder="Introduce password...")
+            input#password(type="password" name="passLogin" placeholder="Introduce password...")
           #divSubmitLogin
             input(type="submit" value="Login")
           button#buttonLoginGoogle Login con Google

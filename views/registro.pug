@@ -32,11 +32,14 @@ html(lang="es")
     main
       #tarjetaLogin
         h2 REGÍSTRATE
-        form#formSignup(action="#" method="POST")
-          input#nameSignup(type="text" name="nameSignup" placeholder="Introduce a name...")
-          input#emailSignup(type="email" name="emailSignup" placeholder="Introduce an email...")
-          input#passSignup(type="password" name="passSignup" placeholder="Introduce a password...")
-          input#passSignupRepeat(type="password" name="passSignupRepeat" placeholder="Repeat password...")
-          input#botonRegistro(type="submit" value="Signup")
+        form#formSignup(action="/" method="POST")
+          input#name(type="text" name="name" placeholder="Introduce a name...")
+          input#lastname(type="text" name="lastname" placeholder="Introduce a name...")
+          input#username(type="text" name="username" placeholder="Introduce a name...")
+          input#email(type="email" name="email" placeholder="Introduce an email...")
+          input#password(type="password" name="password" placeholder="Introduce a password...")
+          input#passwordRepeat(type="password" name="passwordRepeat" placeholder="Repeat password...")
+          input#image(type="text" name="image" placeholder="Pon el link a tu imagen...")
+          input#botonRegistro(type="submit" value="Regístrate")
 
     script(src="script/script.js")
