@@ -8,8 +8,8 @@ router.get('/search', ofertasController.getOfertas);
 router.post('/ads', validateCreateOferta, ofertasController.createOfertaController);
 router.put('/ads', validateUpdateOferta, ofertasController.updateOfertaController);
 router.delete('/ads', validateDeleteOferta, ofertasController.deleteOfertaController);
-
 module.exports = router;
+
 
 //Ejemplos
 // GET http://localhost:3000/api/search --> ALL

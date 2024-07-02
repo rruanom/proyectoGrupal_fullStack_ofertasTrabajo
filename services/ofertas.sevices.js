@@ -13,12 +13,35 @@ const listaOfertas = async () => {
 };
 
 //listar ofertas por palabra clave
+// READ 2.0
+const renderOfferts = async (keyword) => {
+    try {
+        let filter = {};
+        if (keyword) {
+            filter = {
+                $or: [
+                    { title: { $regex: keyword, $options: 'i' } },
+                    { empresa: { $regex: keyword, $options: 'i' } },
+                    { salario: { $regex: keyword, $options: 'i' } },
+                    { localizacion: { $regex: keyword, $options: 'i' } },
+                    { fuente: { $regex: keyword, $options: 'i' } }
+                ]
+            };
+        }
+        const offerts = await Oferta.find(filter)
+            //.select('title description skills client_location url source status -_id')
+            .limit(15); // Limitar a los primeros 10 resultados
+        return offerts;
+    } catch (error) {
+        console.log('Error listing offerts:', error);
+    }
+};
 //listar ofertas por provincia
 //listar ofertas por salario 
 //listar ofertas por empresa
 
 //crear nueva oferta
-const createOferta= async (title, empresa, salario, localizacion, logo, url) => {
+const createOferta = async (title, empresa, salario, localizacion, logo, url) => {
     try {
         const oferta = new Oferta({
             title,
@@ -27,9 +50,9 @@ const createOferta= async (title, empresa, salario, localizacion, logo, url) => 
             localizacion,
             logo,
             url,
-            fuente :"administrador"
+            fuente: "administrador"
         });
-    
+
         const result = await oferta.save();
         console.log(result);
         return result;
@@ -67,5 +90,6 @@ module.exports = {
     listaOfertas,
     createOferta,
     updateOferta,
-    deleteOferta
+    deleteOferta,
+    renderOfferts
 };

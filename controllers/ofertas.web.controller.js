@@ -11,8 +11,23 @@ const getAllOfferts = async (req, res) => {
         console.log(`ERROR: ${error.stack}`);
         res.status(400).json({msj:`ERROR: ${error.stack}`});
     }
-}
+};
+
+const renderFilter = async (req, res) => {
+    try {
+        const keyword = req.body.inputBuscador || null;
+        const updatedOfferts = await ofertaService.renderOfferts(keyword);
+        console.log(updatedOfferts)
+        res.status(200).render("home", {Ofertas: updatedOfferts, msj:`OFERTAS FILTRADAS POR ${keyword}`})
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 //findOrSaveOfertas();
 
-module.exports = { getAllOfferts };
+module.exports = { 
+    getAllOfferts,
+    renderFilter
+ };
 
