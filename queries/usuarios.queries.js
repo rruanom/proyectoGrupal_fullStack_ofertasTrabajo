@@ -11,8 +11,8 @@ const queries = {
     SELECT id_user, name, lastname, username, image, password, email, isadmin
     FROM users;`,
     createUser: `
-    INSERT INTO users(name, lastname, username, email, password, image, isadmin, last_logged_date) 
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+    INSERT INTO users (name, lastname, username, email, password, image, isadmin, last_logged_date)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
     updateUser: `
     UPDATE users 
     SET 

@@ -1,6 +1,7 @@
 const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
 const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
+const bcrypt = require('bcryptjs');
 
 const getUsers = async (req, res) => {
     try {
@@ -93,10 +94,28 @@ const deleteUser = async (req, res) => {
 };
 
 
+const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const foundUser = await user.findByEmail(email);
+        if (!foundUser) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        const isMatch = await bcrypt.compare(password, foundUser.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Contraseña incorrecta' });
+        }
+        res.status(200).json({ message: 'Login exitoso' });
+    } catch (error) {
+        res.status(500).json({ error: 'Error en la BBDD' });
+    }
+};
+
 module.exports = {
     getUsers,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 }
 

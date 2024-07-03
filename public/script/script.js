@@ -155,7 +155,7 @@ const printMenuUnlogged = () => {
     linkHome.innerText = 'Home';
 
     linkLogin.setAttribute('href', './login');
-    linkRegister.setAttribute('href', './register');
+    linkRegister.setAttribute('href', './registro');
     linkHome.setAttribute('href', './');
 
 
