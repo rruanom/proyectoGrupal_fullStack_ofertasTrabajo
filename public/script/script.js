@@ -167,3 +167,57 @@ const printMenuUnlogged = () => {
     ulNav.append(login);
     ulNav.append(register);
 }
+
+
+
+//FUNCIÓN PARA BORRAR FAVORITOS
+async function deleteFavorite(id_oferta) {
+    const email = 'email@jony.com';
+
+    try {
+
+        const response = await fetch('/api/favoritos', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id_oferta, email }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            location.reload();
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error deleting favorite:', error);
+    }
+};
+
+//FUNCIÓN PARA CREAR FAVORITOS
+async function saveFavorite(email, id_oferta) {
+    try {
+        console.log('Script Saving favorite with id_oferta:', id_oferta, 'and email:', email);
+        const response = await fetch('/api/favoritos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id_oferta, email }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error saving favorite:', error);
+    }
+};
+
+
+

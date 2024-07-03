@@ -64,6 +64,8 @@ const getFavoritos = async (req, res) => {
         res.status(400).json({ msj: `ERROR: ${error.stack}` });
     }
 };
+
+
 const getUsers = async (req, res) => {
     try {
         const resp = await fetch('http://localhost:3000/api/usuarios');
