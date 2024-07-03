@@ -5,6 +5,7 @@ const ofertasController = require('../controllers/ofertas.controller');
 
 //meter middleware de los validates
 router.get('/search', ofertasController.getOfertas);
+router.post('/search', ofertasController.getOfertas)
 router.post('/ads', ofertasController.createOfertaController);
 router.put('/ads', ofertasController.updateOfertaController);
 router.delete('/ads', ofertasController.deleteOfertaController);

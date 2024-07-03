@@ -167,3 +167,4 @@ const printMenuUnlogged = () => {
     ulNav.append(login);
     ulNav.append(register);
 }
+

@@ -1,19 +1,23 @@
 const { response } = require('express');
 const ofertaService = require('../services/ofertas.sevices');
+const Oferta = require('../models/ofertas.model'); 
+
 //const { validationResult } = require("express-validator");
 
 const getOfertas = async (req, res) => {
-    let ofertas;
     try {
-        // Validate request
-        /* const errors = validationResult(req);
-        if (!errors.isEmpty()) { 
-            return res.status(400).json({ errors: errors.array() });
-        }*/
-        ofertas = await ofertaService.listaOfertas();
-        res.status(200).json(ofertas); // [] con las authors encontradas
+        const keyword = req.body.inputBuscador || null;
+        if (keyword) {
+            const updatedOfferts = await ofertaService.renderOfferts(keyword);
+            console.log(updatedOfferts)
+            res.status(200).json(updatedOfferts);        
+        } else {
+            let offerts = await Oferta.find({}, '-_id -__v'); //{}
+            console.log(offerts)
+            res.status(200).json(offerts);        }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.log(`ERROR: ${error.stack}`);
+        res.status(400).json({ msj: `ERROR: ${error.stack}` });
     }
 };
 

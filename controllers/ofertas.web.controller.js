@@ -1,5 +1,5 @@
 const ofertaService = require('../services/ofertas.sevices');
-const Oferta = require('../models/ofertas.model'); // Asegúrate de usar el nombre correcto del modelo
+const Oferta = require('../models/ofertas.model'); 
 
 const getOffers = async (req, res) => {
     try {
