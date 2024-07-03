@@ -155,14 +155,67 @@ const deleteUser = async (email) => {
     return result;
 };
 
+//añado funciones necesarias para logIn y logOut
+const existUser = async(email) => {
+    let client, result;
+    try{
+        client = await pool.connect();
+        const data = await client.query(`SELECT * FROM users WHERE email = $1 `,[email])
+        result = data.rows[0]
+    }catch(err){
+        console.log(err);
+        throw(err);
+    }finally{
+        client.release()
+    }
+    return result
+};
 
+const setLoggedTrue = async(email) => {
+    let client, result;
+    try{
+        client = await pool.connect();
+        const data = await client.query(`UPDATE users
+                                        SET islogged = true 
+                                        WHERE email = $1
+                                        RETURNING *; `,[email])
+        result = data.rows
+    }catch(err){
+        console.log(err);
+        throw(err);
+    }finally{
+        client.release()
+    }
+    return result
+};
+
+const setLoggedFalse = async(email) => {
+    let client, result;
+    try{
+        client = await pool.connect();
+        const data = await client.query(`UPDATE users
+                                        SET logged = false 
+                                        WHERE email = $1
+                                        RETURNING *; `,[email])
+        result = data.rows
+    }catch(err){
+        console.log(err);
+        throw(err);
+    }finally{
+        client.release()
+    }
+    return result
+};
 
 module.exports = {
     getUserByEmail,
     createUser,
     getNonAdminUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    existUser,
+    setLoggedTrue,
+    setLoggedFalse
 }
 
 // getNonAdminUsers().then(data=>console.log(data));
