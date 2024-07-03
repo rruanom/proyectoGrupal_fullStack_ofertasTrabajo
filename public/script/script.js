@@ -29,6 +29,41 @@ document.addEventListener("click", (event) => {
     }
 });
 
+document.addEventListener("submit", (event) => {
+    if (event.target.id == "formSubirOferta") {
+        event.preventDefault();
+
+        const title = event.target.inputTituloOferta.value;
+        const empresa = event.target.inputEmpresa.value;
+        const salario = event.target.inputSalario.value;
+        const localizacion = event.target.inputLocalizacion.value;
+
+        console.warn(title, empresa, salario, localizacion);
+        const newOffer = JSON.stringify(
+            {
+                title,
+                empresa,
+                salario,
+                localizacion,
+                logo: './public/imgs/logoEnConstruccion.png',
+                url: 'https://localhost:3000/',
+                fuente: "administrador"
+            }
+        );
+        fetch('http://localhost:3000/api/ads', {
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: newOffer
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById("message").innerHTML = `Oferta guardada con titulo: ${data.title}`;
+            })
+    }
+}
+)
+
 
 const printMenuAdmin = () => {
     const home = document.createElement("li");
