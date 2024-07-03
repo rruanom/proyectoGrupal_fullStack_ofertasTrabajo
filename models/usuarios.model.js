@@ -176,7 +176,7 @@ const setLoggedTrue = async(email) => {
     try{
         client = await pool.connect();
         const data = await client.query(`UPDATE users
-                                        SET logged = true 
+                                        SET islogged = true 
                                         WHERE email = $1
                                         RETURNING *; `,[email])
         result = data.rows

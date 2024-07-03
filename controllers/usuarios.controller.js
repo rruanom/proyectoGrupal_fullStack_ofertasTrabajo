@@ -2,6 +2,7 @@ const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
 const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 const getUsers = async (req, res) => {
