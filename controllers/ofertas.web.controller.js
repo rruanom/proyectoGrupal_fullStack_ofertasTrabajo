@@ -19,21 +19,9 @@ const getOffers = async (req, res) => {
     }
 };
 
-const renderFilter = async (req, res) => {
-    try {
-        const keyword = req.body.inputBuscador || null;
-        const updatedOfferts = await ofertaService.renderOfferts(keyword);
-        console.log(updatedOfferts)
-        res.status(200).render("home", { Ofertas: updatedOfferts, msj: `OFERTAS FILTRADAS POR ${keyword}` })
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
-
 //findOrSaveOfertas();
 
 module.exports = {
-    getOffers,
-    renderFilter
+    getOffers
 };
 
