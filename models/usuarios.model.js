@@ -81,12 +81,9 @@ const createUser = async (user) => {
     const { name, lastname, username, email, password, image, isadmin, last_logged_date } = user;
     let client, result;
     try {
-        client = await pool.connect();
-        const data = await client.query(`
-            INSERT INTO users (name, lastname, username, email, password, image, isadmin, last_logged_date)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *
-        `, [name, lastname, username, email, password, image, isadmin, last_logged_date]);
-        result = data.rowCount;
+        client = await pool.connect(); // Espera a abrir conexion
+        const data = await client.query(queries.createUser,[name, lastname, username, email, password, image, isadmin, last_logged_date])
+        result = data.rowCount
     } catch (err) {
         console.log(err);
         throw err;
@@ -95,7 +92,6 @@ const createUser = async (user) => {
     }
     return result;
 };
-
 
 /**
  * Descripción de la función: Esta función actualiza los datos de un usuario existente en la base de datos.
