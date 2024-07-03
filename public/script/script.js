@@ -3,8 +3,8 @@ const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
 const burger = document.querySelector("#divHamburguesa");
 const ulNav = document.querySelector("#ulNav");
-const usuario = false;
-const admin = false;
+const usuario = true;
+const admin = true;
 
 //Lógica de pintar menu hamburguesa distinto segun rol de usuario
 
@@ -120,7 +120,7 @@ const printMenuUnlogged = () => {
     linkHome.innerText = 'Home';
 
     linkLogin.setAttribute('href', './login');
-    linkRegister.setAttribute('href', './registro');
+    linkRegister.setAttribute('href', './register');
     linkHome.setAttribute('href', './');
 
 
