@@ -7,6 +7,8 @@ html(lang="en")
     link(rel="stylesheet" href="/css/style.css")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
 
   body
     header
@@ -16,6 +18,7 @@ html(lang="en")
         h2 ¿Estás buscando ofertas de trabajo?
         form(action="/api/search", method="post") 
           input(type="text" id="inputBuscador" name="inputBuscador" placeholder="Buscar ofertas...")
+          button(type="submit" id="botonBuscador" name="botonBuscador") Buscar
       #divHamburguesa
         button#abrir.abrir-menu
       #nav
@@ -31,17 +34,32 @@ html(lang="en")
         #ofertasUsuario
           h1 #{msj}
           each oferta in Ofertas
-            h2 #{oferta.title} 
-            h4 #{oferta.empresa}
-            h4 #{oferta.localizacion}
-            h4 #{oferta.salario}
-            #botonesEjemplo
-              button JS
-              button HTML
-              button CSS
-            button#addFavBtn Añadir a favoritos
+            #cardOferta
+              button#addFavBtn 
+                i.fa-regular.fa-bookmark(style="color: #9a52aa;")
+              #tituloOferta
+                a(href=`${oferta.url}` target="_blank") #{oferta.title} 
+              #empresa
+                h4 #{oferta.empresa}
+              #localizacion  
+                p #{oferta.localizacion}
+              #salario
+                p #{oferta.salario}
+              #botonesTec
+                button 
+                  i.fa-brands.fa-square-js(style="color: #9a52aa;")
+                button
+                  i.fa-brands.fa-html5(style="color: #75378f;")
+                button
+                  i.fa-brands.fa-css3-alt(style="color: #9a52aa;")
+                button
+                  i.fa-brands.fa-node-js(style="color: #75378f;")
 
-    footer
-      p Footer
+
+              
+
+
+  include footer.pug
+
 
     script(src="script/script.js")

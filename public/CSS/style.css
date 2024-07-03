@@ -18,23 +18,29 @@ th, td {
     text-align: left;
     padding: 8px;
 }
+td button{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 30px;
+}
 th {
-    background-color: #f2f2f2;
+    background-color: #9452a6;
+    text-align: center;
 }
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 footer {
-    align-items: center;
-    background-color: white;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    justify-content: center;
-    margin-top: auto;
-    width: 100%;
-}
+    background-color: #9452a6;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    bottom: 0;
+    width: 92%;
+    margin-top: 50px;
+
+  }
 
 header {
     justify-content: center;
@@ -47,20 +53,69 @@ header {
 
 main {
     min-height: 100vh;
-    margin-right: 40px;
-    margin-left: 40px;
+    margin-right: 60px;
+    margin-left: 60px;
 }
 
 /* Selectores Anidados */
-footer h3 {
+footer p {
     font-size: 0.9em;
-    text-align: center;
+    margin-bottom: 5px;
 }
 
 #divBuscador h2 {
     display: none;
 }
 
+
+#tituloOferta a {
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#tituloOferta a:hover{
+    color: #6e53c1;
+}
+
+#tituloOferta{
+    margin-bottom: 10px;
+}
+
+#empresa{
+    margin-bottom: 10px;
+    color: #9a52aa;
+}
+#localizacion {
+    margin-bottom: 8px;
+}
+
+#salario {
+    margin-bottom: 8px;
+    color: grey;
+    font-size: 13px;
+}
+#botonesTec{
+    display: flex;
+}
+#botonesTec button{
+    margin-right: 15px;
+    background-color: white;
+    border: none;
+    padding: 2px;
+    border-radius: 10px;
+    font-size: 35px;
+}
+
+#addFavBtn{
+    float: right;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 15px;
+    margin-top: 5px;
+}
 header img{
     width: 40%;
     background-color: white;
@@ -81,6 +136,12 @@ header img{
 }
 table button{
     width: 90px;
+    display: flex;
+}
+#ofertasUsuario h1{
+    display: grid;
+    justify-content: space-around;
+    color: #75378f;
 }
 #divHamburguesa button {
     width: 70px;
@@ -107,9 +168,10 @@ table button{
 
 #divBuscador {
     position: fixed;
-    right: 30%;
+    right: 20%;
     bottom: 84.5%;
     margin-left: 20px;
+    width: 70%;
 }
 
 #inputBuscador {
@@ -126,6 +188,8 @@ table button{
 }
 #tituloUsuarios{
     margin-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .invisible{
@@ -133,17 +197,23 @@ table button{
     display: none;
 }
 
-/* EJEMPLO DE TARJETA*/
-#ofertasUsuario {
-    border: 2px solid grey;
+#cardOferta {
+    border: 2px solid rgb(96, 0, 103);
     border-radius: 20px;
     padding: 15px;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+
 #ejemploUsuarios{
     padding: 15px;
     margin-top: 60px;
 
 }
+
+
+
 
 #filtros {
     border-bottom: 2px solid black;
@@ -219,15 +289,23 @@ table button{
         left: 5%;
     }
     #inputBuscador {
-        width: 100%;
+        width: 77%;
         height: 40px;
         margin-bottom: 10px;
+    }
+    #botonBuscador {
+        width: 20%;
+        height: 40px;
+        margin-left: 10px;
+        border-radius: 20px;
     }
     #divHamburguesa {
         left: 92%;
         bottom: 83.7%;
     }
- 
+    footer{
+        width: 97.2%;
+    }
     
 }
 
@@ -236,18 +314,135 @@ table button{
     #divBuscador h2 {
         display: block;
         margin-bottom: 30px;
+        opacity: 0%;
     }
 
     #inputBuscador {
-        width: 100%;
+        width: 70%;
         height: 40px;
         margin-bottom: 10px;
     }
+    #botonBuscador {
+        width: 20%;
+        height: 40px;
+        margin-left: 10px;
+        border-radius: 20px;
+    }
+
+    
+   
 }
-
+@media (max-width: 678px) {
+    #thEmail{
+        display: none;
+    }
+    #tdEmailContent{
+        display: none;
+    }
+    th{
+        font-size: 80%;
+    }
+    td{
+        font-size: 80%;
+    }
+    td button{
+        width: 70%;
+        margin-left: 20px;
+    }
+}
 /* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
-@media (max-width: 375px) {}
+@media (max-width: 375px) {
+    main{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    #divBuscador h2 {
+        display: block;
+        margin-bottom: 50px;
+        opacity: 0%;
+    }
 
+    #inputBuscador {
+        width: 70%;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    #botonBuscador {
+        width: 20%;
+        height: 40px;
+        margin-left: 10px;
+        border-radius: 20px;
+    }
+    #divHamburguesa button{
+        width: 40px;
+        height: 40px;
+    }
+    #divHamburguesa{
+        left: 80%;
+        bottom: 86.7%;
+    }
+    footer{
+        width: 83%;
+    }
+    #tituloOferta a{
+    font-size: 100%;    
+    }
+    
+    #tituloOferta{
+        font-size: 100%;    
+    }
+    
+    #empresa{
+        font-size: 100%;    
+
+    }
+    #localizacion {
+        font-size: 100%;    
+
+    }
+    
+    #salario {
+        font-size: 100%;    
+
+    }
+    
+    #botonesTec button{
+
+        font-size: 100%;
+    }
+    
+    #addFavBtn{
+        float: right;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+    #thEmail{
+        display: none;
+    }
+    #tdEmailContent{
+        display: none;
+    }
+    th{
+        font-size: 80%;
+    }
+    td{
+        font-size: 70%;
+    }
+    td button{
+        width: 50%;
+        height: 20px;
+        font-size: 50%;
+        margin-left: 10px;
+    }
+    #ejemploUsuarios {
+        padding: 0px;
+        margin-top: 60px;
+}
+}
 
 #abrir {
     font-size: 30px;
@@ -271,6 +466,7 @@ table button{
 #nav.visible {
     display: block;
     width: 60%;
+    position: fixed;
     margin-left: 20%;
     margin-right: 20%;
     border-radius: 20px;
