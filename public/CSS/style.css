@@ -507,6 +507,7 @@ table button {
     td {
         font-size: 80%;
     }
+  
     #saludo p{
         font-size: 50%;
     }
@@ -530,7 +531,9 @@ table button {
         margin-left: 10%;
         margin-right: 10%;
     }
-
+    #saludo{
+        display: none;
+    }
     #cardPerfil img{
         max-width: 120px;
     }
