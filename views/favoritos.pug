@@ -14,13 +14,13 @@ html(lang="en")
         a(href="/")
           img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Favoritos
-      #divHamburguesa
-        button#abrir.abrir-menu
-      #nav
-        ul#ulNav
-          h3 Menú
-          li
-            a(href="./") Home
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
 
     main
       #filtros

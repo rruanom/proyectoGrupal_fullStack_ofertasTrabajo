@@ -114,6 +114,8 @@ const loginUser = async (req, res) => {
                 res.cookie('access_token', token, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
                 res.cookie('email', email, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
 
+                user.setLoggedTrue(email);
+
                 res.status(200).json({
                     msg: 'Correct authentication',
                     token: token
@@ -129,6 +131,7 @@ const loginUser = async (req, res) => {
         console.log('Error:', error);
     }
 };
+
 
 module.exports = {
     getUsers,
