@@ -1,4 +1,5 @@
 const usuariosWebController = require('../controllers/usuarios.web.controller');
+const usuariosController = require('../controllers/usuarios.controller');
 const offers = require('../controllers/ofertas.web.controller');
 const favoritosWebController = require('../controllers/favoritos.web.controller');
 const router = require('express').Router();
@@ -11,6 +12,7 @@ router.get("/", mdVerifiedJWT, mdVerifiedAdmin, offers.getOffers);
 router.post('/', mdVerifiedJWT, mdVerifiedAdmin, offers.getOffers);
 
 router.get("/login", mdVerifiedJWT, mdVerifiedAdmin, usuariosWebController.getLogin);
+router.get("/logout", mdVerifiedJWT, mdVerifiedAdmin, usuariosController.logoutUser);
 router.get("/registro", mdVerifiedJWT, mdVerifiedAdmin, usuariosWebController.getRegistro);
 router.get("/perfil", mdVerifiedJWT, mdVerifiedAdmin, protectedRoutes, usuariosWebController.getPerfil);
 router.get("/dashboard", mdVerifiedJWT, mdVerifiedAdmin, restrictedAdminRoutes, usuariosWebController.getDashboard);
