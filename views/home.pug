@@ -35,12 +35,13 @@ html(lang="en")
           h1 #{msj}
           each oferta in Ofertas
             #cardOferta
-              button(
-                id="addFavBtn"
-                data-id=`${oferta._id}`
-                data-email="email@jony.com"
-                onclick="saveFavorite(this.dataset.email, this.dataset.id)")
-                  i.fa-regular.fa-bookmark(style="color: #9a52aa;")
+              if islogged
+                button(
+                  id="addFavBtn"
+                  data-id=`${oferta._id}`
+                  data-email="email@jony.com" 
+                    onclick="saveFavorite(this.dataset.email, this.dataset.id)")
+                      i.fa-regular.fa-bookmark(style="color: #9a52aa;")
               #tituloOferta
                 a(href=`${oferta.url}` target="_blank") #{oferta.title} 
               #empresa

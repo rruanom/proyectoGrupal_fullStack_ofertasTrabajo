@@ -80,11 +80,7 @@ document.addEventListener("submit", (event) => {
             body: newLoggin
         })
             .then(res => res.json())
-            .then(data => {
-                const mensaje = document.querySelector('#mensaje')
-                mensaje.innerHTML = `<p>Usuario incorrecto<p>`;
-                console.log(data)
-            })
+            
     }
 }
 )
