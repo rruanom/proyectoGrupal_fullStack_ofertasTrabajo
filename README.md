@@ -5,9 +5,9 @@
 
 Este proyecto consiste en una aplicación web para búsqueda de ofertas de trabajo FullStack. La aplicación está desarrollada utilizando MongoDB, Express.js, PostgreSQL, Node.js, JavaScript y pug, donde MongoDB se utiliza como base de datos NoSQL para almacenar datos de ofertas de empleo, mientras que PostgreSQL se emplea para almacenar y gestionar datos relacionales de usuarios y favoritos.
 
-![](public/IMGs/captura1.png) 
+![Captura de pagina principal](public/IMGs/captura2.png) 
 
-![Captura de login](public/IMGs/captura2.png) 
+![Captura de login](public/IMGs/captura1.png) 
 
 
 ## Funcionalidades Principales
