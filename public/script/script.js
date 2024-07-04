@@ -190,8 +190,7 @@ document.addEventListener("submit", (event) => {
 //}
 
 //FUNCIÓN PARA BORRAR FAVORITOS
-async function deleteFavorite(id_oferta) {
-    const email = 'email@jony.com';
+async function deleteFavorite(email, id_oferta) {
 
     try {
 
@@ -232,7 +231,7 @@ async function saveFavorite(email, id_oferta) {
 
         const data = await response.json();
         if (response.ok) {
-            alert(data.message);
+            alert("Favorito guardado");
         } else {
             alert(data.message);
         }

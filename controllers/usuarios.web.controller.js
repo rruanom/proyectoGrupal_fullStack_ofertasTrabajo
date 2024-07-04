@@ -2,8 +2,11 @@ const ofertasService = require('../services/ofertas.sevices');
 const user = require('../models/usuarios.model');
 
 const getHome = async (req, res) => {
+
+    const email = req.decoded.email;
+    console.log('email', email);
     try {
-        res.status(200).render("home.pug");
+        res.status(200).render("home.pug", {email});
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);
@@ -73,7 +76,7 @@ const getFavoritos = async (req, res) => {
             arrayIdSQL.push(element.id_oferta)
         });
         const favoritosMongo = await ofertasService.listaOfertasPorId(arrayIdSQL);
-        res.status(200).render("favoritos.pug", { Favoritos: favoritosMongo || [] });
+        res.status(200).render("favoritos.pug", { Favoritos: favoritosMongo || [], email });
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);

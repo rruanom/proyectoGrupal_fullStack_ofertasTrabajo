@@ -26,6 +26,9 @@ const deleteFavoritoWeb = async (req, res) => {
 const saveFavoritoWeb = async (req, res) => {
     const { email, id_oferta } = req.body; 
 
+    console.log(email);
+    email = req.decoded.email;
+
     console.log('Controller Saving favorito with id_oferta:', id_oferta, 'and email:', email);
 
     if (!id_oferta || !email) {

@@ -20,7 +20,7 @@ router.get("/users", usuariosWebController.getUsers);
 
 //favoritos
 router.delete('/favoritos', favoritosWebController.deleteFavoritoWeb);
-router.post('/favoritos', favoritosWebController.saveFavoritoWeb);
+router.post('/favoritos',  mdVerifiedJWT, mdVerifiedAdmin, favoritosWebController.saveFavoritoWeb);
 
 router.delete('/usuarios', usuariosWebController.deleteUser);
 
