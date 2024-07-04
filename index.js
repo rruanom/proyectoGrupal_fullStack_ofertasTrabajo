@@ -5,6 +5,7 @@ const app = express(); // Inicializar servidor
 const port = 3000;
 const path = require('path'); // Descomentar para usar jsdoc
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 //Importar middlewares
 const error404 = require("./middlewares/error404");
@@ -23,6 +24,7 @@ const rutasWeb = require('./routes/web.routes');
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // CONFIGURACIÓN DE VISTAS PUG -- Motor de plantillas
 app.set('view engine', 'pug');
