@@ -19,12 +19,12 @@ restrictedRoutes.use((req, res, next) => {
                     return res.json({ msg: 'No eres administrador' });
                 }
             } else {
-                return res.json({ msg: 'Invalid token' });
+                return res.json({ msg: 'Tu token no mola nada' });
             }
         });
     } else {
         res.send({
-            msg: 'Token not provided'
+            msg: 'Vas de chulo pero no tienes ni token'
         });
     }
 });
