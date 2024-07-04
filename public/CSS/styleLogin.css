@@ -89,7 +89,13 @@ h2 {
     border-radius: 20px;
     text-align: center;
 }
-
+#formSignup input{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
 #divRecuperarPass button {
     border: 0;
     background-color: white;
