@@ -4,24 +4,6 @@ const abrir = document.querySelector("#abrir");
 const burger = document.querySelector("#divHamburguesa");
 const ulNav = document.querySelector("#ulNav");
 
-
-//Logica boton editar usuarios
-
-
-const abrirEditar = document.querySelectorAll(".editUserBtn");
-const editDiv = document.querySelector("#edit");
-
-abrirEditar.forEach(button => {
-    button.addEventListener("click", () => {
-        editDiv.classList.toggle("visible");
-    });
-});
-
-document.addEventListener("click", (event) => {
-    if (!editDiv.contains(event.target) && !Array.from(abrirEditar).includes(event.target)) {
-        editDiv.classList.remove("visible");
-    }
-});
 // const usuario = true;
 // const admin = false;
 
@@ -64,11 +46,11 @@ document.addEventListener("submit", (event) => {
                 salario,
                 localizacion,
                 logo: './public/imgs/logoEnConstruccion.png',
-                url: 'https://localhost:3000/',
+                url: '/',
                 fuente: "administrador"
             }
         );
-        fetch('http://localhost:3000/api/ads', {
+        fetch('/api/ads', {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: newOffer
@@ -93,7 +75,7 @@ document.addEventListener("submit", (event) => {
                 password
             }
         );
-        fetch('http://localhost:3000/api/usuarios/login', {
+        fetch('/api/usuarios/login', {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: newLoggin
@@ -287,3 +269,20 @@ async function deleteUser(email) {
 
 
 
+//Logica boton editar usuarios
+
+
+// const abrirEditar = document.querySelectorAll(".editUserBtn");
+// const editDiv = document.querySelector("#edit");
+
+// abrirEditar.forEach(button => {
+//     button.addEventListener("click", () => {
+//         editDiv.classList.toggle("visible");
+//     });
+// });
+
+// document.addEventListener("click", (event) => {
+//     if (!editDiv.contains(event.target) && !Array.from(abrirEditar).includes(event.target)) {
+//         editDiv.classList.remove("visible");
+//     }
+// });
