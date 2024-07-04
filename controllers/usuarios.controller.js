@@ -101,11 +101,12 @@ const loginUser = async (req, res) => {
             const match = await bcrypt.compare(password, data.password);
             if (match) {
                 await user.setLoggedTrue(req.body.email);
-                const { email, username, isadmin } = data;
+                const { email, username, isadmin, islogged } = data;
                 const userForToken = {
                     email: email,
                     username: username,
-                    isadmin: isadmin
+                    isadmin: isadmin,
+                    islogged: islogged
                 };
                 const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
 
