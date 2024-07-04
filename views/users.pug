@@ -42,8 +42,17 @@ html(lang="es")
                 button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) 
                   i.fa-regular.fa-trash-can(style='color: #bf5ad3')
               td
-                button(id="ediUserBtn")
+                button(class="editUserBtn")
                   i.fa-solid.fa-pen(style="color: #bf5ad3;")
+      #edit
+        h2 Editar Usuario
+        form#formEdit(action="#" method="PUT")
+          input#name(type="text" name="name" placeholder="Nombre")
+          input#lastname(type="text" name="lastname" placeholder="Apellidos")
+          input#username(type="text" name="username" placeholder="Nombre de usuario")
+          input#email(type="email" name="email" placeholder="Email de usuario")
+          input#image(type="text" name="image" placeholder="Link a la imagen")
+          input#botonRegistro(type="submit" value="Editar")
 
     
     include footer.pug
