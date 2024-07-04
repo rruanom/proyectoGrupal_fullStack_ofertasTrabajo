@@ -60,11 +60,14 @@ const getDashboard = async (req, res) => {
 
 
 const getFavoritos = async (req, res) => {
-    const email = req.params.email;
+    const email = req.cookies['email'];
+    if (!email) {
+        return res.status(400).json({ msg: 'Email not found in cookies' });
+    }
     let arrayIdSQL = [];
     try {
-        const resp = await fetch(`http://localhost:3000/api/favoritos?email=email@jony.com`);
-        // const resp = await fetch(`http://localhost:3000/api/favoritos?email=${email}`);
+        // const resp = await fetch(`http://localhost:3000/api/favoritos?email=email@jony.com`);
+        const resp = await fetch(`http://localhost:3000/api/favoritos?email=${email}`);
         const data = await resp.json();
         data.forEach(element => {
             arrayIdSQL.push(element.id_oferta)
