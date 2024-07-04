@@ -5,6 +5,23 @@ const burger = document.querySelector("#divHamburguesa");
 const ulNav = document.querySelector("#ulNav");
 
 
+//Logica boton editar usuarios
+
+
+const abrirEditar = document.querySelectorAll(".editUserBtn");
+const editDiv = document.querySelector("#edit");
+
+abrirEditar.forEach(button => {
+    button.addEventListener("click", () => {
+        editDiv.classList.toggle("visible");
+    });
+});
+
+document.addEventListener("click", (event) => {
+    if (!editDiv.contains(event.target) && !Array.from(abrirEditar).includes(event.target)) {
+        editDiv.classList.remove("visible");
+    }
+});
 // const usuario = true;
 // const admin = false;
 
@@ -270,20 +287,3 @@ async function deleteUser(email) {
 
 
 
-//Logica boton editar usuarios
-
-
-const abrirEditar = document.querySelectorAll(".editUserBtn");
-const editDiv = document.querySelector("#edit");
-
-abrirEditar.forEach(button => {
-    button.addEventListener("click", () => {
-        editDiv.classList.toggle("visible");
-    });
-});
-
-document.addEventListener("click", (event) => {
-    if (!editDiv.contains(event.target) && !Array.from(abrirEditar).includes(event.target)) {
-        editDiv.classList.remove("visible");
-    }
-});
