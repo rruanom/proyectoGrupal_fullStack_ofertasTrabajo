@@ -3,8 +3,8 @@ const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
 const burger = document.querySelector("#divHamburguesa");
 const ulNav = document.querySelector("#ulNav");
-const usuario = true;
-const admin = true;
+const usuario = false;
+const admin = false;
 
 //Lógica de pintar menu hamburguesa distinto segun rol de usuario
 
@@ -19,7 +19,7 @@ abrir.addEventListener("click", () => {
         printMenuLoged();
     } else if (usuario === false && admin === false) {
         printMenuUnlogged();
-    }
+    } else { printMenuUnlogged()}
 });
 
 document.addEventListener("click", (event) => {

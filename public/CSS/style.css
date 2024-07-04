@@ -171,6 +171,7 @@ table button {
     display: grid;
     justify-content: space-around;
     color: #75378f;
+    margin-top: 20px;
 }
 
 #divHamburguesa button {
