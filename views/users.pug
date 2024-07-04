@@ -15,12 +15,12 @@ html(lang="es")
           img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Usuarios
       if islogged
-          if isadmin
-            include menuAdmin.pug
-          else if islogged
-            include menuUsuario.pug
-          else
-            include menuStandart.pug
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
 
     main
       #tituloUsuarios

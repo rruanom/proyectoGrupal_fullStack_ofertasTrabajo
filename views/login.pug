@@ -12,12 +12,12 @@ html(lang="es")
   body
     header
       if islogged
-          if isadmin
-            include menuAdmin.pug
-          else if islogged
-            include menuUsuario.pug
-          else
-            include menuStandart.pug
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
 
     main
       #tarjetaLogin
