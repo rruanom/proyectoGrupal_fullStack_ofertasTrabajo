@@ -32,7 +32,18 @@ html(lang="es")
           #submitOferta
             input(type="submit" value="Subir")
         p#message
-        
+
+    section
+        #ofertasUsuario
+          h1 #{msj}
+          each oferta in Ofertas
+            h2 #{oferta.title} 
+            h4 #{oferta.empresa}
+            h4 #{oferta.localizacion}
+            h4 #{oferta.salario}
+            button(id='`S{oferta.title}`') BORRAR
+
+
     script(src="./script/script.js")
 
       

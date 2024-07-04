@@ -3,8 +3,8 @@ const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
 const burger = document.querySelector("#divHamburguesa");
 const ulNav = document.querySelector("#ulNav");
-const usuario = true;
-const admin = true;
+const usuario = false;
+const admin = false;
 
 //Lógica de pintar menu hamburguesa distinto segun rol de usuario
 
@@ -59,6 +59,27 @@ document.addEventListener("submit", (event) => {
             .then(data => {
                 console.log(data)
                 document.getElementById("message").innerHTML = `Oferta guardada con titulo: ${data.title}`;
+            })
+    } else if (event.target.id =="formLogin"){
+        event.preventDefault();
+
+        const email = event.target.username.value;
+        const password = event.target.password.value;
+
+        const newLoggin = JSON.stringify(
+            {
+                email,
+                password
+            }
+        );
+        fetch('http://localhost:3000/api/usuarios/login', {
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: newLoggin
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
             })
     }
 }
@@ -169,7 +190,6 @@ const printMenuUnlogged = () => {
 }
 
 
-
 //FUNCIÓN PARA BORRAR FAVORITOS
 async function deleteFavorite(id_oferta) {
     const email = 'email@jony.com';
@@ -246,6 +266,5 @@ async function deleteUser(email) {
         console.error('Error deleting user:', error);
     }
 };
-
 
 
