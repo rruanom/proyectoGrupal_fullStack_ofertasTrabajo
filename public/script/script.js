@@ -198,6 +198,9 @@ async function deleteFavorite(id_oferta) {
 
 //FUNCIÓN PARA CREAR FAVORITOS
 async function saveFavorite(email, id_oferta) {
+    console.log('Inside saveFavorite function');
+    console.log('Email:', email);
+    console.log('ID Oferta:', id_oferta);
     try {
         console.log('Script Saving favorite with id_oferta:', id_oferta, 'and email:', email);
         const response = await fetch('/api/favoritos', {
@@ -205,7 +208,7 @@ async function saveFavorite(email, id_oferta) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id_oferta, email }),
+            body: JSON.stringify({ email, id_oferta }),
         });
 
         const data = await response.json();
@@ -216,6 +219,31 @@ async function saveFavorite(email, id_oferta) {
         }
     } catch (error) {
         console.error('Error saving favorite:', error);
+    }
+};
+
+//FUNCIÓN PARA BORRAR USUARIOS
+async function deleteUser(email) {
+    console.log('Deleting user with email:', email); // Log for debugging
+
+    try {
+        const response = await fetch('/api/usuarios', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+            location.reload();
+        } else {
+            // alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error deleting user:', error);
     }
 };
 

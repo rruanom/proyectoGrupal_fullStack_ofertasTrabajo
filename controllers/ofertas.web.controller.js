@@ -3,7 +3,7 @@ const Oferta = require('../models/ofertas.model'); // Asegúrate de usar el nomb
 
 const getAllOfferts = async (req, res) => {
     try {
-        let offerts = await Oferta.find({},'-_id -__v'); //{}
+        let offerts = await Oferta.find({},' -__v'); //{}
         console.log(offerts)
         res.status(200).render("home", {Ofertas: offerts, msj:"TODAS LAS OFERTAS"}); // Respuesta de la API para 1 producto
     }

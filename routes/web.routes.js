@@ -18,6 +18,10 @@ router.post('/', offers.renderFilter);
 router.delete('/favoritos', favoritosWebController.deleteFavoritoWeb);
 router.post('/favoritos', favoritosWebController.saveFavoritoWeb);
 
+router.delete('/usuarios', usuariosWebController.deleteUser);
+
+
+
 
 
 module.exports = router;

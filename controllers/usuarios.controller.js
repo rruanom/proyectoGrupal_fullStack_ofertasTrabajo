@@ -1,6 +1,6 @@
 const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
-const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
+const { validationResult } = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 const bcrypt = require('bcryptjs');
 
 const getUsers = async (req, res) => {
@@ -73,21 +73,13 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    let userSearch;
+    const { email } = req.body;
     try {
-        if (req.query.email) {
-            userSearch = await user.getUserByEmail(req.query.email);
-            if (userSearch.length > 0) {
-                await favorito.deleteFavoritos(req.query.email);
-                await user.deleteUser(req.query.email);
-                res.status(200).json({ message: `Se ha borrado el usuario con email: ${req.query.email}` })
-            } else {
-                res.status(404).json("Usuario no existe")
-            }
-        }
-        else {
-            res.status(404).json("No se ha encontrado el usuario")
-        }
+        const resp = await user.deleteUser(email);
+        res.status(201).json({
+            "items_deleted": resp,
+            data: email
+        });
     } catch (error) {
         res.status(500).json({ error: "Error en la BBDD" });
     }
