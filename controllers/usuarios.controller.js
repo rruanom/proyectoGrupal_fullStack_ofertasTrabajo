@@ -116,13 +116,7 @@ const loginUser = async (req, res) => {
 
                 user.setLoggedTrue(email);
 
-                res.status(200).json({
-                    msg: 'Correct authentication',
-                    token: token
-                });
-
-                const mensaje = document.querySelector('#mensaje');
-                mensaje.innerHTML = `<p>Usuario logeado<p>`;
+                res.status(200).redirect('./')
             } else {
                 res.status(400).json({ msg: 'Incorrect user or password' });
             }
@@ -132,12 +126,37 @@ const loginUser = async (req, res) => {
     }
 };
 
+const logoutUser = async (req, res) => {
+    try {
+        const email = req.cookies.email;
+        console.log(
+            email
+        );
+        if (!email) {
+            return res.status(400).json({ msg: 'No user is logged in' });
+        }
+
+        // Update the user's logged status in the database
+        await user.setLoggedFalse(email);
+
+        // Clear the cookies
+        res.clearCookie('access_token');
+        res.clearCookie('email');
+
+        res.status(200).redirect('./');
+    } catch (error) {
+        console.log('Error:', error);
+        res.status(500).json({ msg: 'Internal server error' });
+    }
+};
+
 
 module.exports = {
     getUsers,
     createUser,
     updateUser,
     deleteUser,
-    loginUser
+    loginUser,
+    logoutUser
 }
 
