@@ -6,8 +6,10 @@ const jwt_secret = process.env.ULTRA_SECRET_KEY;
 const verifiedIsAdmin = express.Router();
 
 verifiedIsAdmin.use((req, res, next) => {
-    res.locals.islogged = req.user.islogged;
-    res.locals.isadmin = req.user.isadmin;
+    console.log(req.user.islogged)
+    res.locals.islogged = req.user?.islogged || false;
+    res.locals.isadmin = req.user?.isadmin || false;
+    console.log(res.locals.islogged)
     next();
 });
 
