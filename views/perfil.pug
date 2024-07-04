@@ -1,16 +1,19 @@
 doctype html
-html(lang="es")
+html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
-    link(rel="stylesheet" href="/css/styleLogin.css")
+    link(rel="stylesheet" href="/css/style.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
     script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
 
-
   body
     header
+      #titulo
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+        h4#tituloFavs Tu perfil
       if islogged
         if isadmin
           include menuAdmin.pug
@@ -20,18 +23,21 @@ html(lang="es")
         include menuStandart.pug
 
     main
-      #tarjetaPerfil
-        h2 PERFIL
-        form#formPerfil(action="#" method="POST")
-          #divPerfilEmail
-            input#emailLogin(type="email" name="emailLogin" placeholder="Introduce email...")
-          #divPerfilNombre
-            input#inputNombrePerfil(type="text" name="inputNombrePerfil" placeholder="Introduce nombre de usuario...")
-          #fotoPerfil
-            input#inputFotoPerfil(type="text" name="inputFotoPerfil" placeholder="Foto de perfil...")
-          #divSubmitPerfil
-            input(type="submit" value="Login")
-        #divRecuperarPass
-          button#botonRecuperarPass ¿Has olvidado tu contraseña?
+      #ofertasUsuario
+        h1 PERFIL
+        #cardOferta 
+          #cardPerfil
+            h2 Bienvenide a tu perfil
+            h3 Nombre de usuario
+            p  @rodolfoElMaquina
+            h3 Correo
+            p rodirodi@user.com
+            h3 Nombre
+            p Daniel
+            h3 Apellido
+            p Gonzalez
+            h3 Imagen
+            img(src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="Imagen de perfil")
+
 
     script(src="script/script.js")

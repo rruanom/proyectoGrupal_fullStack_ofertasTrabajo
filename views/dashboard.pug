@@ -45,10 +45,23 @@ html(lang="es")
               #deleteFavBtn
                 button(id=`${oferta.title}`) 
                   i.fa-regular.fa-trash-can(style="color: #bf5ad3;")
-              h2 #{oferta.title} 
-              h4 #{oferta.empresa}
-              h4 #{oferta.localizacion}
-              h4 #{oferta.salario}
+              #tituloOferta
+                a(href=`${oferta.url}` target="_blank") #{oferta.title} 
+              #empresa
+                h4 #{oferta.empresa}
+              #localizacion  
+                p #{oferta.localizacion}
+              #salario
+                p #{oferta.salario}
+              #botonesTec
+                button 
+                  i.fa-brands.fa-square-js(style="color: #9a52aa;")
+                button
+                  i.fa-brands.fa-html5(style="color: #75378f;")
+                button
+                  i.fa-brands.fa-css3-alt(style="color: #9a52aa;")
+                button
+                  i.fa-brands.fa-node-js(style="color: #75378f;")
               
 
     script(src="./script/script.js")
