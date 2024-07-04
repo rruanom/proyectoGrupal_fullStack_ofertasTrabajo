@@ -163,10 +163,9 @@ const existUser = async(email) => {
         const data = await client.query(`SELECT * FROM users WHERE email = $1 `,[email])
         result = data.rows[0]
     }catch(err){
-        console.log(err);
+        const mensaje = document.querySelector('#mensaje')
+        mensaje.innerHTML = `<p>No se encuentra el usuario<p>`;
         throw(err);
-    }finally{
-        client.release()
     }
     return result
 };

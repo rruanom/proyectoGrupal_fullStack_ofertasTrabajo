@@ -66,6 +66,9 @@ document.addEventListener("submit", (event) => {
         const email = event.target.username.value;
         const password = event.target.password.value;
 
+        const formulario = document.querySelector('#formLogin')
+        formulario.reset()
+
         const newLoggin = JSON.stringify(
             {
                 email,
@@ -79,6 +82,8 @@ document.addEventListener("submit", (event) => {
         })
             .then(res => res.json())
             .then(data => {
+                const mensaje = document.querySelector('#mensaje')
+                mensaje.innerHTML = `<p>Usuario incorrecto<p>`;
                 console.log(data)
             })
     }
@@ -189,7 +194,6 @@ const printMenuUnlogged = () => {
     ulNav.append(register);
 }
 
-
 //FUNCIÓN PARA BORRAR FAVORITOS
 async function deleteFavorite(id_oferta) {
     const email = 'email@jony.com';
@@ -267,4 +271,3 @@ async function deleteUser(email) {
     }
 };
 
-//comentario
