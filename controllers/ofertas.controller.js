@@ -9,11 +9,9 @@ const getOfertas = async (req, res) => {
         const keyword = req.body.inputBuscador || null;
         if (keyword) {
             const updatedOfferts = await ofertaService.renderOfferts(keyword);
-            console.log(updatedOfferts)
             res.status(200).json(updatedOfferts);        
         } else {
             let offerts = await Oferta.find({}, '-_id -__v'); //{}
-            console.log(offerts)
             res.status(200).json(offerts);        }
     } catch (error) {
         console.log(`ERROR: ${error.stack}`);

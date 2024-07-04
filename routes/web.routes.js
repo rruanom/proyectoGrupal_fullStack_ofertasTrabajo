@@ -4,9 +4,11 @@ const favoritosWebController = require('../controllers/favoritos.web.controller'
 const router = require('express').Router();
 const protectedRoutes = require('../middlewares/verifiedToken');
 const restrictedAdminRoutes = require('../middlewares/verifiedAdmin')
+const mdVerifiedJWT = require('../middlewares/checkJwt')
+const mdVerifiedAdmin = require('../middlewares/checkIsAdmin')
 
-router.get("/", offers.getOffers);
-router.post('/', offers.getOffers);
+router.get("/", mdVerifiedJWT, mdVerifiedAdmin, offers.getOffers);
+router.post('/', mdVerifiedJWT, mdVerifiedAdmin, offers.getOffers);
 
 router.get("/login", usuariosWebController.getLogin);
 router.get("/registro", usuariosWebController.getRegistro);

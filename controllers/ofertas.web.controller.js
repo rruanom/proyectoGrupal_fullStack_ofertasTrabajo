@@ -7,11 +7,9 @@ const getOffers = async (req, res) => {
         const keyword = req.body.inputBuscador || null;
         if (keyword) {
             const updatedOfferts = await ofertaService.renderOfferts(keyword);
-            console.log(updatedOfferts)
             res.status(200).render("home", { Ofertas: updatedOfferts, msj: `OFERTAS FILTRADAS POR ${keyword}` })
         } else {
             let offerts = await Oferta.find({}, '-__v'); //{}
-            console.log(offerts)
             res.status(200).render("home", { Ofertas: offerts, msj: "TODAS LAS OFERTAS" }); // Respuesta de la API para 1 producto
         }
     } catch (error) {
