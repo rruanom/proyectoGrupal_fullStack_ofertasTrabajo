@@ -145,7 +145,7 @@ const deleteUser = async (email) => {
     try {
         client = await pool.connect();
         const data = await client.query(queries.deleteUser,[email]);
-        result = data.fields;
+        result = data.rowCount;
     } catch (error) {
         console.log(error);
         throw error;

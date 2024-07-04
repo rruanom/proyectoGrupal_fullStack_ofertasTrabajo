@@ -1,6 +1,7 @@
 const ofertaService = require('../services/ofertas.sevices');
 const Oferta = require('../models/ofertas.model'); 
 
+
 const getOffers = async (req, res) => {
     try {
         const keyword = req.body.inputBuscador || null;
@@ -9,7 +10,7 @@ const getOffers = async (req, res) => {
             console.log(updatedOfferts)
             res.status(200).render("home", { Ofertas: updatedOfferts, msj: `OFERTAS FILTRADAS POR ${keyword}` })
         } else {
-            let offerts = await Oferta.find({}, '-_id -__v'); //{}
+            let offerts = await Oferta.find({}, '-__v'); //{}
             console.log(offerts)
             res.status(200).render("home", { Ofertas: offerts, msj: "TODAS LAS OFERTAS" }); // Respuesta de la API para 1 producto
         }

@@ -36,7 +36,7 @@ html(lang="es")
               td #{user.username}
               td #{user.email}
               td 
-                button Borrar
+                button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) Eliminar usuario
     footer
       p Footer
 

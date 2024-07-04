@@ -1,4 +1,5 @@
 const ofertasService = require('../services/ofertas.sevices');
+const user = require('../models/usuarios.model');
 
 const getHome = async (req, res) => {
     try {
@@ -76,6 +77,8 @@ const getFavoritos = async (req, res) => {
         res.status(400).json({ msj: `ERROR: ${error.stack}` });
     }
 };
+
+
 const getUsers = async (req, res) => {
     try {
         const resp = await fetch('http://localhost:3000/api/usuarios');
@@ -88,6 +91,27 @@ const getUsers = async (req, res) => {
     }
 };
 
+
+const deleteUser = async (req, res) => {
+    // let userSearch;
+    const { email } = req.body;
+    console.log('C. Deleting user with email:', email);
+
+    if (!email) {
+        return res.status(400).json({ message: 'Missing email in request body' });
+    }
+    try {
+        const resp = await user.deleteUser(email);
+        res.status(201).json({
+            "items_deleted": resp,
+            data: email
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: "Error en la BBDD" });
+    }
+};
+
 module.exports = {
     getHome,
     getLogin,
@@ -95,5 +119,6 @@ module.exports = {
     getPerfil,
     getDashboard,
     getFavoritos,
-    getUsers
+    getUsers,
+    deleteUser
 }

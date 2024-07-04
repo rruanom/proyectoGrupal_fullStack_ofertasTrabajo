@@ -28,6 +28,7 @@ const listaOfertasPorId = async (ids) => {
     }
 };
 
+
 //listar ofertas por palabra clave
 // READ 2.0
 const renderOfferts = async (keyword) => {
@@ -91,10 +92,10 @@ const updateOferta = async (filter, update) => {
     }
 };
 
-const deleteOferta = async (filter) => {
+const deleteOferta = async (title) => {
     try {
         const removedOferta = await Oferta
-            .deleteOne({ 'title': filter });
+            .deleteOne({ 'title': title });
         console.log(removedOferta);
         return removedOferta;
     } catch (error) {

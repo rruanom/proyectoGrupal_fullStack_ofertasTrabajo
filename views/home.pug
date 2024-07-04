@@ -39,7 +39,12 @@ html(lang="en")
               button JS
               button HTML
               button CSS
-            button#addFavBtn Añadir a favoritos
+            button(
+            id="saveFavBtn"
+            data-id=`${oferta._id}`
+            data-email="email@jony.com"
+            onclick="saveFavorite(this.dataset.email, this.dataset.id)"
+          ) Save as Favorite
 
     footer
       p Footer
