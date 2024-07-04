@@ -56,7 +56,7 @@ footer {
 header {
     justify-content: center;
     padding: 25px;
-    background-image: url('../IMGs/bannerWeb.jpg');
+    background-image: url('../imgs/bannerWeb.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -222,7 +222,7 @@ table button {
     width: 70px;
     height: 70px;
     border-radius: 20%;
-    background-image: url('../IMGs/burger.png');
+    background-image: url('../imgs/burger.png');
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
