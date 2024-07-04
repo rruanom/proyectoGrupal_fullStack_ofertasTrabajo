@@ -16,7 +16,7 @@ html(lang="en")
         img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
       #divBuscador
         h2 ¿Estás buscando ofertas de trabajo?
-        form(action="/api/search", method="post") 
+        form(action="/", method="post") 
           input(type="text" id="inputBuscador" name="inputBuscador" placeholder="Buscar ofertas...")
           button(type="submit" id="botonBuscador" name="botonBuscador") Buscar
       #divHamburguesa
@@ -35,8 +35,12 @@ html(lang="en")
           h1 #{msj}
           each oferta in Ofertas
             #cardOferta
-              button#addFavBtn 
-                i.fa-regular.fa-bookmark(style="color: #9a52aa;")
+              button(
+                id="addFavBtn"
+                data-id=`${oferta._id}`
+                data-email="email@jony.com"
+                onclick="saveFavorite(this.dataset.email, this.dataset.id)"
+                )i.fa-regular.fa-bookmark(style="color: #9a52aa;")
               #tituloOferta
                 a(href=`${oferta.url}` target="_blank") #{oferta.title} 
               #empresa
@@ -60,6 +64,5 @@ html(lang="en")
 
 
   include footer.pug
-
 
     script(src="script/script.js")

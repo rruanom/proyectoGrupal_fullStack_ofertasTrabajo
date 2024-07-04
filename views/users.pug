@@ -38,7 +38,7 @@ html(lang="es")
               td #{user.username}
               td#tdEmailContent #{user.email}
               td 
-                button Borrar
+                button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) Eliminar usuario
               td
                 button Editar
     

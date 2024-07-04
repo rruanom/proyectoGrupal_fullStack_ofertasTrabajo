@@ -33,7 +33,7 @@ html(lang="en")
               h4 #{favorito.empresa}
               h4 #{favorito.localizacion}
               h4 #{favorito.salario}
-              button#deleteFavBtn Eliminar favorito
+              button(id="deleteFavBtn" onclick=`deleteFavorite('${favorito._id}')`) Eliminar favorito
           else
             p No favorites found.
               #botonesEjemplo

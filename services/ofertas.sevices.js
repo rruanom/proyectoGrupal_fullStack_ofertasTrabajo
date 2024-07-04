@@ -28,6 +28,7 @@ const listaOfertasPorId = async (ids) => {
     }
 };
 
+
 //listar ofertas por palabra clave
 // READ 2.0
 const renderOfferts = async (keyword) => {
@@ -46,7 +47,7 @@ const renderOfferts = async (keyword) => {
         }
         const offerts = await Oferta.find(filter)
             //.select('title description skills client_location url source status -_id')
-            .limit(15); // Limitar a los primeros 10 resultados
+            .limit(15); // Limitar a los primeros 15 resultados
         return offerts;
     } catch (error) {
         console.log('Error listing offerts:', error);
@@ -91,10 +92,10 @@ const updateOferta = async (filter, update) => {
     }
 };
 
-const deleteOferta = async (filter) => {
+const deleteOferta = async (title) => {
     try {
         const removedOferta = await Oferta
-            .deleteOne({ 'title': filter });
+            .deleteOne({ 'title': title });
         console.log(removedOferta);
         return removedOferta;
     } catch (error) {

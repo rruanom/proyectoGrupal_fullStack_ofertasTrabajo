@@ -1,7 +1,9 @@
 const favorito = require('../models/favoritos.model');
 const user = require('../models/usuarios.model');
-const {validationResult} = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
+const { validationResult } = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 const getUsers = async (req, res) => {
     try {
@@ -73,41 +75,49 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    let userSearch;
+    const { email } = req.body;
     try {
-        if (req.query.email) {
-            userSearch = await user.getUserByEmail(req.query.email);
-            if (userSearch.length > 0) {
-                await favorito.deleteFavoritos(req.query.email);
-                await user.deleteUser(req.query.email);
-                res.status(200).json({ message: `Se ha borrado el usuario con email: ${req.query.email}` })
-            } else {
-                res.status(404).json("Usuario no existe")
-            }
-        }
-        else {
-            res.status(404).json("No se ha encontrado el usuario")
-        }
+        const resp = await user.deleteUser(email);
+        res.status(201).json({
+            "items_deleted": resp,
+            data: email
+        });
     } catch (error) {
         res.status(500).json({ error: "Error en la BBDD" });
     }
 };
 
 
-const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+const loginUser = async(req, res) => {
+    let data;
     try {
-        const foundUser = await user.findByEmail(email);
-        if (!foundUser) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
-        }
-        const isMatch = await bcrypt.compare(password, foundUser.password);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Contraseña incorrecta' });
-        }
-        res.status(200).json({ message: 'Login exitoso' });
+        const {email, password} = req.body
+        data = await user.existUser(email);
+        console.log(data)
+        if(!data){
+            res.status(400).json({ msg: 'Incorrect user or password'}); 
+        }else{
+            const match = await bcrypt.compare(password, data.password);
+            if(match){
+                await user.setLoggedTrue(req.body.email)
+                const {email, username, isadmin} = data;
+                const userForToken = {
+                    email: email,
+                    username: username,
+                    isadmin: isadmin
+                };
+                const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '20m'});
+                res
+                .status(200)
+                .json({
+                    msg:'Correct authentication',
+                    token: token});
+            }else {
+                res.status(400).json({ msg: 'Incorrect user or password'});
+            }
+        }        
     } catch (error) {
-        res.status(500).json({ error: 'Error en la BBDD' });
+        console.log('Error:', error);
     }
 };
 
