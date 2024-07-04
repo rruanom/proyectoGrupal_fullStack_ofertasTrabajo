@@ -4,43 +4,35 @@ html(lang="es")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
-    link(rel="stylesheet" href="/CSS/styleLogin.css")
+    link(rel="stylesheet" href="/css/styleLogin.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
 
   body
     header
-      #divHamburguesa
-        button#abrir.abrir-menu
-      #nav
-        ul
-          h3 Menú
-          li
-            a(href="./") Home
-          li
-            a(href="./login") Login
-          li
-            a(href="./registro") Registrar
-          li
-            a(href="./favoritos") Favoritos
-          li
-            a(href="./dashboard") Dashboard
-          li
-            a(href="./users") Usuarios
-          li
-            a(href="./perfil") Perfil
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
 
     main
       #tarjetaLogin
         h2 LOGIN
-        form#formLogin(action="#" method="POST")
-          #divEmail
-            input#emailLogin(type="email" name="emailLogin" placeholder="Introduce email...")
+        form#formLogin(action="#")
+          #divUserName
+            input#username(type="text" name="username" placeholder="Introduce email...")
           #divPass
-            input#passLogin(type="password" name="passLogin" placeholder="Introduce password...")
+            input#password(type="password" name="passLogin" placeholder="Introduce password...")
+          div#mensaje
           #divSubmitLogin
             input(type="submit" value="Login")
           button#buttonLoginGoogle Login con Google
         #divRecuperarPass
           button#botonRecuperarPass ¿Has olvidado tu contraseña?
           button#botonRegistro ¿Aun no tienes cuenta?
+        
     script(src="script/script.js")

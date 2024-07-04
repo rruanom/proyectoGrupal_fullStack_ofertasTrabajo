@@ -4,33 +4,23 @@ html(lang="es")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
-    link(rel="stylesheet" href="/CSS/style.css")
+    link(rel="stylesheet" href="/css/style.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
 
   body
     header
       #titulo
-        img#logoEmpresa(src="IMGs/logoRomian.png" alt="Logo de la empresa")
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Usuarios
-      #divHamburguesa
-        button#abrir.abrir-menu
-      #nav
-        ul
-          h3 Menú
-          li
-            a(href="./") Home
-          li
-            a(href="./login") Login
-          li
-            a(href="./registro") Registrar
-          li
-            a(href="./favoritos") Favoritos
-          li
-            a(href="./dashboard") Dashboard
-          li
-            a(href="./users") Usuarios
-          li
-            a(href="./perfil") Perfil
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
 
     main
       #tituloUsuarios
@@ -40,21 +30,22 @@ html(lang="es")
           thead
             tr
               th Usuario
-              th Email
-              th Borrar_Usuario
+              th#thEmail Email
+              th Borrar Usuario
+              th Editar Usuario
           tbody
+          each user in Users
             tr
-              td Juan Pérez
-              td juan.perez@example.com
+              td #{user.username}
+              td#tdEmailContent #{user.email}
               td 
-                button Borrar
-            tr
-              td María García
-              td maria.garcia@example.com
-              td 
-                button Borrar
+                button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) 
+                  i.fa-regular.fa-trash-can(style='color: #bf5ad3')
+              td
+                button(id="ediUserBtn")
+                  i.fa-solid.fa-pen(style="color: #bf5ad3;")
 
-    footer
-      p Footer
+    
+    include footer.pug
 
     script(src="script/script.js")

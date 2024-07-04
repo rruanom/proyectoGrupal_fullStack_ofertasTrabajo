@@ -61,7 +61,7 @@ const scrap = async (url) => {
         const scrapedData = [];
         // Inicializamos una instancia del navegador (browser) con puppeteer.launch() y añadimos en el objeto de configuración la opción headless:false para que el navegador sea visible
         console.log("Abriendo el navegador...");
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: true });
 
         // Abrimos una nueva pestaña en el navegador creando una instancia con el método newPage() a la que llamaremos page
         const page = await browser.newPage();

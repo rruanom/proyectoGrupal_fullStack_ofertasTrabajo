@@ -4,6 +4,8 @@ const express = require("express");
 const app = express(); // Inicializar servidor
 const port = 3000;
 const path = require('path'); // Descomentar para usar jsdoc
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 //Importar middlewares
 const error404 = require("./middlewares/error404");
@@ -22,6 +24,7 @@ const rutasWeb = require('./routes/web.routes');
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // CONFIGURACIÓN DE VISTAS PUG -- Motor de plantillas
 app.set('view engine', 'pug');
@@ -44,6 +47,8 @@ app.use('/', rutasWeb);
 
 //Invocar middleware
 app.use(error404); //Middleware para manejo de 404
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.listen(port, () => { // Servidor está escuchando en este puerto variable port
     console.log(`Example app listening on http://localhost:${port}`);

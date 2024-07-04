@@ -22,7 +22,22 @@ main {
     background-repeat: no-repeat;
 }
 
-h2{
+footer {
+    background-color: #6e53c1;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+h2 {
     font-size: 30px;
     display: grid;
     justify-content: center;
@@ -33,8 +48,8 @@ h2{
 /* Selectores Anidados */
 
 #divHamburguesa button {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 20%;
     background-image: url('../IMGs/burger.png');
     background-size: 80%;
@@ -43,52 +58,93 @@ h2{
     background-color: white;
 }
 
-#tarjetaLogin input, #tarjetaPerfil input{
+#tarjetaLogin input,
+#tarjetaPerfil input {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: center;
 }
-#tarjetaSubirOferta input{
+
+#tarjetaSubirOferta input {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: left;
     padding-left: 20px;
+    margin-bottom: 20px;
 }
-#divDetallesOferta input{
+
+#divDetallesOferta input {
     width: 250px;
     height: 300px;
     border-radius: 20px;
     text-align: left;
 }
-#tarjetaLogin button, #tarjetaPerfil button{
+
+#tarjetaLogin button,
+#tarjetaPerfil button {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: center;
 }
-#divRecuperarPass button{
+#formSignup input{
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#divRecuperarPass button {
     border: 0;
     background-color: white;
     color: rgb(0, 72, 173);
 }
-#submitOferta input{
+
+#submitOferta input {
     text-align: center;
 }
+
+#nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#nav ul li {
+    padding: 15px;
+    border-bottom: 1px solid #555;
+}
+
+#nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#nav ul li a:hover {
+    background-color: #555;
+}
+
+#nav button {
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
 /* Selectores por ID */
 
 #divHamburguesa {
     position: fixed;
-    left: 80%;
-    bottom: 83.7%;
+    left: 85%;
+    bottom: 81.7%;
 }
 
-#tarjetaLogin{
+#tarjetaLogin {
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
-    opacity: 97%;
     margin-top: 110px;
     margin-bottom: 15%;
     margin-left: 20px;
@@ -98,11 +154,11 @@ h2{
     padding-right: 50px;
     display: flexbox;
 }
-#tarjetaPerfil{
+
+#tarjetaPerfil {
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
-    opacity: 97%;
     margin-top: 290px;
     margin-bottom: 15%;
     margin-left: 20px;
@@ -111,7 +167,8 @@ h2{
     padding-left: 50px;
     padding-right: 50px;
 }
-#tarjetaSubirOferta{
+
+#tarjetaSubirOferta {
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
@@ -125,31 +182,89 @@ h2{
     display: flexbox;
 }
 
-#divEmail, #divPass, #divPerfilEmail, #divPerfilNombre, #fotoPerfil, #divSubmitLogin, #divTituloOferta, #divEmpresaOferta, #divDetallesOferta, #divSalarioOferta{
+#divEmail,
+#divPass,
+#divPerfilEmail,
+#divPerfilNombre,
+#fotoPerfil,
+#divSubmitLogin,
+#divTituloOferta,
+#divEmpresaOferta,
+#divDetallesOferta,
+#divSalarioOferta {
     margin-bottom: 20px;
     font-size: 20px;
 }
-#submitOferta{
+
+#submitOferta {
     margin-bottom: 20px;
     font-size: 20px;
     justify-content: center;
     text-align: center;
 }
 
-#formSignup, #formSubirOferta{
+#formSignup,
+#formSubirOferta {
     display: grid;
 
 }
-#nameSignup, #emailSignup, #passSignup, #passSignupRepeat, #botonRegistro {
+
+#nameSignup,
+#emailSignup,
+#passSignup,
+#passSignupRepeat,
+#botonRegistro {
     margin-bottom: 20px;
 }
-#divPass{
+
+#divPass {
     margin-bottom: 30px;
 }
 
-#divRecuperarPass{
+#divRecuperarPass {
     margin-top: 20px;
     display: grid;
+}
+
+
+#abrir {
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+#nav {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+    margin-top: 12%;
+}
+
+#nav.visible {
+    display: block;
+    width: 60%;
+    position: fixed;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 20px;
+}
+
+#nav.visible h3 {
+    padding: 20px;
+    font-size: 30px;
+    border-bottom: 2px solid white !important;
+}
+
+#divHamburguesa.invisible {
+    display: none;
 }
 
 /* Selectores por Clases */
@@ -164,16 +279,19 @@ h2{
         bottom: 83.7%;
     }
 
-    #tarjetaSubirOferta{
+
+    #tarjetaSubirOferta {
         width: 1000px;
     }
-    #tarjetaSubirOferta input{
+
+    #tarjetaSubirOferta input {
         width: 100%;
         height: 30px;
         border-radius: 20px;
         text-align: left;
     }
-    #submitOferta{
+
+    #submitOferta {
         margin-bottom: 20px;
         font-size: 20px;
         justify-content: center;
@@ -181,16 +299,19 @@ h2{
         width: 50%;
         margin-left: 250px;
     }
-    #submitOferta input{
+
+    #submitOferta input {
         text-align: center;
     }
-    #divDetallesOferta input{
+
+    #divDetallesOferta input {
         width: 100%;
         height: 300px;
         border-radius: 20px;
         text-align: right;
     }
-    h2{
+
+    h2 {
         margin-top: 40px;
         margin-bottom: 80px;
     }
@@ -198,54 +319,32 @@ h2{
 }
 
 /* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
-@media (max-width: 375px) {}
-#abrir {
-    font-size: 30px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-}
-#nav {
-    display: none;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+@media (max-width: 375px) {
+    #tarjetaSubirOferta {
+        width: 60%;
+    }
 
-}
-#nav.visible {
-    display: block;
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    border-radius: 20px;
-}
-#nav.visible h3{
-padding: 20px;
-font-size: 30px;
-border-bottom  : 2px solid white !important;
-}
-#divHamburguesa.invisible {
-    display: none;
-}
-#nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-#nav ul li {
-    padding: 15px;
-    border-bottom: 1px solid #555;
-}
-#nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-#nav ul li a:hover {
-    background-color: #555;
+    #tarjetaSubirOferta input {
+        width: 90%;
+    }
+
+    #divHamburguesa button {
+        width: 40px;
+        height: 40px;
+    }
+
+    #tarjetaPerfil,
+    #tarjetaLogin {
+        width: 50%;
+    }
+
+    #tarjetaPerfil input,
+    #tarjetaLogin input {
+        width: 100%;
+    }
+
+    #tarjetaPerfil button,
+    #tarjetaLogin button {
+        width: 100%;
+    }
 }
