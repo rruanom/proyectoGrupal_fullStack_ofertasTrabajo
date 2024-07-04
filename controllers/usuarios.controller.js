@@ -3,6 +3,7 @@ const user = require('../models/usuarios.model');
 const { validationResult } = require("express-validator"); // Descomentar cuando se hayan realizado las validaciones
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 const getUsers = async (req, res) => {
@@ -88,34 +89,41 @@ const deleteUser = async (req, res) => {
 };
 
 
-const loginUser = async(req, res) => {
+const loginUser = async (req, res) => {
     let data;
     try {
-        const {email, password} = req.body
+        const { email, password } = req.body;
         data = await user.existUser(email);
-        console.log(data)
-        if(!data){
-            res.status(400).json({ msg: 'Incorrect user or password'}); 
-        }else{
+        console.log(data);
+        if (!data) {
+            res.status(400).json({ msg: 'Incorrect user or password' });
+        } else {
             const match = await bcrypt.compare(password, data.password);
-            if(match){
-                await user.setLoggedTrue(req.body.email)
-                const {email, username, isadmin} = data;
+            if (match) {
+                await user.setLoggedTrue(req.body.email);
+                const { email, username, isadmin } = data;
                 const userForToken = {
                     email: email,
                     username: username,
                     isadmin: isadmin
                 };
-                const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '20m'});
-                res
-                .status(200)
-                .json({
-                    msg:'Correct authentication',
-                    token: token});
-            }else {
-                res.status(400).json({ msg: 'Incorrect user or password'});
+                const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
+
+                // Set cookies
+                res.cookie('access_token', token, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
+                res.cookie('email', email, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
+
+                res.status(200).json({
+                    msg: 'Correct authentication',
+                    token: token
+                });
+
+                const mensaje = document.querySelector('#mensaje');
+                mensaje.innerHTML = `<p>Usuario logeado<p>`;
+            } else {
+                res.status(400).json({ msg: 'Incorrect user or password' });
             }
-        }        
+        }
     } catch (error) {
         console.log('Error:', error);
     }
