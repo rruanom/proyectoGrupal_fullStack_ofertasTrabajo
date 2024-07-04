@@ -18,7 +18,7 @@ main {
     min-height: 100vh;
     padding-right: 40px;
     padding-left: 40px;
-    background-image: url('../IMGs/bannerWeb.jpg');
+    background-image: url('../imgs/bannerWeb.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -53,7 +53,7 @@ h2 {
     width: 60px;
     height: 60px;
     border-radius: 20%;
-    background-image: url('../IMGs/burger.png');
+    background-image: url('../imgs/burger.png');
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
