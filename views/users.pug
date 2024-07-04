@@ -17,8 +17,12 @@ html(lang="es")
       if islogged
         if isadmin
           include menuAdmin.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
         else
           include menuUsuario.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
       else
         include menuStandart.pug
 

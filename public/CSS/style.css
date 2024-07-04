@@ -107,7 +107,20 @@ footer p {
     color: grey;
     font-size: 13px;
 }
-
+#saludo{
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid grey;
+    padding: 10px;
+    width: 25%;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 220px;
+    left: 2%;
+}
 #botonesTec {
     display: flex;
 }
@@ -338,7 +351,6 @@ table button {
     border-radius: 20px;
     background-color: white;
     margin-top: 110px;
-    margin-bottom: 20%;
     margin-left: 20px;
     margin-right: 20px;
     padding: 15px;
@@ -432,7 +444,8 @@ table button {
     #tarjetaSubirOferta {
         width: 90%;
     }
-
+   
+    #botones
     #tarjetaSubirOferta input {
         width: 250px;
         height: 30px;
@@ -464,7 +477,15 @@ table button {
         border-radius: 20px;
     }
 
-
+    #saludo{
+        top: 20px;
+        position: static;
+        margin-left: 36%;
+        margin-top: 10px;
+    }
+    #saludo p{
+        font-size: 80%;
+    }
 
 }
 
@@ -486,7 +507,9 @@ table button {
     td {
         font-size: 80%;
     }
-
+    #saludo p{
+        font-size: 50%;
+    }
     td button {
         width: 70%;
         margin-left: 20px;
