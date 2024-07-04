@@ -1,7 +1,7 @@
 
 # Romian, búsqueda de ofertas Full-Stack
 
-<a href="https://sergiolm7.github.io/quiz-js-equipo/" target="_blank"> <img src="./public/imgs/logoRomian.png"/></a> 
+<a href="https://github.com/rruanom/proyectoGrupal_fullStack_ofertasTrabajo/" target="_blank"> <img src="./public/imgs/logoRomian.png"/></a> 
 
 Este proyecto consiste en una aplicación web para búsqueda de ofertas de trabajo FullStack. La aplicación está desarrollada utilizando MongoDB, Express.js, PostgreSQL, Node.js, JavaScript y pug, donde MongoDB se utiliza como base de datos NoSQL para almacenar datos de ofertas de empleo, mientras que PostgreSQL se emplea para almacenar y gestionar datos relacionales de usuarios y favoritos.
 
