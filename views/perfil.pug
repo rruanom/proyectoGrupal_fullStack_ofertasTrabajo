@@ -11,13 +11,13 @@ html(lang="es")
 
   body
     header
-      #divHamburguesa
-        button#abrir.abrir-menu
-      #nav
-        ul#ulNav
-          h3 Menú
-          li
-            a(href="./") Home
+      if islogged
+          if isadmin
+            include menuAdmin.pug
+          else if islogged
+            include menuUsuario.pug
+          else
+            include menuStandart.pug
 
     main
       #tarjetaPerfil

@@ -10,15 +10,16 @@ html(lang="es")
   body
     header
       #titulo
-        img#logoEmpresa(src="/imgs/logoRomian.png", alt="Logo de la empresa")
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")        
         h4#tituloFavs Dashboard
-      #divHamburguesa
-        button#abrir.abrir-menu
-      #nav
-        ul#ulNav
-          h3 Menú
-          li
-            a(href="./") Home
+      if islogged
+          if isadmin
+            include menuAdmin.pug
+          else if islogged
+            include menuUsuario.pug
+          else
+            include menuStandart.pug
 
     main
       #tarjetaSubirOferta
@@ -38,14 +39,16 @@ html(lang="es")
 
       section
         #ofertasUsuario
-          h1 {msj}
-          #cardOferta
-            each oferta in Ofertas
-            h2 #{oferta.title} 
-            h4 #{oferta.empresa}
-            h4 #{oferta.localizacion}
-            h4 #{oferta.salario}
-            button(id='`S{oferta.title}`') 
-              i.fa-regular.fa-trash-can(style="color: #bf5ad3;")
+          h1 Ofertas
+          each oferta in Ofertas
+            #cardOferta
+              #deleteFavBtn
+                button(id=`${oferta.title}`) 
+                  i.fa-regular.fa-trash-can(style="color: #bf5ad3;")
+              h2 #{oferta.title} 
+              h4 #{oferta.empresa}
+              h4 #{oferta.localizacion}
+              h4 #{oferta.salario}
+              
 
     script(src="./script/script.js")
