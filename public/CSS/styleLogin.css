@@ -21,7 +21,19 @@ main {
     background-position: center;
     background-repeat: no-repeat;
 }
-
+footer {
+    background-color: #6e53c1;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+  }
+  footer p {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
 h2{
     font-size: 30px;
     display: grid;
@@ -33,8 +45,8 @@ h2{
 /* Selectores Anidados */
 
 #divHamburguesa button {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 20%;
     background-image: url('../IMGs/burger.png');
     background-size: 80%;
@@ -55,6 +67,7 @@ h2{
     border-radius: 20px;
     text-align: left;
     padding-left: 20px;
+    margin-bottom: 20px;
 }
 #divDetallesOferta input{
     width: 250px;
@@ -103,15 +116,14 @@ h2{
 
 #divHamburguesa {
     position: fixed;
-    left: 80%;
-    bottom: 83.7%;
+    left: 85%;
+    bottom: 81.7%;
 }
 
 #tarjetaLogin{
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
-    opacity: 97%;
     margin-top: 110px;
     margin-bottom: 15%;
     margin-left: 20px;
@@ -199,6 +211,7 @@ h2{
 #nav.visible {
     display: block;
     width: 60%;
+    position: fixed;
     margin-left: 20%;
     margin-right: 20%;
     border-radius: 20px;
@@ -225,6 +238,7 @@ border-bottom  : 2px solid white !important;
         left: 92%;
         bottom: 83.7%;
     }
+    
 
     #tarjetaSubirOferta{
         width: 1000px;
@@ -260,5 +274,25 @@ border-bottom  : 2px solid white !important;
 }
 
 /* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
-@media (max-width: 375px) {}
+@media (max-width: 375px) {
+    #tarjetaSubirOferta{
+        width: 60%;
+    }
+    #tarjetaSubirOferta input{
+        width: 90%;
+    }
+    #divHamburguesa button{
+        width: 40px;
+        height: 40px;
+    }
+    #tarjetaPerfil, #tarjetaLogin{
+        width: 50%;
+    }
+    #tarjetaPerfil input, #tarjetaLogin input{
+        width: 100%;
+    }
+    #tarjetaPerfil button, #tarjetaLogin button{
+        width: 100%;
+    }
+}
 

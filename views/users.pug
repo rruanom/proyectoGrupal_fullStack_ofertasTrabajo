@@ -6,6 +6,7 @@ html(lang="es")
     title Ofertas de Empleo FullStack
     link(rel="stylesheet" href="/css/style.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
 
   body
     header
@@ -28,16 +29,19 @@ html(lang="es")
           thead
             tr
               th Usuario
-              th Email
-              th Borrar_Usuario
+              th#thEmail Email
+              th Borrar Usuario
+              th Editar Usuario
           tbody
           each user in Users
             tr
               td #{user.username}
-              td #{user.email}
+              td#tdEmailContent #{user.email}
               td 
                 button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) Eliminar usuario
-    footer
-      p Footer
+              td
+                button Editar
+    
+    include footer.pug
 
     script(src="script/script.js")

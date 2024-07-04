@@ -10,6 +10,7 @@ const {Pool} = require('pg');
     password: process.env.PG_PASSWORD 
 });  */
 
+
 //REMOTO RENDER
 const pool = new Pool({
   user: process.env.PG_RENDER_USER,
