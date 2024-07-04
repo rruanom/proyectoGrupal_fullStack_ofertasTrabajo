@@ -13,7 +13,8 @@ html(lang="en")
   body
     header
       #titulo
-        img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
       #divBuscador
         h2 ¿Estás buscando ofertas de trabajo?
         form(action="/", method="post") 
@@ -28,8 +29,6 @@ html(lang="en")
             a(href="./") Home
 
     main
-      #filtros
-        h2 Filtros
       section
         #ofertasUsuario
           h1 #{msj}

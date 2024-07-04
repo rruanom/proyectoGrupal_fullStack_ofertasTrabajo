@@ -21,6 +21,7 @@ main {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 footer {
     background-color: #6e53c1;
     color: #fff;
@@ -29,12 +30,14 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 50px;
-  }
-  footer p {
+}
+
+footer p {
     font-size: 0.9em;
     margin-bottom: 5px;
 }
-h2{
+
+h2 {
     font-size: 30px;
     display: grid;
     justify-content: center;
@@ -55,13 +58,15 @@ h2{
     background-color: white;
 }
 
-#tarjetaLogin input, #tarjetaPerfil input{
+#tarjetaLogin input,
+#tarjetaPerfil input {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: center;
 }
-#tarjetaSubirOferta input{
+
+#tarjetaSubirOferta input {
     width: 250px;
     height: 30px;
     border-radius: 20px;
@@ -69,24 +74,29 @@ h2{
     padding-left: 20px;
     margin-bottom: 20px;
 }
-#divDetallesOferta input{
+
+#divDetallesOferta input {
     width: 250px;
     height: 300px;
     border-radius: 20px;
     text-align: left;
 }
-#tarjetaLogin button, #tarjetaPerfil button{
+
+#tarjetaLogin button,
+#tarjetaPerfil button {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: center;
 }
-#divRecuperarPass button{
+
+#divRecuperarPass button {
     border: 0;
     background-color: white;
     color: rgb(0, 72, 173);
 }
-#submitOferta input{
+
+#submitOferta input {
     text-align: center;
 }
 
@@ -95,23 +105,28 @@ h2{
     padding: 0;
     margin: 0;
 }
+
 #nav ul li {
     padding: 15px;
     border-bottom: 1px solid #555;
 }
+
 #nav ul li a {
     color: white;
     text-decoration: none;
 }
+
 #nav ul li a:hover {
     background-color: #555;
 }
-#nav button{
+
+#nav button {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     text-align: center;
 }
+
 /* Selectores por ID */
 
 #divHamburguesa {
@@ -120,7 +135,7 @@ h2{
     bottom: 81.7%;
 }
 
-#tarjetaLogin{
+#tarjetaLogin {
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
@@ -133,11 +148,11 @@ h2{
     padding-right: 50px;
     display: flexbox;
 }
-#tarjetaPerfil{
+
+#tarjetaPerfil {
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
-    opacity: 97%;
     margin-top: 290px;
     margin-bottom: 15%;
     margin-left: 20px;
@@ -146,7 +161,8 @@ h2{
     padding-left: 50px;
     padding-right: 50px;
 }
-#tarjetaSubirOferta{
+
+#tarjetaSubirOferta {
     border: 2px solid grey;
     border-radius: 20px;
     background-color: white;
@@ -160,29 +176,46 @@ h2{
     display: flexbox;
 }
 
-#divEmail, #divPass, #divPerfilEmail, #divPerfilNombre, #fotoPerfil, #divSubmitLogin, #divTituloOferta, #divEmpresaOferta, #divDetallesOferta, #divSalarioOferta{
+#divEmail,
+#divPass,
+#divPerfilEmail,
+#divPerfilNombre,
+#fotoPerfil,
+#divSubmitLogin,
+#divTituloOferta,
+#divEmpresaOferta,
+#divDetallesOferta,
+#divSalarioOferta {
     margin-bottom: 20px;
     font-size: 20px;
 }
-#submitOferta{
+
+#submitOferta {
     margin-bottom: 20px;
     font-size: 20px;
     justify-content: center;
     text-align: center;
 }
 
-#formSignup, #formSubirOferta{
+#formSignup,
+#formSubirOferta {
     display: grid;
 
 }
-#nameSignup, #emailSignup, #passSignup, #passSignupRepeat, #botonRegistro {
+
+#nameSignup,
+#emailSignup,
+#passSignup,
+#passSignupRepeat,
+#botonRegistro {
     margin-bottom: 20px;
 }
-#divPass{
+
+#divPass {
     margin-bottom: 30px;
 }
 
-#divRecuperarPass{
+#divRecuperarPass {
     margin-top: 20px;
     display: grid;
 }
@@ -195,6 +228,7 @@ h2{
     border: none;
     outline: none;
 }
+
 #nav {
     display: none;
     position: absolute;
@@ -205,7 +239,7 @@ h2{
     color: white;
     text-align: center;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
-
+    margin-top: 12%;
 }
 
 #nav.visible {
@@ -217,10 +251,10 @@ h2{
     border-radius: 20px;
 }
 
-#nav.visible h3{
-padding: 20px;
-font-size: 30px;
-border-bottom  : 2px solid white !important;
+#nav.visible h3 {
+    padding: 20px;
+    font-size: 30px;
+    border-bottom: 2px solid white !important;
 }
 
 #divHamburguesa.invisible {
@@ -238,18 +272,20 @@ border-bottom  : 2px solid white !important;
         left: 92%;
         bottom: 83.7%;
     }
-    
 
-    #tarjetaSubirOferta{
+
+    #tarjetaSubirOferta {
         width: 1000px;
     }
-    #tarjetaSubirOferta input{
+
+    #tarjetaSubirOferta input {
         width: 100%;
         height: 30px;
         border-radius: 20px;
         text-align: left;
     }
-    #submitOferta{
+
+    #submitOferta {
         margin-bottom: 20px;
         font-size: 20px;
         justify-content: center;
@@ -257,16 +293,19 @@ border-bottom  : 2px solid white !important;
         width: 50%;
         margin-left: 250px;
     }
-    #submitOferta input{
+
+    #submitOferta input {
         text-align: center;
     }
-    #divDetallesOferta input{
+
+    #divDetallesOferta input {
         width: 100%;
         height: 300px;
         border-radius: 20px;
         text-align: right;
     }
-    h2{
+
+    h2 {
         margin-top: 40px;
         margin-bottom: 80px;
     }
@@ -275,24 +314,31 @@ border-bottom  : 2px solid white !important;
 
 /* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
 @media (max-width: 375px) {
-    #tarjetaSubirOferta{
+    #tarjetaSubirOferta {
         width: 60%;
     }
-    #tarjetaSubirOferta input{
+
+    #tarjetaSubirOferta input {
         width: 90%;
     }
-    #divHamburguesa button{
+
+    #divHamburguesa button {
         width: 40px;
         height: 40px;
     }
-    #tarjetaPerfil, #tarjetaLogin{
+
+    #tarjetaPerfil,
+    #tarjetaLogin {
         width: 50%;
     }
-    #tarjetaPerfil input, #tarjetaLogin input{
+
+    #tarjetaPerfil input,
+    #tarjetaLogin input {
         width: 100%;
     }
-    #tarjetaPerfil button, #tarjetaLogin button{
+
+    #tarjetaPerfil button,
+    #tarjetaLogin button {
         width: 100%;
     }
 }
-

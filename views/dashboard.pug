@@ -1,15 +1,17 @@
-doctype html 
 html(lang="es")
   head
     meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Ofertas de Empleo FullStack
-    link(rel="stylesheet" href="/css/styleLogin.css")
-    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
-    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+    link(rel="stylesheet", href="/css/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap", rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js", crossorigin="anonymous")
 
   body
     header
+      #titulo
+        img#logoEmpresa(src="/imgs/logoRomian.png", alt="Logo de la empresa")
+        h4#tituloFavs Dashboard
       #divHamburguesa
         button#abrir.abrir-menu
       #nav
@@ -20,31 +22,30 @@ html(lang="es")
 
     main
       #tarjetaSubirOferta
-        h2 Subir ofertas
+        h2 Subir Oferta
         form#formSubirOferta(action="#")
           #divTituloOferta
-            input#inputTituloOferta(type="text" name="inputTitulo" placeholder="Introduce el título...")
+            input#inputTituloOferta(type="text", name="inputTitulo", placeholder="Introduce el título...")
           #divEmpresaOferta
-            input#inputEmpresa(type="text" name="inputEmpresa" placeholder="Introduce el nombre de la empresa...")
+            input#inputEmpresa(type="text", name="inputEmpresa", placeholder="Introduce el nombre de la empresa...")
           #divSalarioOferta
-            input#inputSalario(type="text" name="inputSalario" placeholder="ex: 20.000 - 30.000...")
+            input#inputSalario(type="text", name="inputSalario", placeholder="ex: 20.000 - 30.000...")
           #divlocalizacionOferta
-            input#inputLocalizacion(type="text" name="inputLocalizacion" placeholder="Introduce la localizacion...")
+            input#inputLocalizacion(type="text", name="inputLocalizacion", placeholder="Introduce la localización...")
           #submitOferta
-            input(type="submit" value="Subir")
+            input(type="submit", value="Subir")
         p#message
 
-    section
+      section
         #ofertasUsuario
-          h1 #{msj}
-          each oferta in Ofertas
+          h1 {msj}
+          #cardOferta
+            each oferta in Ofertas
             h2 #{oferta.title} 
             h4 #{oferta.empresa}
             h4 #{oferta.localizacion}
             h4 #{oferta.salario}
-            button(id='`S{oferta.title}`') BORRAR
-
+            button(id='`S{oferta.title}`') 
+              i.fa-regular.fa-trash-can(style="color: #bf5ad3;")
 
     script(src="./script/script.js")
-
-      

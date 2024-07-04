@@ -11,7 +11,8 @@ html(lang="en")
   body
     header
       #titulo
-        img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Favoritos
       #divHamburguesa
         button#abrir.abrir-menu
@@ -29,17 +30,25 @@ html(lang="en")
           h1 Favoritos
           if Favoritos && Favoritos.length > 0
             each favorito in Favoritos
-              h2 #{favorito.title} 
-              h4 #{favorito.empresa}
-              h4 #{favorito.localizacion}
-              h4 #{favorito.salario}
-              button(id="deleteFavBtn" onclick=`deleteFavorite('${favorito._id}')`) Eliminar favorito
+              #cardOferta
+                button(id="deleteFavBtn" onclick=`deleteFavorite('${favorito._id}')`)
+                  i.fa-regular.fa-trash-can(style='color: #bf5ad3')
+                h2 #{favorito.title} 
+                h4 #{favorito.empresa}
+                h4 #{favorito.localizacion}
+                h4 #{favorito.salario}
+                #botonesTec
+                  button 
+                    i.fa-brands.fa-square-js(style="color: #9a52aa;")
+                  button
+                    i.fa-brands.fa-html5(style="color: #75378f;")
+                  button
+                    i.fa-brands.fa-css3-alt(style="color: #9a52aa;")
+                  button
+                    i.fa-brands.fa-node-js(style="color: #75378f;")
           else
             p No favorites found.
-              #botonesEjemplo
-                button JS
-                button HTML
-                button CSS
+              
 
     include footer.pug
 

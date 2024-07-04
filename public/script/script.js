@@ -19,7 +19,7 @@ abrir.addEventListener("click", () => {
         printMenuLoged();
     } else if (usuario === false && admin === false) {
         printMenuUnlogged();
-    }
+    } else { printMenuUnlogged()}
 });
 
 document.addEventListener("click", (event) => {
