@@ -12,7 +12,7 @@ restrictedRoutes.use((req, res, next) => {
         jwt.verify(token, jwt_secret, async (err, decoded) => {
             let data = await User.existUser(decoded.email);
             if (data.logged == true) {
-                if (data.isadmin == True) {
+                if (data.isadmin == true) {
                     req.decoded = decoded;
                     next();
                 } else {
