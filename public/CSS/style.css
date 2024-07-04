@@ -5,32 +5,43 @@
     font-family: 'Lato', sans-serif;
 
 }
+
 /* Selectores de Etiqueta */
 body {
     background-color: white;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
 }
-th, td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+
+th,
+td {
+    text-align: center;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
 }
-td button{
+
+td button {
     width: 100%;
     display: flex;
     justify-content: space-around;
     margin-left: 30px;
 }
+
 th {
     background-color: #9452a6;
     text-align: center;
+    border: none;
+    border-radius: 20px;
 }
+
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
 footer {
     background-color: #9452a6;
     color: #fff;
@@ -40,7 +51,7 @@ footer {
     width: 92%;
     margin-top: 50px;
 
-  }
+}
 
 header {
     justify-content: center;
@@ -74,18 +85,19 @@ footer p {
     font-weight: bold;
 }
 
-#tituloOferta a:hover{
+#tituloOferta a:hover {
     color: #6e53c1;
 }
 
-#tituloOferta{
+#tituloOferta {
     margin-bottom: 10px;
 }
 
-#empresa{
+#empresa {
     margin-bottom: 10px;
     color: #9a52aa;
 }
+
 #localizacion {
     margin-bottom: 8px;
 }
@@ -95,10 +107,12 @@ footer p {
     color: grey;
     font-size: 13px;
 }
-#botonesTec{
+
+#botonesTec {
     display: flex;
 }
-#botonesTec button{
+
+#botonesTec button {
     margin-right: 15px;
     background-color: white;
     border: none;
@@ -107,7 +121,8 @@ footer p {
     font-size: 35px;
 }
 
-#addFavBtn{
+#addFavBtn,
+#deleteFavBtn {
     float: right;
     background: none;
     border: none;
@@ -116,12 +131,24 @@ footer p {
     margin-right: 15px;
     margin-top: 5px;
 }
-header img{
+#deleteUserBtn, #ediUserBtn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5px;
+    text-align: center;
+    display: contents;
+    width: 20px;
+
+}
+header img {
     width: 40%;
     background-color: white;
     border-radius: 50px;
     padding-top: 0;
 }
+
 #titulo h4 {
     display: ruby;
     justify-content: center;
@@ -134,15 +161,18 @@ header img{
     margin-top: 20px;
     color: rgb(131, 59, 131);
 }
-table button{
+
+table button {
     width: 90px;
     display: flex;
 }
-#ofertasUsuario h1{
+
+#ofertasUsuario h1 {
     display: grid;
     justify-content: space-around;
     color: #75378f;
 }
+
 #divHamburguesa button {
     width: 70px;
     height: 70px;
@@ -153,7 +183,8 @@ table button{
     background-repeat: no-repeat;
     background-color: white;
 }
-#nav button{
+
+#nav button {
     width: 250px;
     height: 30px;
     border-radius: 20px;
@@ -164,6 +195,7 @@ table button{
 #nav button a {
     list-style-type: none;
 }
+
 /* Selectores por ID */
 
 #divBuscador {
@@ -186,13 +218,14 @@ table button{
     left: 80%;
     bottom: 83.7%;
 }
-#tituloUsuarios{
+
+#tituloUsuarios {
     margin-top: 60px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.invisible{
+.invisible {
     opacity: 0;
     display: none;
 }
@@ -206,7 +239,7 @@ table button{
 }
 
 
-#ejemploUsuarios{
+#ejemploUsuarios {
     padding: 15px;
     margin-top: 60px;
 
@@ -233,6 +266,42 @@ table button{
     margin-top: 25%;
 }
 
+#titulo a {
+    display: flex;
+    justify-content: center;
+}
+
+#tarjetaSubirOferta input {
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+#submitOferta{
+    display: flex;
+    justify-content: center;
+}
+#tarjetaSubirOferta h2 {
+   
+    margin-bottom: 20px;
+}
+
+#tarjetaSubirOferta {
+    border: 2px solid grey;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 110px;
+    margin-bottom: 20%;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 15px;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+}
+
 /* Selectores por Clases */
 
 /* Media queries */
@@ -240,7 +309,7 @@ table button{
 /* Dispositivos grandes (pantallas de escritorio grandes) */
 @media (min-width: 1000px) {
 
-    
+
     #divBuscador {
         position: static;
         display: block;
@@ -254,11 +323,12 @@ table button{
         border-radius: 20px;
         margin-left: 17%;
     }
- 
+
     #titulo {
         font-size: 50px;
         margin-top: 13%;
     }
+
     #titulo h4 {
         display: ruby;
         justify-content: center;
@@ -270,15 +340,18 @@ table button{
         border-radius: 50px;
         opacity: 90%;
     }
+
     #divBuscador h2 {
         display: block;
         margin-bottom: 30px;
     }
-    header{
+
+    header {
         padding: 100px;
-        padding-top: 200px ;
+        padding-top: 200px;
     }
-    header img{
+
+    header img {
         width: 20%;
         background-color: white;
         border-radius: 50px;
@@ -288,25 +361,39 @@ table button{
         top: 5%;
         left: 5%;
     }
+
     #inputBuscador {
         width: 77%;
         height: 40px;
         margin-bottom: 10px;
     }
+
     #botonBuscador {
         width: 20%;
         height: 40px;
         margin-left: 10px;
         border-radius: 20px;
     }
+
     #divHamburguesa {
         left: 92%;
         bottom: 83.7%;
     }
-    footer{
+
+    footer {
         width: 97.2%;
     }
-    
+
+    #tarjetaSubirOferta {
+        width: 90%;
+    }
+
+    #tarjetaSubirOferta input {
+        width: 100%;
+        height: 30px;
+        border-radius: 20px;
+        text-align: left;
+    }
 }
 
 @media (max-width: 999px) {
@@ -322,6 +409,7 @@ table button{
         height: 40px;
         margin-bottom: 10px;
     }
+
     #botonBuscador {
         width: 20%;
         height: 40px;
@@ -329,33 +417,40 @@ table button{
         border-radius: 20px;
     }
 
-    
-   
+
+
 }
+
 @media (max-width: 678px) {
-    #thEmail{
+    #thEmail {
         display: none;
     }
-    #tdEmailContent{
+
+    #tdEmailContent {
         display: none;
     }
-    th{
+
+    th {
         font-size: 80%;
     }
-    td{
+
+    td {
         font-size: 80%;
     }
-    td button{
+
+    td button {
         width: 70%;
         margin-left: 20px;
     }
 }
+
 /* Dispositivos muy pequeños (teléfonos móviles pequeños como el iPhone SE) */
 @media (max-width: 375px) {
-    main{
+    main {
         margin-left: 10%;
         margin-right: 10%;
     }
+
     #divBuscador h2 {
         display: block;
         margin-bottom: 50px;
@@ -367,51 +462,58 @@ table button{
         height: 40px;
         margin-bottom: 10px;
     }
+
     #botonBuscador {
         width: 20%;
         height: 40px;
         margin-left: 10px;
         border-radius: 20px;
     }
-    #divHamburguesa button{
+
+    #divHamburguesa button {
         width: 40px;
         height: 40px;
     }
-    #divHamburguesa{
+
+    #divHamburguesa {
         left: 80%;
         bottom: 86.7%;
     }
-    footer{
+
+    footer {
         width: 83%;
     }
-    #tituloOferta a{
-    font-size: 100%;    
+
+    #tituloOferta a {
+        font-size: 100%;
     }
-    
-    #tituloOferta{
-        font-size: 100%;    
+
+    #tituloOferta {
+        font-size: 100%;
     }
-    
-    #empresa{
-        font-size: 100%;    
+
+    #empresa {
+        font-size: 100%;
 
     }
+
     #localizacion {
-        font-size: 100%;    
+        font-size: 100%;
 
     }
-    
+
     #salario {
-        font-size: 100%;    
+        font-size: 100%;
 
     }
-    
-    #botonesTec button{
+
+    #botonesTec button {
 
         font-size: 100%;
     }
-    
-    #addFavBtn{
+
+    #addFavBtn,
+    #deleteFavBtn {
         float: right;
         background: none;
         border: none;
@@ -419,29 +521,55 @@ table button{
         font-size: 20px;
         margin-right: 15px;
         margin-top: 5px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        justify-self: center;
     }
-    #thEmail{
+
+    #deleteUserBtn, #ediUserBtn{
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+    #thEmail {
         display: none;
     }
-    #tdEmailContent{
+
+    #tdEmailContent {
         display: none;
     }
-    th{
+
+    th {
         font-size: 80%;
     }
-    td{
+
+    td {
         font-size: 70%;
     }
-    td button{
+
+    td button {
         width: 50%;
         height: 20px;
         font-size: 50%;
         margin-left: 10px;
     }
+
     #ejemploUsuarios {
         padding: 0px;
         margin-top: 60px;
-}
+    }
+
+    #tarjetaSubirOferta {
+        width: 60%;
+    }
+
+    #tarjetaSubirOferta input {
+        width: 90%;
+    }
 }
 
 #abrir {
@@ -451,6 +579,7 @@ table button{
     border: none;
     outline: none;
 }
+
 #nav {
     display: none;
     position: absolute;
@@ -461,8 +590,9 @@ table button{
     color: white;
     text-align: center;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
-
+    margin-top: 12%;
 }
+
 #nav.visible {
     display: block;
     width: 60%;
@@ -471,27 +601,33 @@ table button{
     margin-right: 20%;
     border-radius: 20px;
 }
-#nav.visible h3{
-padding: 20px;
-font-size: 30px;
-border-bottom  : 2px solid white !important;
+
+#nav.visible h3 {
+    padding: 20px;
+    font-size: 30px;
+    border-bottom: 2px solid white !important;
 }
+
 #divHamburguesa.invisible {
     display: none;
 }
+
 #nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
+
 #nav ul li {
     padding: 15px;
     border-bottom: 1px solid #555;
 }
+
 #nav ul li a {
     color: white;
     text-decoration: none;
 }
+
 #nav ul li a:hover {
     background-color: #555;
 }

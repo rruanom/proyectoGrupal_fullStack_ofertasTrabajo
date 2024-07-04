@@ -11,7 +11,8 @@ html(lang="es")
   body
     header
       #titulo
-        img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Usuarios
       #divHamburguesa
         button#abrir.abrir-menu
@@ -38,9 +39,12 @@ html(lang="es")
               td #{user.username}
               td#tdEmailContent #{user.email}
               td 
-                button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) Eliminar usuario
+                button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) 
+                  i.fa-regular.fa-trash-can(style='color: #bf5ad3')
               td
-                button Editar
+                button(id="ediUserBtn")
+                  i.fa-solid.fa-pen(style="color: #bf5ad3;")
+
     
     include footer.pug
 
