@@ -110,7 +110,7 @@ const loginUser = async (req, res) => {
                 const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
 
                 // Set cookies
-                res.cookie('token', token, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
+                res.cookie('access_token', token, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
                 res.cookie('email', email, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
 
                 res.status(200).json({
