@@ -2,8 +2,11 @@ const ofertasService = require('../services/ofertas.sevices');
 const user = require('../models/usuarios.model');
 
 const getHome = async (req, res) => {
+
+    const email = req.decoded.email;
+    console.log('email', email);
     try {
-        res.status(200).render("home.pug");
+        res.status(200).render("home.pug", {email});
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);
@@ -60,17 +63,20 @@ const getDashboard = async (req, res) => {
 
 
 const getFavoritos = async (req, res) => {
-    const email = req.params.email;
+    const email = req.cookies['email'];
+    if (!email) {
+        return res.status(400).json({ msg: 'Email not found in cookies' });
+    }
     let arrayIdSQL = [];
     try {
-        const resp = await fetch(`http://localhost:3000/api/favoritos?email=email@jony.com`);
-        // const resp = await fetch(`http://localhost:3000/api/favoritos?email=${email}`);
+        // const resp = await fetch(`http://localhost:3000/api/favoritos?email=email@jony.com`);
+        const resp = await fetch(`http://localhost:3000/api/favoritos?email=${email}`);
         const data = await resp.json();
         data.forEach(element => {
             arrayIdSQL.push(element.id_oferta)
         });
         const favoritosMongo = await ofertasService.listaOfertasPorId(arrayIdSQL);
-        res.status(200).render("favoritos.pug", { Favoritos: favoritosMongo || [] });
+        res.status(200).render("favoritos.pug", { Favoritos: favoritosMongo || [], email });
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);

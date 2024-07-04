@@ -31,7 +31,7 @@ html(lang="en")
           if Favoritos && Favoritos.length > 0
             each favorito in Favoritos
               #cardOferta
-                button(id="deleteFavBtn" onclick=`deleteFavorite('${favorito._id}')`)
+                button(id="deleteFavBtn" data-id=`${favorito._id}` data-email=`${email}` onclick=`deleteFavorite(this.dataset.email, this.dataset.id)`)
                   i.fa-regular.fa-trash-can(style='color: #bf5ad3')
                 h2 #{favorito.title} 
                 h4 #{favorito.empresa}
