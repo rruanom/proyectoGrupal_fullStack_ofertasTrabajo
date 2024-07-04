@@ -42,7 +42,7 @@ const getPerfil = async (req, res) => {
 };
 const getDashboard = async (req, res) => {
     try {
-        const response = await fetch('http://localhost:3000/api/search', {
+        const response = await fetch('/api/search', {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: JSON.stringify({"fuente": "administrador"})  
@@ -70,7 +70,7 @@ const getFavoritos = async (req, res) => {
     let arrayIdSQL = [];
     try {
         // const resp = await fetch(`http://localhost:3000/api/favoritos?email=email@jony.com`);
-        const resp = await fetch(`http://localhost:3000/api/favoritos?email=${email}`);
+        const resp = await fetch(`/api/favoritos?email=${email}`);
         const data = await resp.json();
         data.forEach(element => {
             arrayIdSQL.push(element.id_oferta)
@@ -87,7 +87,7 @@ const getFavoritos = async (req, res) => {
 
 const getUsers = async (req, res) => {
     try {
-        const resp = await fetch('http://localhost:3000/api/usuarios');
+        const resp = await fetch('/api/usuarios');
         const data = await resp.json();
         res.status(200).render("users.pug", { Users: data });
     }
