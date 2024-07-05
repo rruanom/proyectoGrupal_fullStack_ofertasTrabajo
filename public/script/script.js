@@ -3,6 +3,7 @@ const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
 const burger = document.querySelector("#divHamburguesa");
 const ulNav = document.querySelector("#ulNav");
+const saludo = document.querySelector("#saludo");
 
 // const usuario = true;
 // const admin = false;
@@ -20,12 +21,14 @@ const ulNav = document.querySelector("#ulNav");
 abrir.addEventListener("click", () => {
     nav.classList.toggle("visible");
     burger.classList.toggle("invisible");
+    saludo.classList.toggle("invisible");
 });
 
 document.addEventListener("click", (event) => {
     if (!nav.contains(event.target) && event.target !== abrir) {
         nav.classList.remove("visible");
         burger.classList.remove("invisible");
+        saludo.classList.remove("invisible");
     }
 });
 
