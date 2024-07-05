@@ -131,7 +131,8 @@ footer p {
     margin-right: 15px;
     margin-top: 5px;
 }
-#deleteFavBtn button{
+
+#deleteFavBtn button {
     float: right;
     background: none;
     border: none;
@@ -140,29 +141,34 @@ footer p {
     margin-right: 15px;
     margin-top: 5px;
 }
-#cardPerfil{
+
+#cardPerfil {
     padding-left: 10px;
     padding-top: 10px;
 }
-#cardPerfil h3{
+
+#cardPerfil h3 {
     margin-bottom: 40px;
     margin-top: 30px;
     color: #472b60;
 }
-#cardPerfil p{
+
+#cardPerfil p {
     margin-bottom: 40px;
     background-color: rgb(195, 171, 221);
     border-radius: 50px;
     padding: 20px;
 }
-#cardPerfil img{
+
+#cardPerfil img {
     margin-bottom: 40px;
     max-width: 300px;
     border-radius: 50px;
     padding: 20px;
     border: 2px solid rgb(195, 171, 221);
 }
-#deleteUserBtn{
+
+#deleteUserBtn {
     background: none;
     border: none;
     cursor: pointer;
@@ -204,13 +210,16 @@ table button {
     text-align: center;
     cursor: pointer;
 }
-#edit h2{
+
+#edit h2 {
     margin: 20px;
     color: #c37eff;
 }
-#formEdit{
+
+#formEdit {
     margin-bottom: 20px;
 }
+
 #ofertasUsuario h1 {
     display: grid;
     justify-content: space-around;
@@ -229,7 +238,8 @@ table button {
     background-color: white;
 }
 
-#nav button, #edit input {
+#nav button,
+#edit input {
     width: 250px;
     height: 30px;
     border-radius: 20px;
@@ -264,13 +274,28 @@ table button {
     bottom: 83.7%;
 }
 
+#saludo {
+    background-color: white;
+    border-radius: 50px;
+    padding: 20px;
+    max-width: 200px;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    position: sticky;
+    left: 65%;
+    bottom: 84.7%;
+    border: 2px solid rgb(116, 60, 120);
+}
+
 #tituloUsuarios {
     margin-top: 60px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.invisible {
+#saludo.invisible {
     opacity: 0;
     display: none;
 }
@@ -324,12 +349,14 @@ table button {
     padding-left: 20px;
     margin-bottom: 20px;
 }
-#submitOferta{
+
+#submitOferta {
     display: flex;
     justify-content: center;
 }
+
 #tarjetaSubirOferta h2 {
-   
+
     margin-bottom: 20px;
 }
 
@@ -465,7 +492,14 @@ table button {
     }
 
 
+    #saludo {
+        position: static;
+        margin-top: 10px;
+    }
 
+    #saludo p {
+        font-size: 70%;
+    }
 }
 
 @media (max-width: 678px) {
@@ -476,8 +510,13 @@ table button {
     #tdEmailContent {
         display: none;
     }
-    #cardPerfil img{
+
+    #cardPerfil img {
         max-width: 200px;
+    }
+
+    #saludo{
+        display: none;
     }
     th {
         font-size: 80%;
@@ -491,6 +530,7 @@ table button {
         width: 70%;
         margin-left: 20px;
     }
+
     #tarjetaSubirOferta input {
         width: 200px;
         height: 30px;
@@ -508,9 +548,10 @@ table button {
         margin-right: 10%;
     }
 
-    #cardPerfil img{
+    #cardPerfil img {
         max-width: 120px;
     }
+
     #divBuscador h2 {
         display: block;
         margin-bottom: 50px;
@@ -587,7 +628,8 @@ table button {
         justify-self: center;
     }
 
-    #deleteUserBtn, #ediUserBtn{
+    #deleteUserBtn,
+    #ediUserBtn {
         background: none;
         border: none;
         cursor: pointer;
@@ -595,6 +637,11 @@ table button {
         margin-right: 15px;
         margin-top: 5px;
     }
+
+    #saludo {
+        display: none;
+    }
+
     #thEmail {
         display: none;
     }
@@ -643,7 +690,8 @@ table button {
         padding-left: 20px;
         margin-bottom: 20px;
     }
-    #formSubirOferta{
+
+    #formSubirOferta {
         margin-right: 0;
     }
 }
@@ -656,7 +704,8 @@ table button {
     outline: none;
 }
 
-#nav, #edit {
+#nav,
+#edit {
     display: none;
     position: absolute;
     top: 50px;
@@ -669,7 +718,8 @@ table button {
     margin-top: 12%;
 }
 
-#nav.visible, #edit.visible {
+#nav.visible,
+#edit.visible {
     display: block;
     width: 60%;
     position: fixed;
@@ -680,12 +730,12 @@ table button {
 
 #edit {
     display: none;
-  }
-  
-  #edit.visible {
+}
+
+#edit.visible {
     display: block;
-  }
-  
+}
+
 
 #nav.visible h3 {
     padding: 20px;
