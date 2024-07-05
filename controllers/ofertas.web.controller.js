@@ -19,9 +19,28 @@ const getOffers = async (req, res) => {
     }
 };
 
+const deleteOffer = async (req, res) => {
+    const { title } = req.body;
+
+    if (!title) {
+        return res.status(400).json({ message: 'Missing title in request body' });
+    }
+    try {
+        const resp = await ofertaService.deleteOferta(title);
+        res.status(201).json({
+            "items_deleted": resp,
+            data: title
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: "Error en la BbDD" });
+    }
+};
+
 //findOrSaveOfertas();
 
 module.exports = {
-    getOffers
+    getOffers,
+    deleteOffer
 };
 

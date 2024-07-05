@@ -63,12 +63,15 @@ const deleteOfertaController = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     } */
-    let oferta;
+    const { title } = req.body;
     try {
-        oferta = await ofertaService.deleteOferta(req.query.title);
-        res.status(200).json(ofertaferta); // [] con los providers encontradas
+        const resp = await ofertaService.deleteOferta(title);
+        res.status(201).json({
+            "items_deleted": resp,
+            data: title
+        });
     } catch (error) {
-        res.status(500).json({ error: "Error en la BBDD" });
+        res.status(500).json({ error: "Error en la BDD" });
     }
 };
 

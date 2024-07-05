@@ -7,6 +7,7 @@ const protectedRoutes = require('../middlewares/verifiedToken');
 const restrictedAdminRoutes = require('../middlewares/verifiedAdmin')
 const mdVerifiedJWT = require('../middlewares/checkJwt')
 const mdVerifiedAdmin = require('../middlewares/checkIsAdmin')
+const offersWebController = require('../controllers/ofertas.web.controller');
 
 router.get("/", mdVerifiedJWT, mdVerifiedAdmin, offers.getOffers);
 router.post('/', mdVerifiedJWT, mdVerifiedAdmin, offers.getOffers);
@@ -25,6 +26,8 @@ router.delete('/favoritos', mdVerifiedJWT, mdVerifiedAdmin, protectedRoutes, fav
 router.post('/favoritos', mdVerifiedJWT, mdVerifiedAdmin, protectedRoutes, favoritosWebController.saveFavoritoWeb);
 
 router.delete('/usuarios', mdVerifiedJWT, mdVerifiedAdmin, restrictedAdminRoutes, usuariosWebController.deleteUser);
+
+router.delete('/ads', mdVerifiedJWT, mdVerifiedAdmin, restrictedAdminRoutes, offersWebController.deleteOffer);
 
 
 
