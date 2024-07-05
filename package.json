@@ -4,7 +4,7 @@
   "description": "Trabajo grupal sobre una aplicacion web de ofertas de empleo tecnológicas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon index.js",
     "start": "nodemon index.js",
     "generate-docs": "jsdoc -c ./jsdoc.json"
@@ -28,6 +28,7 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "express-validator": "^7.1.0",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.3",
     "mongoose-sequence": "^6.0.1",
@@ -36,6 +37,7 @@
     "pg": "^8.12.0",
     "pug": "^3.0.3",
     "puppeteer": "^22.12.1",
+    "supertest": "^7.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },

@@ -50,6 +50,8 @@ app.use(error404); //Middleware para manejo de 404
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.listen(port, () => { // Servidor está escuchando en este puerto variable port
+const server = app.listen(port, () => { // Servidor está escuchando en este puerto variable port
     console.log(`Example app listening on http://localhost:${port}`);
 });
+
+module.exports = server;
