@@ -5,6 +5,18 @@ const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 const restrictedRoutes = express.Router();
 
+/**
+ * Middleware para verificar si el usuario tiene un token válido y es administrador.
+ * 
+ * @function
+ * @name restrictedRoutes
+ * @memberof Middleware
+ * @param {Object} req - Objeto de solicitud
+ * @param {Object} res - Objeto de respuesta
+ * @param {Function} next - Función para pasar al siguiente middleware
+ * @throws {Error} Error si el usuario no tiene un token válido, no está autenticado o no es administrador
+ */
+
 restrictedRoutes.use((req, res, next) => {
     const token = req.cookies['access_token'];
 

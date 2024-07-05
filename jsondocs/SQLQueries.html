@@ -195,7 +195,7 @@
 
         <tr>
             
-                <td class="name"><code>titulo</code></td>
+                <td class="name"><code>email</code></td>
             
 
             <td class="type">
@@ -211,37 +211,14 @@
 
             
 
-            <td class="description last">Título del favorito</td>
+            <td class="description last">Email del usuario</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>url</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">URL del favorito</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>id_user</code></td>
+                <td class="name"><code>id_oferta</code></td>
             
 
             <td class="type">
@@ -257,30 +234,7 @@
 
             
 
-            <td class="description last">ID del usuario</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>description</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Descripción del favorito</td>
+            <td class="description last">ID de la oferta</td>
         </tr>
 
     
@@ -703,7 +657,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line64">line 64</a>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -790,7 +744,7 @@
     
 
     
-    <h4 class="name" id=".deleteFavoritos"><span class="type-signature">(async, static) </span>deleteFavoritos<span class="signature">(email)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id=".deleteFavorito"><span class="type-signature">(async, static) </span>deleteFavorito<span class="signature">(id_oferta, email)</span><span class="type-signature"> &rarr; {Number}</span></h4>
     
 
     
@@ -798,7 +752,7 @@
 
 
 <div class="description">
-    Descripción de la función: Esta función elimina un favorito de la base de datos por el email del usuario.
+    Descripción de la función: Esta función elimina un favorito de la base de datos.
 </div>
 
 
@@ -834,6 +788,29 @@
 
         <tr>
             
+                <td class="name"><code>id_oferta</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta a eliminar</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>email</code></td>
             
 
@@ -850,7 +827,7 @@
 
             
 
-            <td class="description last">Email del usuario cuyos favoritos se eliminarán</td>
+            <td class="description last">Email del usuario</td>
         </tr>
 
     
@@ -891,7 +868,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_favoritos.model.js.html">models/favoritos.model.js</a>, <a href="models_favoritos.model.js.html#line73">line 73</a>
+        <a href="models_favoritos.model.js.html">models/favoritos.model.js</a>, <a href="models_favoritos.model.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -949,7 +926,7 @@
 
         
 <div class="param-desc">
-    Devuelve un array con los campos afectados
+    Devuelve el número de filas afectadas
 </div>
 
 
@@ -960,7 +937,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Number</span>
 
 
     </dd>
@@ -1079,7 +1056,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line128">line 128</a>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
@@ -1149,6 +1126,194 @@
     <dd>
         
 <span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".existUser"><span class="type-signature">(async, static) </span>existUser<span class="signature">(email)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Descripción de la función: Esta función verifica si un usuario existe en la base de datos por su email.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Email del usuario a verificar</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line157">line 157</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Error de consulta a la BBDD
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Devuelve el usuario encontrado en un objeto
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
 
 
     </dd>
@@ -1406,7 +1571,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line40">line 40</a>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -1681,6 +1846,382 @@
     
 
     
+    <h4 class="name" id=".setLoggedFalse"><span class="type-signature">(async, static) </span>setLoggedFalse<span class="signature">(email)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Descripción de la función: Esta función actualiza el estado de inicio de sesión de un usuario a falso.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Email del usuario a actualizar</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line204">line 204</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Error de consulta a la BBDD
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Devuelve un array con los campos afectados
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".setLoggedTrue"><span class="type-signature">(async, static) </span>setLoggedTrue<span class="signature">(email)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Descripción de la función: Esta función actualiza el estado de inicio de sesión de un usuario a verdadero.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Email del usuario a actualizar</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Error de consulta a la BBDD
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Devuelve un array con los campos afectados
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id=".updateUser"><span class="type-signature">(async, static) </span>updateUser<span class="signature">(user)</span><span class="type-signature"> &rarr; {Number}</span></h4>
     
 
@@ -1925,6 +2466,29 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>ref_email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Email del usuario a actualizar</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1969,7 +2533,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line96">line 96</a>
+        <a href="models_usuarios.model.js.html">models/usuarios.model.js</a>, <a href="models_usuarios.model.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -2066,13 +2630,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="SQLQueries.module_SQLQueries.html">SQLQueries</a></li></ul><h3>Namespaces</h3><ul><li><a href="Middleware.html">Middleware</a></li><li><a href="SQLQueries.html">SQLQueries</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="SQLQueries.module_SQLQueries.html">SQLQueries</a></li><li><a href="module-MongoDB.html">MongoDB</a></li></ul><h3>Namespaces</h3><ul><li><a href="Controllers.html">Controllers</a></li><li><a href="Middleware.html">Middleware</a></li><li><a href="SQLQueries.html">SQLQueries</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Jun 30 2024 21:12:54 GMT+0200 (hora de verano de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 05 2024 10:54:08 GMT+0200 (hora de verano de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>

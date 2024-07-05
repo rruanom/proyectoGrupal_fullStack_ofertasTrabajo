@@ -14,8 +14,8 @@
  */
 
 const { Pool } = require('pg');
-const pool = require('../config/db_pgsql')
-const queries = require('../queries/favoritos.queries') // Queries SQ
+const pool = require('../config/db_pgsql');
+const queries = require('../queries/favoritos.queries'); // Queries SQL
 
 /**
  * Descripción de la función: Esta función busca todos los favoritos de un usuario por su email.
@@ -30,8 +30,8 @@ const getFavoritosByEmail = async (email) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.getFavoritosByEmail, [email])
-        result = data.rows
+        const data = await client.query(queries.getFavoritosByEmail, [email]);
+        result = data.rows;
     } catch (err) {
         console.log(err);
         throw err;
@@ -47,10 +47,8 @@ const getFavoritosByEmail = async (email) => {
  * @method createFavorito 
  * @async
  * @param {Object} favorito Objeto que contiene los datos del nuevo favorito
- * @param {String} favorito.titulo Título del favorito
- * @param {String} favorito.url URL del favorito
- * @param {Number} favorito.id_user ID del usuario
- * @param {String} favorito.description Descripción del favorito
+ * @param {String} favorito.email Email del usuario
+ * @param {Number} favorito.id_oferta ID de la oferta
  * @return {Number} Devuelve el número de filas afectadas
  * @throws {Error} Error de consulta a la BBDD
  */
@@ -70,6 +68,16 @@ const createFavorito = async (favorito) => {
     return result;
 };
 
+/**
+ * Descripción de la función: Esta función elimina un favorito de la base de datos.
+ * @memberof SQLQueries 
+ * @method deleteFavorito 
+ * @async
+ * @param {Number} id_oferta ID de la oferta a eliminar
+ * @param {String} email Email del usuario
+ * @return {Number} Devuelve el número de filas afectadas
+ * @throws {Error} Error de consulta a la BBDD
+ */
 const deleteFavorito = async (id_oferta, email) => {
     let client, result;
     try {
@@ -91,12 +99,13 @@ module.exports = {
     deleteFavorito
 };
 
-// getFavoritosByEmail("email@roberto.com").then(data=>console.log(data));
+// Ejemplos de uso
+// getFavoritosByEmail("email@roberto.com").then(data => console.log(data));
 
 // let newFav = {
 //     "email": "email@miguel.com",
 //     "id_oferta": 89
 // };
-// createFavorito(newFav).then(data=>console.log(data));
+// createFavorito(newFav).then(data => console.log(data));
 
 // deleteFavorito(2, 'email@miguel.com');

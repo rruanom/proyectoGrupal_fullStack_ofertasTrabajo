@@ -8,7 +8,7 @@
  */
 
 const { Pool } = require('pg');
-const pool = require('../config/db_pgsql')
+const pool = require('../config/db_pgsql');
 const queries = require('../queries/usuarios.queries'); // Queries SQL
 const { deleteFavoritos } = require('../queries/favoritos.queries');
 
@@ -25,9 +25,8 @@ const getUserByEmail = async (email) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.getUserByEmail, [email])
-        result = data.rows
-        
+        const data = await client.query(queries.getUserByEmail, [email]);
+        result = data.rows;
     } catch (err) {
         console.log(err);
         throw err;
@@ -49,14 +48,13 @@ const getNonAdminUsers = async () => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.getNonAdminUsers)
-        result = data.rows
+        const data = await client.query(queries.getNonAdminUsers);
+        result = data.rows;
     } catch (err) {
         console.log(err);
         throw err;
     } finally {
         client.release();
-        // client.end();
     }
     return result;
 };
@@ -82,8 +80,8 @@ const createUser = async (user) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createUser,[name, lastname, username, email, password, image, isadmin, last_logged_date])
-        result = data.rowCount
+        const data = await client.query(queries.createUser, [name, lastname, username, email, password, image, isadmin, last_logged_date]);
+        result = data.rowCount;
     } catch (err) {
         console.log(err);
         throw err;
@@ -106,6 +104,7 @@ const createUser = async (user) => {
  * @param {String} user.password Contraseña del usuario
  * @param {String} user.image Imagen del usuario
  * @param {Boolean} user.isadmin Indica si el usuario es administrador
+ * @param {String} user.ref_email Email del usuario a actualizar
  * @return {Number} Devuelve el número de filas afectadas
  * @throws {Error} Error de consulta a la BBDD
  */
@@ -115,11 +114,11 @@ const updateUser = async (user) => {
     try {
         client = await pool.connect();
         if (username) {
-            const data = await client.query(queries.updateUsername, [username, ref_email])
+            const data = await client.query(queries.updateUsername, [username, ref_email]);
             result = data.rowCount;
         }
         if (password) {
-            const data = await client.query(queries.updatePassword, [password, ref_email])
+            const data = await client.query(queries.updatePassword, [password, ref_email]);
             result = data.rowCount;
         }
     } catch (err) {
@@ -129,7 +128,7 @@ const updateUser = async (user) => {
         client.release();
     }
     return result;
-}; 
+};
 
 /**
  * Descripción de la función: Esta función elimina un usuario de la base de datos por su email.
@@ -144,66 +143,86 @@ const deleteUser = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteUser,[email]);
+        const data = await client.query(queries.deleteUser, [email]);
         result = data.rowCount;
     } catch (error) {
         console.log(error);
         throw error;
-    }finally {
+    } finally {
         client.release();
     }
     return result;
 };
 
-//añado funciones necesarias para logIn y logOut
-const existUser = async(email) => {
+/**
+ * Descripción de la función: Esta función verifica si un usuario existe en la base de datos por su email.
+ * @memberof SQLQueries 
+ * @method existUser 
+ * @async
+ * @param {String} email Email del usuario a verificar
+ * @return {Object} Devuelve el usuario encontrado en un objeto
+ * @throws {Error} Error de consulta a la BBDD
+ */
+const existUser = async (email) => {
     let client, result;
-    try{
+    try {
         client = await pool.connect();
-        const data = await client.query(`SELECT * FROM users WHERE email = $1 `,[email])
-        result = data.rows[0]
-    }catch(err){
-        const mensaje = document.querySelector('#mensaje')
+        const data = await client.query(`SELECT * FROM users WHERE email = $1`, [email]);
+        result = data.rows[0];
+    } catch (err) {
+        const mensaje = document.querySelector('#mensaje');
         mensaje.innerHTML = `<p>No se encuentra el usuario<p>`;
-        throw(err);
+        throw err;
     }
-    return result
+    return result;
 };
 
-const setLoggedTrue = async(email) => {
+/**
+ * Descripción de la función: Esta función actualiza el estado de inicio de sesión de un usuario a verdadero.
+ * @memberof SQLQueries 
+ * @method setLoggedTrue 
+ * @async
+ * @param {String} email Email del usuario a actualizar
+ * @return {Array} Devuelve un array con los campos afectados
+ * @throws {Error} Error de consulta a la BBDD
+ */
+const setLoggedTrue = async (email) => {
     let client, result;
-    try{
+    try {
         client = await pool.connect();
-        const data = await client.query(`UPDATE users
-                                        SET islogged = true 
-                                        WHERE email = $1
-                                        RETURNING *; `,[email])
-        result = data.rows
-    }catch(err){
+        const data = await client.query(`UPDATE users SET islogged = true WHERE email = $1 RETURNING *;`, [email]);
+        result = data.rows;
+    } catch (err) {
         console.log(err);
-        throw(err);
-    }finally{
-        client.release()
+        throw err;
+    } finally {
+        client.release();
     }
-    return result
+    return result;
 };
 
-const setLoggedFalse = async(email) => {
+/**
+ * Descripción de la función: Esta función actualiza el estado de inicio de sesión de un usuario a falso.
+ * @memberof SQLQueries 
+ * @method setLoggedFalse 
+ * @async
+ * @param {String} email Email del usuario a actualizar
+ * @return {Array} Devuelve un array con los campos afectados
+ * @throws {Error} Error de consulta a la BBDD
+ */
+const setLoggedFalse = async (email) => {
     let client, result;
-    try{
+    try {
         client = await pool.connect();
-        const data = await client.query(`UPDATE users
-                                        SET islogged = false 
-                                        WHERE email = $1
-                                        RETURNING *; `,[email])
-        result = data.rows
-    }catch(err){
+        const data = await client.query(`UPDATE users SET islogged = false WHERE email = $1 RETURNING *;`, [email]);
+        result = data.rows;
+    } catch (err) {
         console.log(err);
-        throw(err);
-    }finally{
-        client.release()
+        throw err;
+    } finally {
+        client.release();
     }
-    return result
+    return result;
 };
 
 module.exports = {
@@ -215,11 +234,12 @@ module.exports = {
     existUser,
     setLoggedTrue,
     setLoggedFalse
-}
+};
 
-// getNonAdminUsers().then(data=>console.log(data));
+// Ejemplos de uso
+// getNonAdminUsers().then(data => console.log(data));
 
-// getUserByEmail('email@miguel.com').then(data=>console.log(data));
+// getUserByEmail('email@miguel.com').then(data => console.log(data));
 
 // let newUser = { 
 //     "name": "Melquíades",
@@ -229,8 +249,8 @@ module.exports = {
 //     "password": "123456",
 //     "image": "imagen.melquiades.jpg",
 //     "isadmin": false
-// }
-// createUser(newUser).then(data=>console.log(data));
+// };
+// createUser(newUser).then(data => console.log(data));
 
 // updateUser({ 
 //     "name": "Melquíades",

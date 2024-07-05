@@ -5,6 +5,18 @@ const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 const protectedRoutes = express.Router();
 
+/**
+ * Middleware para verificar si el usuario tiene un token válido y está autenticado.
+ * 
+ * @function
+ * @name protectedRoutes
+ * @memberof Middleware
+ * @param {Object} req - Objeto de solicitud
+ * @param {Object} res - Objeto de respuesta
+ * @param {Function} next - Función para pasar al siguiente middleware
+ * @throws {Error} Error si el usuario no tiene un token válido o no está autenticado
+ */
+
 protectedRoutes.use((req, res, next) => {
     const token = req.cookies['access_token'];
 
