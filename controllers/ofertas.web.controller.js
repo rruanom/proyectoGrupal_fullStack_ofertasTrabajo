@@ -10,7 +10,7 @@
  * @requires ../models/ofertas.model
  */
 
-const ofertaService = require('../services/ofertas.services');
+const ofertaService = require('../services/ofertas.sevices');
 const Oferta = require('../models/ofertas.model'); 
 
 /**
