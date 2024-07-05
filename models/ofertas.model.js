@@ -1,4 +1,12 @@
 /**
+ * @authors 
+ * Antonio González
+ * Roberto Ruano
+ * Miguel Pardal  
+ * @exports manage404
+ * @namespace Middleware
+ */
+/**
  * @namespace MongoDB
  * @description Configuración de Mongoose y definición del modelo Oferta para la base de datos MongoDB
  * @exports Oferta

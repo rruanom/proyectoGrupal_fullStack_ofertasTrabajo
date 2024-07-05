@@ -1,4 +1,12 @@
 /**
+ * @authors 
+ * Antonio González
+ * Roberto Ruano
+ * Miguel Pardal  
+ * @exports manage404
+ * @namespace Middleware
+ */
+/**
  * @namespace Controllers
  * @description Controladores para manejar las rutas web relacionadas con las ofertas.
  * @requires ../services/ofertas.services

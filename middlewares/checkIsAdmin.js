@@ -1,3 +1,11 @@
+/**
+ * @authors 
+ * Antonio González
+ * Roberto Ruano
+ * Miguel Pardal  
+ * @exports manage404
+ * @namespace Middleware
+ */
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/usuarios.model');

@@ -1,3 +1,11 @@
+/**
+ * @authors 
+ * Antonio González
+ * Roberto Ruano
+ * Miguel Pardal  
+ * @exports manage404
+ * @namespace Middleware
+ */
 const morgan = require('morgan');
 
 /**
