@@ -41,9 +41,9 @@ app.use('/api',ofertasRoutes);
 app.use('/', rutasWeb);
 
 //http://localhost:3000/api-docs/
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Habilitando ruta para docs swagger
-//  //http://localhost:3000/api-jsdoc/
- app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//http://localhost:3000/api-jsdoc/
+app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
 
 //Invocar middleware
 app.use(error404); //Middleware para manejo de 404
