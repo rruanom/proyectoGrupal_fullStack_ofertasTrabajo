@@ -96,33 +96,33 @@ const loginUser = async (req, res) => {
         data = await user.existUser(email);
         console.log(data);
         if (!data) {
-            return res.status(400).json({ msg: 'Incorrect user or password' });
-        }
-
-        const match = await bcrypt.compare(password, data.password);
-        if (match) {
-            await user.setLoggedTrue(email);
-            const { username, isadmin, islogged } = data;
-            const userForToken = {
-                email,
-                username,
-                isadmin,
-                islogged
-            };
-            const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
-
-            // Set cookies
-            res.cookie('access_token', token, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
-            res.cookie('email', email, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
-            res.cookie('welcome', `Welcome back, ${username}!`, { maxAge: 5 * 60 * 1000 }); // 5 minutes
-
-            return res.status(200).redirect('/');
+            res.status(400).json({ msg: 'Incorrect user or password' });
         } else {
-            return res.status(400).json({ msg: 'Incorrect user or password' });
+            const match = await bcrypt.compare(password, data.password);
+            if (match) {
+                await user.setLoggedTrue(req.body.email);
+                const { email, username, isadmin, islogged } = data;
+                const userForToken = {
+                    email: email,
+                    username: username,
+                    isadmin: isadmin,
+                    islogged: islogged
+                };
+                const token = jwt.sign(userForToken, jwt_secret, { expiresIn: '20m' });
+
+                // Set cookies
+                res.cookie('access_token', token, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
+                res.cookie('email', email, { httpOnly: true, maxAge: 20 * 60 * 1000 }); // 20 minutes
+
+                user.setLoggedTrue(email);
+
+                res.status(200).redirect('./')
+            } else {
+                res.status(400).json({ msg: 'Incorrect user or password' });
+            }
         }
     } catch (error) {
         console.log('Error:', error);
-        return res.status(500).json({ msg: 'Internal server error' });
     }
 };
 
