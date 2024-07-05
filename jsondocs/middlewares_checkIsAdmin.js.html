@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: middlewares/morgan.js</title>
+    <title>JSDoc: Source: middlewares/checkIsAdmin.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: middlewares/morgan.js</h1>
+    <h1 class="page-title">Source: middlewares/checkIsAdmin.js</h1>
 
     
 
@@ -27,54 +27,38 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @author Antonio González, Roberto Ruano, Miguel Pardal
+ * @author Antonio González, Roberto Ruano, Miguel Pardal 
  * @exports manage404
  * @namespace Middleware
  */
-const morgan = require('morgan');
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const User = require('../models/usuarios.model');
+const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
 /**
- * Middleware para registrar el nombre del host en las solicitudes HTTP.
- * @memberof Middleware
+ * Middleware para verificar si el usuario está autenticado y tiene privilegios de administrador.
+ * 
  * @function
- * @name morgan#host
- * @param {Request} req Objeto de solicitud
- * @param {Response} res Objeto de respuesta
- * @returns {String} El nombre del host de la solicitud
+ * @name verifiedIsAdmin
+ * @memberof Middleware
+ * @param {Object} req - Objeto de solicitud
+ * @param {Object} res - Objeto de respuesta
+ * @param {Function} next - Función para pasar al siguiente middleware
+ * @throws {Error} Error si el usuario no está autenticado o no tiene privilegios de administrador
  */
-morgan.token('host', function (req, res) {
-    return req.hostname;
+
+const verifiedIsAdmin = express.Router();
+
+verifiedIsAdmin.use((req, res, next) => {
+    console.log(req.user.islogged)
+    res.locals.islogged = req.user?.islogged || false;
+    res.locals.isadmin = req.user?.isadmin || false;
+    console.log(res.locals.islogged)
+    next();
 });
 
-/**
- * Middleware para registrar el cuerpo de las solicitudes HTTP.
- * @memberof Middleware
- * @function
- * @name morgan#body
- * @param {Request} req Objeto de solicitud
- * @param {Response} res Objeto de respuesta
- * @returns {String} El cuerpo de la solicitud en formato JSON
- */
-morgan.token('body', function (req, res) {
-    return JSON.stringify(req.body);
-});
-
-/**
- * Middleware para registrar parámetros específicos en las solicitudes HTTP.
- * @memberof Middleware
- * @function
- * @name morgan#param
- * @param {Request} req Objeto de solicitud
- * @param {Response} res Objeto de respuesta
- * @param {String} param El nombre del parámetro a registrar
- * @returns {String} El valor del parámetro en la solicitud
- */
-morgan.token('param', function (req, res, param) {
-    return req.params[param];
-});
-
-module.exports = morgan;
-</code></pre>
+module.exports = verifiedIsAdmin;</code></pre>
         </article>
     </section>
 
