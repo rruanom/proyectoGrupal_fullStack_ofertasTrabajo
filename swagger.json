@@ -1,0 +1,556 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Gestión de Usuarios, Ofertas y Favoritos",
+    "description": "API para gestionar usuarios, ofertas de trabajo y favoritos, incluyendo creación, actualización, eliminación y autenticación.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.ejemplo.com/v1",
+      "description": "Servidor principal"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Web",
+      "description": "Peticiones WEB desde front"
+    },
+    {
+      "name": "Usuarios",
+      "description": "Peticiones CRUD usuarios"
+    },
+    {
+      "name": "Favoritos",
+      "description": "Peticiones CRUD de favoritos"
+    },
+    {
+      "name": "Ofertas",
+      "description": "Peticiones CRUD de ofertas"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Obtener lista de usuarios",
+        "tags": [
+          "Web"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de usuarios obtenida exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo usuario",
+        "tags": [
+          "Web"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario creado exitosamente"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un usuario existente",
+        "tags": [
+          "Web"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario actualizado exitosamente"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un usuario",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del usuario a eliminar"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Usuario eliminado exitosamente"
+          }
+        }
+      }
+    },
+    "/users/registro": {
+      "post": {
+        "summary": "Registrar un nuevo usuario",
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario registrado exitosamente"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Iniciar sesión del usuario",
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "Correo electrónico del usuario"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Contraseña del usuario"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario autenticado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "Token JWT para autenticación"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "summary": "Obtener lista de usuarios filtrados por correo electrónico",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Correo electrónico del usuario para filtrar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de usuarios obtenida exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo usuario",
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario creado exitosamente"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un usuario existente",
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario actualizado exitosamente"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un usuario",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del usuario a eliminar"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Usuario eliminado exitosamente"
+          }
+        }
+      }
+    },
+    "/ofertas/search": {
+      "get": {
+        "summary": "Buscar ofertas de trabajo",
+        "tags": [
+          "Ofertas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ofertas de trabajo obtenidas exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Buscar ofertas de trabajo con criterios específicos",
+        "tags": [
+          "Ofertas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "criteria": {
+                    "type": "string",
+                    "description": "Criterios de búsqueda para las ofertas de trabajo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ofertas de trabajo obtenidas exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ofertas/ads": {
+      "post": {
+        "summary": "Crear una nueva oferta de trabajo",
+        "tags": [
+          "Ofertas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Job"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Oferta de trabajo creada exitosamente"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar una oferta de trabajo existente",
+        "tags": [
+          "Ofertas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Job"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Oferta de trabajo actualizada exitosamente"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar una oferta de trabajo",
+        "tags": [
+          "Ofertas"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la oferta de trabajo a eliminar"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Oferta de trabajo eliminada exitosamente"
+          }
+        }
+      }
+    },
+    "/favoritos": {
+      "get": {
+        "summary": "Obtener favoritos de un usuario por correo electrónico",
+        "tags": [
+          "Favoritos"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Correo electrónico del usuario para filtrar los favoritos"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de favoritos obtenida exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Favorito"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo favorito para un usuario",
+        "tags": [
+          "Favoritos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Favorito"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Favorito creado exitosamente"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un favorito de un usuario",
+        "tags": [
+          "Favoritos"
+        ],
+        "parameters": [
+          {
+            "name": "favoritoId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del favorito a eliminar"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Favorito eliminado exitosamente"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "datePosted": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Favorito": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID del usuario al que pertenece el favorito"
+          },
+          "jobId": {
+            "type": "string",
+            "description": "ID de la oferta de trabajo marcada como favorito"
+          },
+          "jobTitle": {
+            "type": "string",
+            "description": "Título de la oferta de trabajo"
+          },
+          "jobUrl": {
+            "type": "string",
+            "description": "URL de la oferta de trabajo"
+          }
+        }
+      }
+    }
+  }
+}

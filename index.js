@@ -1,6 +1,6 @@
 const express = require("express");
-// const swaggerUi = require('swagger-ui-express');  // Descomentar para usar swagger docs de rutas  
-// const swaggerDocument = require('./swagger.json');// Descomentar para usar swagger docs de rutas
+const swaggerUi = require('swagger-ui-express');  // Descomentar para usar swagger docs de rutas  
+const swaggerDocument = require('./swagger.json');// Descomentar para usar swagger docs de rutas
 const app = express(); // Inicializar servidor
 const port = 3000;
 const path = require('path'); // Descomentar para usar jsdoc
@@ -41,7 +41,7 @@ app.use('/api',ofertasRoutes);
 app.use('/', rutasWeb);
 
 //http://localhost:3000/api-docs/
-//  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Habilitando ruta para docs swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // Habilitando ruta para docs swagger
 //  //http://localhost:3000/api-jsdoc/
  app.use('/api-jsdoc', express.static(path.join(__dirname, '/jsondocs')));
 
