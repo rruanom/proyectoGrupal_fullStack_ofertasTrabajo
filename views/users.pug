@@ -1,0 +1,64 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="/css/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
+  body
+    header
+      #titulo
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+        h4#tituloFavs Usuarios
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
+        else
+          include menuUsuario.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
+      else
+        include menuStandart.pug
+
+    main
+      #tituloUsuarios
+        h3 Lista de usuarios registrados
+      #ejemploUsuarios
+        table
+          thead
+            tr
+              th Usuario
+              th#thEmail Email
+              th Borrar Usuario
+              th Editar Usuario
+          tbody
+          each user in Users
+            tr
+              td #{user.username}
+              td#tdEmailContent #{user.email}
+              td 
+                button(id="deleteUserBtn" onclick=`deleteUser('${user.email}')`) 
+                  i.fa-regular.fa-trash-can(style='color: #bf5ad3')
+              td
+                button(class="editUserBtn")
+                  i.fa-solid.fa-pen(style="color: #bf5ad3;")
+      #edit
+        h2 Editar Usuario
+        form#formEdit(action="#" method="PUT")
+          input#name(type="text" name="name" placeholder="Nombre")
+          input#lastname(type="text" name="lastname" placeholder="Apellidos")
+          input#username(type="text" name="username" placeholder="Nombre de usuario")
+          input#email(type="email" name="email" placeholder="Email de usuario")
+          input#image(type="text" name="image" placeholder="Link a la imagen")
+          input#botonRegistro(type="submit" value="Editar")
+
+    
+    include footer.pug
+
+    script(src="script/script.js")

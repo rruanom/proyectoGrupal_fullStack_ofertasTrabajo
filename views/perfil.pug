@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Perfil de Usuario
+    link(rel="stylesheet" href="/css/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
+  body
+    header
+      #titulo
+        a(href="/")
+          img#logoEmpresa(src="/imgs/logoRomian.png" alt="Logo de la empresa")
+        h4#tituloFavs Tu perfil
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
+        else
+          include menuUsuario.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
+      else
+        include menuStandart.pug
+
+    main
+      #ofertasUsuario
+        h1 PERFIL
+        #cardOferta 
+          #cardPerfil
+            h2 Bienvenide a tu perfil
+            h3 Nombre de usuario
+            p @#{Usuario[0].username}
+            h3 Correo
+            p #{Usuario[0].email}
+            h3 Nombre
+            p #{Usuario[0].name}
+            h3 Apellido
+            p #{Usuario[0].lastname}
+            h3 Imagen
+            img(src=Usuario[0].image alt="Imagen de perfil")
+
+    script(src="/script/script.js")

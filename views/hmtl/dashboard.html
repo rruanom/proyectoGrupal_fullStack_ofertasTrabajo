@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas de Empleo FullStack</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>        
+    <div id="titulo">
+        <img src="../../public/IMGs/logoRomian.png" id="logoEmpresa" alt="Logo de la empresa">
+        <h4 id="tituloFavs">Dashboard</h4>
+
+    </div>
+        <div id="divHamburguesa">
+            <button id="abrir" class="abrir-menu"></button>
+        </div>
+        <nav id="nav">
+            <ul id="ulNav">
+                <h3>Menú</h3>
+                <li>
+                    <a href="./">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    
+        <div id="tarjetaSubirOferta">
+            <h2>Subir Oferta</h2>
+            <form id="formSubirOferta" action="#">
+                <div id="divTituloOferta">
+                    <input id="inputTituloOferta" type="text" name="inputTitulo" placeholder="Introduce el título...">
+                </div>
+                <div id="divEmpresaOferta">
+                    <input id="inputEmpresa" type="text" name="inputEmpresa" placeholder="Introduce el nombre de la empresa...">
+                </div>
+                <div id="divSalarioOferta">
+                    <input id="inputSalario" type="text" name="inputSalario" placeholder="ex: 20.000 - 30.000...">
+                </div>
+                <div id="divlocalizacionOferta">
+                    <input id="inputLocalizacion" type="text" name="inputLocalizacion" placeholder="Introduce la localización...">
+                </div>
+                <div id="submitOferta">
+                    <input type="submit" value="Subir">
+                </div>
+            </form>
+            <p id="message"></p>
+        </div>
+        <section>
+            <div id="ofertasUsuario">
+            <h1>{{ msj }}</h1>
+            <div id="cardOferta">
+                {{#each Ofertas}}
+                    <h2>{{ this.title }}</h2>
+                    <h4>{{ this.empresa }}</h4>
+                    <h4>{{ this.localizacion }}</h4>
+                    <h4>{{ this.salario }}</h4>
+                    <button id="{{ this.title }}" class="fa-regular fa-trash-can" style="color: #bf5ad3;"></button>
+                {{/each}}
+            </div>
+        </section>
+    </div>
+    </main>
+
+    
+
+    <script src="./script/script.js"></script>
+</body>
+</html>

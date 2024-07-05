@@ -1,0 +1,39 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="/css/styleLogin.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
+
+  body
+    header
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
+
+    main
+      #tarjetaLogin
+        h2 LOGIN
+        form#formLogin(action="#")
+          #divUserName
+            input#username(type="text" name="username" placeholder="Introduce email...")
+          #divPass
+            input#password(type="password" name="passLogin" placeholder="Introduce password...")
+          div#mensaje
+          #divSubmitLogin
+            input(type="submit" value="Login")
+          button#buttonLoginGoogle Login con Google
+            a(href="/auth/google" class="google-button")
+        #divRecuperarPass
+          button#botonRecuperarPass ¿Has olvidado tu contraseña?
+          button#botonRegistro ¿Aun no tienes cuenta?
+        
+    script(src="script/script.js")

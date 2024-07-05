@@ -1,0 +1,34 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="/css/styleLogin.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
+  body
+    header
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+        else
+          include menuUsuario.pug
+      else
+        include menuStandart.pug
+
+    main
+      #tarjetaLogin
+        h2 REGÍSTRATE
+        form#formSignup(action="/api/usuarios/registro" method="POST")
+          input#name(type="text" name="name" placeholder="Nombre")
+          input#lastname(type="text" name="lastname" placeholder="Apellidos")
+          input#username(type="text" name="username" placeholder="Nombre de usuario")
+          input#email(type="email" name="email" placeholder="Email de usuario")
+          input#password(type="password" name="password" placeholder="Contraseña")
+          input#passwordRepeat(type="password" name="passwordRepeat" placeholder="Repite la contraseña")
+          input#image(type="text" name="image" placeholder="Link a tu imagen")
+          input#botonRegistro(type="submit" value="Regístrate")
+
+    script(src="script/script.js")

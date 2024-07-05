@@ -1,0 +1,57 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Ofertas de Empleo FullStack
+    link(rel="stylesheet" href="/css/style.css")
+    link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
+    script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
+
+  body
+    header
+      #titulo
+        a(href="/")
+          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+        h4#tituloFavs Favoritos
+      if islogged
+        if isadmin
+          include menuAdmin.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
+        else
+          include menuUsuario.pug
+          #saludo
+            p(data-email=`${email}`) Hola #{email}
+      else
+        include menuStandart.pug
+
+    main
+      section
+        #ofertasUsuario
+          h1 Favoritos
+          if Favoritos && Favoritos.length > 0
+            each favorito in Favoritos
+              #cardOferta
+                button(id="deleteFavBtn" data-id=`${favorito._id}` data-email=`${email}` onclick=`deleteFavorite(this.dataset.email, this.dataset.id)`)
+                  i.fa-regular.fa-trash-can(style='color: #bf5ad3')
+                h2 #{favorito.title} 
+                h4 #{favorito.empresa}
+                h4 #{favorito.localizacion}
+                h4 #{favorito.salario}
+                #botonesTec
+                  button 
+                    i.fa-brands.fa-square-js(style="color: #9a52aa;")
+                  button
+                    i.fa-brands.fa-html5(style="color: #75378f;")
+                  button
+                    i.fa-brands.fa-css3-alt(style="color: #9a52aa;")
+                  button
+                    i.fa-brands.fa-node-js(style="color: #75378f;")
+          else
+            p No favorites found.
+              
+
+    include footer.pug
+
+    script(src="script/script.js")
