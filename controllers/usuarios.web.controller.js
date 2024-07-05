@@ -43,8 +43,9 @@ const getPerfil = async (req, res) => {
 };
 const getDashboard = async (req, res) => {
     const email = req.cookies['email'];
+    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
     try {
-        const response = await fetch('/api/search', {
+        const response = await fetch(`${baseUrl}/api/search`, {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: JSON.stringify({"fuente": "administrador"})  
@@ -66,13 +67,14 @@ const getDashboard = async (req, res) => {
 
 const getFavoritos = async (req, res) => {
     const email = req.cookies['email'];
+    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
     if (!email) {
         return res.status(400).json({ msg: 'Email not found in cookies' });
     }
     let arrayIdSQL = [];
     try {
         // const resp = await fetch(`http://localhost:3000/api/favoritos?email=email@jony.com`);
-        const resp = await fetch(`/api/favoritos?email=${email}`);
+        const resp = await fetch(`${baseUrl}/api/favoritos?email=${email}`);
         const data = await resp.json();
         data.forEach(element => {
             arrayIdSQL.push(element.id_oferta)
@@ -89,8 +91,9 @@ const getFavoritos = async (req, res) => {
 
 const getUsers = async (req, res) => {
     const email = req.cookies['email'];
+    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
     try {
-        const resp = await fetch('/api/usuarios');
+        const resp = await fetch(`${baseUrl}/api/usuarios`);
         const data = await resp.json();
         res.status(200).render("users.pug", { Users: data , email});
     }
