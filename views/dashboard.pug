@@ -47,7 +47,7 @@ html(lang="es")
           each oferta in Ofertas
             #cardOferta
               #deleteFavBtn
-                button(id=`${oferta.title}`) 
+                button(id="deleteOfferBtn" onclick=`deleteOffer('${oferta.title}')`) 
                   i.fa-regular.fa-trash-can(style="color: #bf5ad3;")
               #tituloOferta
                 a(href=`${oferta.url}` target="_blank") #{oferta.title} 

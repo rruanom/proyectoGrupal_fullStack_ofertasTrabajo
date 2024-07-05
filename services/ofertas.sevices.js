@@ -95,7 +95,7 @@ const updateOferta = async (filter, update) => {
 const deleteOferta = async (title) => {
     try {
         const removedOferta = await Oferta
-            .deleteOne({ 'title': title });
+            .deleteOne({ title: title });
         console.log(removedOferta);
         return removedOferta;
     } catch (error) {
@@ -111,3 +111,5 @@ module.exports = {
     renderOfferts,
     listaOfertasPorId
 };
+
+// deleteOferta('lefabholhibpiqAEB');

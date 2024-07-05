@@ -58,33 +58,43 @@ document.addEventListener("submit", (event) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                document.getElementById("message").innerHTML = `Oferta guardada con titulo: ${data.title}`;
+                document.getElementById("message").innerHTML = `Oferta guardada con titulo: ${data.data.title}`;
             })
-    } else if (event.target.id =="formLogin"){
+    } else if (event.target.id == "formLogin") {
         event.preventDefault();
 
-        const email = event.target.username.value;
+        const email = event.target.username.value; // Changed username to email to match the input name
         const password = event.target.password.value;
 
-        const formulario = document.querySelector('#formLogin')
-        formulario.reset()
+        const formulario = document.querySelector('#formLogin');
+        formulario.reset();
 
-        const newLoggin = JSON.stringify(
-            {
-                email,
-                password
-            }
-        );
+        const newLogin = JSON.stringify({
+            email,
+            password
+        });
+
         fetch('/api/usuarios/login', {
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
-            body: newLoggin
+            body: newLogin
         })
-            .then(res => res.json())
-            
+            .then(res => {
+                if (res.ok) {
+                    // Redirect to the homepage on successful login
+                    window.location.href = '/';
+                } else {
+                    return res.json().then(data => {
+                        alert(data.msg); // Show error message if login fails
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
-}
-)
+});
+
 
 
 // const printMenuAdmin = () => {
@@ -252,6 +262,30 @@ async function deleteUser(email) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+            location.reload();
+        } else {
+            // alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error deleting user:', error);
+    }
+};
+
+// FUNCIÓN BORRAR OFERTA
+async function deleteOffer(title) {
+
+    try {
+        const response = await fetch('/api/ads', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title }),
         });
 
         const data = await response.json();

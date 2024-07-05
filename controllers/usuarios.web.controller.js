@@ -31,16 +31,22 @@ const getRegistro = async (req, res) => {
         res.status(400).json({ msj: `ERROR: ${error.stack}` });
     }
 };
+
 const getPerfil = async (req, res) => {
     const email = req.cookies['email'];
+    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
     try {
-        res.status(200).render("perfil.pug", {email});
+        const resp = await fetch(`${baseUrl}/api/usuarios?email=${email}`);
+        const data = await resp.json();
+        console.log('data', data);
+        res.status(200).render("perfil.pug", { Usuario: data , email});
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`);
         res.status(400).json({ msj: `ERROR: ${error.stack}` });
     }
 };
+
 const getDashboard = async (req, res) => {
     const email = req.cookies['email'];
     const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
@@ -103,6 +109,20 @@ const getUsers = async (req, res) => {
     }
 };
 
+const getUsersByEmail = async (req, res) => {
+    const email = req.cookies['email'];
+    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
+    try {
+        const resp = await fetch(`${baseUrl}/api/usuarios?email=${email}`);
+        const data = await resp.json();
+        res.status(200).render("users.pug", { Users: data , email});
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(400).json({ msj: `ERROR: ${error.stack}` });
+    }
+};
+
 
 const deleteUser = async (req, res) => {
     // let userSearch;
@@ -132,5 +152,6 @@ module.exports = {
     getDashboard,
     getFavoritos,
     getUsers,
-    deleteUser
+    deleteUser,
+    getUsersByEmail
 }

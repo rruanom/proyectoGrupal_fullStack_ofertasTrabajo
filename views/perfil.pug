@@ -3,7 +3,7 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Ofertas de Empleo FullStack
+    title Perfil de Usuario
     link(rel="stylesheet" href="/css/style.css")
     link(href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet")
     script(src="https://kit.fontawesome.com/27f702310a.js" crossorigin="anonymous")
@@ -12,7 +12,7 @@ html(lang="en")
     header
       #titulo
         a(href="/")
-          img#logoEmpresa(src="imgs/logoRomian.png" alt="Logo de la empresa")
+          img#logoEmpresa(src="/imgs/logoRomian.png" alt="Logo de la empresa")
         h4#tituloFavs Tu perfil
       if islogged
         if isadmin
@@ -33,15 +33,14 @@ html(lang="en")
           #cardPerfil
             h2 Bienvenide a tu perfil
             h3 Nombre de usuario
-            p  @rodolfoElMaquina
+            p @#{Usuario[0].username}
             h3 Correo
-            p rodirodi@user.com
+            p #{Usuario[0].email}
             h3 Nombre
-            p Daniel
+            p #{Usuario[0].name}
             h3 Apellido
-            p Gonzalez
+            p #{Usuario[0].lastname}
             h3 Imagen
-            img(src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/e40b6ea6361a1abe28f32e7910f63b66/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="Imagen de perfil")
+            img(src=Usuario[0].image alt="Imagen de perfil")
 
-
-    script(src="script/script.js")
+    script(src="/script/script.js")
