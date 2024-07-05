@@ -1,4 +1,9 @@
 /**
+ * @author Antonio González, Roberto Ruano, Miguel Pardal 
+ * @exports manage404
+ * @namespace Models
+ */
+/**
  * @namespace SQLQueries 
  * @exports favoritos
  * @description Funciones para manejar los favoritos en la base de datos

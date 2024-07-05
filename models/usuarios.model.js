@@ -1,10 +1,7 @@
 /**
- * @authors 
- * Antonio González
- * Roberto Ruano
- * Miguel Pardal  
- * @exports users
- * @namespace SQLQueries 
+ * @author Antonio González, Roberto Ruano, Miguel Pardal  
+ * @exports manage404
+ * @namespace Models
  */
 
 const { Pool } = require('pg');

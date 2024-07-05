@@ -1,11 +1,9 @@
 /**
- * @authors 
- * Antonio González
- * Roberto Ruano
- * Miguel Pardal  
+ * @author Antonio González, Roberto Ruano, Miguel Pardal
  * @exports manage404
- * @namespace Middleware
+ * @namespace Controllers
  */
+
 /**
  * @namespace Controllers
  * @description Controladores para manejar las rutas relacionadas con los favoritos.
