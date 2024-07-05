@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: middlewares/error404.js</title>
+    <title>JSDoc: Source: middlewares/verifiedToken.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: middlewares/error404.js</h1>
+    <h1 class="page-title">Source: middlewares/verifiedToken.js</h1>
 
     
 
@@ -32,24 +32,46 @@
  * @namespace Middleware
  */
 
-/**
- * Función para tratar rutas no encontradas.
- * Última ruta por defecto. En caso de no encontrarse ninguna anterior, devolvemos un 404.
- * @memberof Middleware 
- * @method manage404 
- * @param {Object} req Objeto de petición HTTP
- * @param {Object} res Objeto de respuesta HTTP
- * @param {Function} next Función que pasa al siguiente middleware
- */
-const manage404 = (req, res, next) => {
-  res.status(404).json({
-      msj: "404 not found",
-      img: "https://seranking.com/blog/wp-content/uploads/2021/01/404_01-min.jpg"
-  });
-}
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const User = require('../models/usuarios.model');
+const jwt_secret = process.env.ULTRA_SECRET_KEY;
 
-module.exports = manage404;
-</code></pre>
+const protectedRoutes = express.Router();
+
+/**
+ * Middleware para verificar si el usuario tiene un token válido y está autenticado.
+ * 
+ * @function
+ * @name protectedRoutes
+ * @memberof Middleware
+ * @param {Object} req - Objeto de solicitud
+ * @param {Object} res - Objeto de respuesta
+ * @param {Function} next - Función para pasar al siguiente middleware
+ * @throws {Error} Error si el usuario no tiene un token válido o no está autenticado
+ */
+
+protectedRoutes.use((req, res, next) => {
+    const token = req.cookies['access_token'];
+
+    if (token) {
+        jwt.verify(token, jwt_secret, async (err, decoded) => {
+            let data = await User.existUser(decoded.email);
+            if (data.islogged == true) {
+                req.decoded = decoded;
+                next();
+            } else {
+                return res.json({ msg: 'Token no valido' });
+            }
+        });
+    } else {
+        res.send({
+            msg: 'Token no provisto'
+        });
+    }
+});
+
+module.exports = protectedRoutes;</code></pre>
         </article>
     </section>
 

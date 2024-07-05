@@ -27,16 +27,13 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @authors 
- * Antonio González
- * Roberto Ruano
- * Miguel Pardal  
- * @exports users
- * @namespace SQLQueries 
+ * @author Antonio González, Roberto Ruano, Miguel Pardal  
+ * @exports manage404
+ * @namespace Models
  */
 
 const { Pool } = require('pg');
-const pool = require('../config/db_pgsql')
+const pool = require('../config/db_pgsql');
 const queries = require('../queries/usuarios.queries'); // Queries SQL
 const { deleteFavoritos } = require('../queries/favoritos.queries');
 
@@ -53,9 +50,8 @@ const getUserByEmail = async (email) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.getUserByEmail, [email])
-        result = data.rows
-        
+        const data = await client.query(queries.getUserByEmail, [email]);
+        result = data.rows;
     } catch (err) {
         console.log(err);
         throw err;
@@ -77,14 +73,13 @@ const getNonAdminUsers = async () => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.getNonAdminUsers)
-        result = data.rows
+        const data = await client.query(queries.getNonAdminUsers);
+        result = data.rows;
     } catch (err) {
         console.log(err);
         throw err;
     } finally {
         client.release();
-        // client.end();
     }
     return result;
 };
@@ -106,12 +101,12 @@ const getNonAdminUsers = async () => {
  * @throws {Error} Error de consulta a la BBDD
  */
 const createUser = async (user) => {
-    const { name, lastname, username, email, password, image, isadmin } = user;
+    const { name, lastname, username, email, password, image, isadmin, last_logged_date } = user;
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createUser,[name, lastname, username, email, password, image, isadmin])
-        result = data.rowCount
+        const data = await client.query(queries.createUser, [name, lastname, username, email, password, image, isadmin, last_logged_date]);
+        result = data.rowCount;
     } catch (err) {
         console.log(err);
         throw err;
@@ -134,16 +129,23 @@ const createUser = async (user) => {
  * @param {String} user.password Contraseña del usuario
  * @param {String} user.image Imagen del usuario
  * @param {Boolean} user.isadmin Indica si el usuario es administrador
+ * @param {String} user.ref_email Email del usuario a actualizar
  * @return {Number} Devuelve el número de filas afectadas
  * @throws {Error} Error de consulta a la BBDD
  */
 const updateUser = async (user) => {
-    const { name, lastname, username, email, password, image, isadmin, ref_email } = user;
+    const { username, password, ref_email } = user;
     let client, result;
     try {
-        client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.updateUser,[name, lastname, username, email, password, image, isadmin, ref_email]);
-        result = data.rowCount;
+        client = await pool.connect();
+        if (username) {
+            const data = await client.query(queries.updateUsername, [username, ref_email]);
+            result = data.rowCount;
+        }
+        if (password) {
+            const data = await client.query(queries.updatePassword, [password, ref_email]);
+            result = data.rowCount;
+        }
     } catch (err) {
         console.log(err);
         throw err;
@@ -151,7 +153,7 @@ const updateUser = async (user) => {
         client.release();
     }
     return result;
-}; 
+};
 
 /**
  * Descripción de la función: Esta función elimina un usuario de la base de datos por su email.
@@ -166,12 +168,83 @@ const deleteUser = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(queries.deleteUser,[email]);
-        result = data.fields;
+        const data = await client.query(queries.deleteUser, [email]);
+        result = data.rowCount;
     } catch (error) {
         console.log(error);
         throw error;
-    }finally {
+    } finally {
+        client.release();
+    }
+    return result;
+};
+
+/**
+ * Descripción de la función: Esta función verifica si un usuario existe en la base de datos por su email.
+ * @memberof SQLQueries 
+ * @method existUser 
+ * @async
+ * @param {String} email Email del usuario a verificar
+ * @return {Object} Devuelve el usuario encontrado en un objeto
+ * @throws {Error} Error de consulta a la BBDD
+ */
+const existUser = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(`SELECT * FROM users WHERE email = $1`, [email]);
+        result = data.rows[0];
+    } catch (err) {
+        const mensaje = document.querySelector('#mensaje');
+        mensaje.innerHTML = `&lt;p>No se encuentra el usuario&lt;p>`;
+        throw err;
+    }
+    return result;
+};
+
+/**
+ * Descripción de la función: Esta función actualiza el estado de inicio de sesión de un usuario a verdadero.
+ * @memberof SQLQueries 
+ * @method setLoggedTrue 
+ * @async
+ * @param {String} email Email del usuario a actualizar
+ * @return {Array} Devuelve un array con los campos afectados
+ * @throws {Error} Error de consulta a la BBDD
+ */
+const setLoggedTrue = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(`UPDATE users SET islogged = true WHERE email = $1 RETURNING *;`, [email]);
+        result = data.rows;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result;
+};
+
+/**
+ * Descripción de la función: Esta función actualiza el estado de inicio de sesión de un usuario a falso.
+ * @memberof SQLQueries 
+ * @method setLoggedFalse 
+ * @async
+ * @param {String} email Email del usuario a actualizar
+ * @return {Array} Devuelve un array con los campos afectados
+ * @throws {Error} Error de consulta a la BBDD
+ */
+const setLoggedFalse = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(`UPDATE users SET islogged = false WHERE email = $1 RETURNING *;`, [email]);
+        result = data.rows;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
         client.release();
     }
     return result;
@@ -182,12 +255,16 @@ module.exports = {
     createUser,
     getNonAdminUsers,
     updateUser,
-    deleteUser
-}
+    deleteUser,
+    existUser,
+    setLoggedTrue,
+    setLoggedFalse
+};
 
-// getNonAdminUsers().then(data=>console.log(data));
+// Ejemplos de uso
+// getNonAdminUsers().then(data => console.log(data));
 
-// getUserByEmail('email@tomas.com').then(data=>console.log(data));
+// getUserByEmail('email@miguel.com').then(data => console.log(data));
 
 // let newUser = { 
 //     "name": "Melquíades",
@@ -197,21 +274,22 @@ module.exports = {
 //     "password": "123456",
 //     "image": "imagen.melquiades.jpg",
 //     "isadmin": false
-// }
-// createUser(newUser).then(data=>console.log(data));
+// };
+// createUser(newUser).then(data => console.log(data));
 
 // updateUser({ 
 //     "name": "Melquíades",
 //     "lastname": "Estrada",
 //     "username": "meles64",
-//     "email": "email@melquiades.com",
+//     "email": "email@melquiades44.com",
 //     "password": "123456",
 //     "image": "imagen.melquiades.jpg",
 //     "isadmin": false,
 //     "ref_email": "email@melquiades.com"
 // }).then(data => console.log(data));
 
-// deleteUser('email@miguel.com');</code></pre>
+// deleteUser('email@miguel.com');
+</code></pre>
         </article>
     </section>
 
@@ -221,13 +299,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="SQLQueries.module_SQLQueries.html">SQLQueries</a></li></ul><h3>Namespaces</h3><ul><li><a href="Middleware.html">Middleware</a></li><li><a href="SQLQueries.html">SQLQueries</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="SQLQueries.module_SQLQueries.html">SQLQueries</a></li><li><a href="module-MongoDB.html">MongoDB</a></li></ul><h3>Namespaces</h3><ul><li><a href="Controllers.html">Controllers</a></li><li><a href="Middleware.html">Middleware</a></li><li><a href="Models.html">Models</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Jun 30 2024 21:12:54 GMT+0200 (hora de verano de Europa central)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Jul 05 2024 11:08:08 GMT+0200 (hora de verano de Europa central)
 </footer>
 
 <script> prettyPrint(); </script>
